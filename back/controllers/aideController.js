@@ -2,12 +2,19 @@ const AideSchema = require("../models/aideSchema");
 
 module.exports = {
   addAide: (req, res) => {
-    const newAide = new AideSchema(req.body);
-    console.log(newAide);
-    newAide
-      .save()
-      .then(() => res.status(200).send("user added"))
-      .catch((err) => res.status(401).send(err));
+    /* vérifier si l'annonce existe par le aide pour éviter l'ajout akthir min mara..*/
+    const annonce = AideSchema.findById({
+      proprietaire: req.body.proprietaire,
+    });
+    if (annonce) res.status(200).send({ msg: "annonce existe" });
+    else {
+      const newAide = new AideSchema(req.body);
+      console.log(newAide);
+      newAide
+        .save()
+        .then(() => res.status(200).send("user added"))
+        .catch((err) => res.status(401).send(err));
+    }
   },
   getAllAideS: async (req, res) => {
     const aide = await AideSchema.find();

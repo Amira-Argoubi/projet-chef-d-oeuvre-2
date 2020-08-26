@@ -13,7 +13,9 @@ import {
 
 import axios from "axios";
 
-import { addAideToDB } from "../../actions/aideActionCreator";
+import { addAideToDB, getAideFromDB } from "../../actions/aideActionCreator";
+import { getUser } from "../../actions/auth";
+
 import { connect } from "react-redux";
 
 /**************************************************************** */
@@ -22,8 +24,13 @@ class Postuler extends Component {
   state = {
     modal14: false,
     selectedFile: [],
+    /************get user *****/
   };
-
+  componentDidMount() {
+    this.props.getUser();
+    this.props.getAideFromDB();
+  }
+  /***************************** */
   toggle = (nr) => () => {
     let modalNumber = "modal" + nr;
     this.setState({
@@ -68,6 +75,7 @@ class Postuler extends Component {
       "El Kabaria",
       "Djebel Jelloud",
     ];
+
     return (
       <MDBContainer>
         <div className="text">
@@ -177,41 +185,20 @@ class Postuler extends Component {
                   onChange={(e) => this.setState({ service: e.target.value })}
                 >
                   <option value="">Choisir le service</option>
-                  <option
-                    value="Nettoyage domestique
-"
-                  >
+                  <option value="Nettoyage domestique">
                     Nettoyage domestique
                   </option>
-                  <option
-                    value="Nettoyage de bureaux
-"
-                  >
+                  <option value="Nettoyage de bureaux">
                     Nettoyage de bureaux
                   </option>
-                  <option
-                    value="Nettoyage de fin de location
-"
-                  >
+                  <option value="Nettoyage de fin de location">
                     Nettoyage de fin de location
                   </option>
-                  <option
-                    value="Nettoyage des vitres
-"
-                  >
+                  <option value="Nettoyage des vitres">
                     Nettoyage des vitres
                   </option>
-                  <option
-                    value="Nettoyage de tapis
-"
-                  >
-                    Nettoyage de tapis
-                  </option>
-                  <option
-                    value="Nettoyage des sols durs
- 
-"
-                  >
+                  <option value="Nettoyage de tapis">Nettoyage de tapis</option>
+                  <option value="Nettoyage des sols durs">
                     Nettoyage des sols durs
                   </option>
                 </select>
@@ -241,6 +228,7 @@ class Postuler extends Component {
                   num: this.state.num,
                   sexe: this.state.sexe,
                   service: this.state.service,
+                  proprietaire: this.props.user._id, //get user id
                 })
               }
             >
@@ -256,19 +244,26 @@ class Postuler extends Component {
           {" "}
           <div className="flip-card">
             <div className="flip-card-inner">
-              <div className="flip-card-front">
-                <img
-                  className="card-aide"
-                  src="https://resize.prod.femina.ladmedia.fr/rblr/652,438/img/var/2015-09/comment-devenir-une-personne-solaire-0e95b16c5fefae293635ad5b6ce2b1198537e371.jpg"
-                  alt="Avatar"
-                />
-                <p>kkk</p>
-              </div>
-              <div className="flip-card-back">
-                <h1>John Doe</h1>
-                <p>Architect & Engineer</p>
-                <p>We love that guy</p>
-              </div>
+              {/* filter l'aide connectéà ce moment */}
+              {this.props.aides
+                .filter((el) => el.proprietaire === this.props.user._id)
+                .map((el) => (
+                  <>
+                    <div className="flip-card-front">
+                      <img
+                        className="card-aide"
+                        src={"http://localhost:8000/" + el.photo}
+                        alt="Avatar"
+                      />
+                      <p>{el.nom}</p>
+                    </div>
+                    <div className="flip-card-back">
+                      <h1>{el.age}</h1>
+                      <p>Architect & Engineer</p>
+                      <p>We love that guy</p>
+                    </div>
+                  </>
+                ))}
             </div>
           </div>
         </center>
@@ -276,10 +271,18 @@ class Postuler extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    aides: state.aides,
+    user: state.auth,
+  };
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     addAide: (el) => dispatch(addAideToDB(el)),
+    getUser: () => dispatch(getUser()),
+    getAideFromDB: () => dispatch(getAideFromDB()),
   };
 };
 
-export default connect(null, mapDispatchToProps)(Postuler);
+export default connect(mapStateToProps, mapDispatchToProps)(Postuler);

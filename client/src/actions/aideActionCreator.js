@@ -1,4 +1,4 @@
-import { ADD_AIDE, GET_AIDE, EDIT_AIDE, DELETE_AIDE} from "./types";
+import { ADD_AIDE, GET_AIDE, EDIT_AIDE, DELETE_AIDE } from "./types";
 import axios from "axios";
 /*************************** POST ************************ */
 export const addAide = (payload) => {
@@ -12,7 +12,12 @@ export const addAideToDB = (el) => {
   return (dispatch) =>
     axios
       .post("http://localhost:8000/chef-d'oeuvre/aides/add", el)
-      .then((res) => dispatch(addAide(res.data)));
+      .then((res) => {
+        /*************** tester si l'aide a déjà postuler ************ */
+        if (res.data.msg) {
+          alert("annonce existe déjà");
+        } else dispatch(addAide(res.data));
+      });
 };
 
 /*************************** EDIT ****************************/
@@ -25,7 +30,10 @@ export const editAide = (payload) => {
 export const editAideInDB = (el) => {
   return (dispatch) =>
     axios
-      .patch(`http://localhost:8000/chef-d'oeuvre/aides/updateAide/${el._id}`, el)
+      .patch(
+        `http://localhost:8000/chef-d'oeuvre/aides/updateAide/${el._id}`,
+        el
+      )
       .then((res) =>
         dispatch(editAide(res.data), window.location.reload(false))
       );

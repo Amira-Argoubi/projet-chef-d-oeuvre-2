@@ -233,6 +233,7 @@ export class Accueil extends Component {
         {/* fonction filtre */}
         <div className="cards container">
           {this.props.aides
+            
             .filter((jr) =>
               this.state.jour === "" ? jr : jr.dispo === this.state.jour
             )
