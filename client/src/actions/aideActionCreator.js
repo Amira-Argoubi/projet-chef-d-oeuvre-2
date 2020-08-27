@@ -8,15 +8,17 @@ export const addAide = (payload) => {
   };
 };
 export const addAideToDB = (el) => {
-  console.log(el);
+  // console.log(el);
   return (dispatch) =>
     axios
       .post("http://localhost:8000/chef-d'oeuvre/aides/add", el)
       .then((res) => {
+        dispatch(addAide(res.data));
+
         /*************** tester si l'aide a déjà postuler ************ */
-        if (res.data.msg) {
-          alert("annonce existe déjà");
-        } else dispatch(addAide(res.data));
+        // if (res.data.msg) {
+        //   alert("annonce existe déjà");
+        // } else {
       });
 };
 
