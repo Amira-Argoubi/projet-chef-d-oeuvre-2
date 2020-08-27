@@ -21,12 +21,20 @@ module.exports = {
 
     res.json(aide);
   },
-  updateAide: (req, res) => {
+  /************************ Edit aide **********************/
+  updateAide: async (req, res) => {
     console.log("chhhj");
-    AideSchema.findByIdAndUpdate(req.params.id, req.body)
-      .then((user) => res.status(200).send(user))
-      .catch((err) => res.status(401).send(err));
+    try {
+      aide = await AideSchema.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+      });
+      res.send(aide);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    }
   },
+  /******************* delete aide ***********************/
   deleteAide: (req, res) => {
     AideSchema.findOneAndDelete({ _id: req.params.id }) ///
       .then(() => res.json({ success: true }))

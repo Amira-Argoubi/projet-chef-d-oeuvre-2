@@ -246,7 +246,7 @@ class Postuler extends Component {
             <div className="flip-card-inner">
               {/* filter l'aide connectéà ce moment */}
               {this.props.aides
-                .filter((el) => el.proprietaire == this.props.user._id)
+                .filter((el) => el.proprietaire === this.props.user._id)
                 .map((el) => (
                   <>
                     <div className="flip-card-front">

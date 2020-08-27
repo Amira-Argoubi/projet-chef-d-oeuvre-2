@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "../App.css";
+
 import {
   MDBCarousel,
   MDBCarouselCaption,
@@ -17,10 +19,12 @@ import {
   MDBCol,
   MDBInput,
 } from "mdbreact";
+import tof from "./images/ph1.png";
 import { login } from "../actions/auth";
 import { getAideFromDB } from "../actions/aideActionCreator";
 import { getUser } from "../actions/auth";
 import { connect } from "react-redux";
+import Pub from "./publicité";
 
 /******************************************************** ******/
 export class Accueil extends Component {
@@ -69,7 +73,7 @@ export class Accueil extends Component {
     //console.log("taw", this.props.user);
     return (
       <div className="accueil">
-        <div className="text">
+        {/* <div className="text">
           <h1>
             {" "}
             <i class="fa fa-quote-left"></i>
@@ -80,9 +84,11 @@ export class Accueil extends Component {
             </span>
             <i class="fa fa-quote-right"></i>
           </h1>
-        </div>
+        </div> */}
+        <Pub />
         {/**** * *****carousel *********/}
-        <div className="caroussel">
+
+        {/* <div className="caroussel">
           <MDBContainer>
             <MDBCarousel
               activeItem={1}
@@ -140,7 +146,8 @@ export class Accueil extends Component {
               </MDBCarouselInner>
             </MDBCarousel>
           </MDBContainer>
-        </div>
+        </div> */}
+
         {/* text */}
         <div className="text">
           <h1>
@@ -228,12 +235,14 @@ export class Accueil extends Component {
             </option>
           </select>
         </div>
+        {/* tof */}
+        <img src={tof} alt="tof" />
 
         {/* ***********cards *******************/}
         {/* fonction filtre */}
         <div className="cards container">
           {this.props.aides
-            
+
             .filter((jr) =>
               this.state.jour === "" ? jr : jr.dispo === this.state.jour
             )

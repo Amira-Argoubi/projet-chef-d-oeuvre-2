@@ -11,6 +11,7 @@ import {
   MDBIcon,
   MDBBtn,
 } from "mdbreact";
+import Logo from "./images/logo.png";
 
 import Inscription from "./inscription";
 import Connex from "./connexion";
@@ -44,7 +45,13 @@ export class Navbar extends Component {
         <header>
           <MDBNavbar style={bgPink} dark expand="md" scrolling fixed="top">
             <MDBNavbarBrand href="/">
-              <strong style={{ color: "blue" }}>Navbar</strong>
+              <strong className="logo-nav" style={{ color: "blue" }}>
+                <img src={Logo} alt="logo" />
+                <h2 style={{ fontFamily: "Gotham-book" }}>
+                  i<span style={{ color: "rgb(230, 227, 20)" }}>C</span>
+                  LEANit
+                </h2>
+              </strong>
             </MDBNavbarBrand>
             <MDBNavbarToggler onClick={this.onClick} />
             <MDBCollapse isOpen={this.state.collapse} navbar>
@@ -55,6 +62,17 @@ export class Navbar extends Component {
                     Accueil
                   </MDBNavLink>
                 </MDBNavItem>
+                <MDBNavItem active>
+                  <MDBNavLink style={{ color: "blue" }} to="/">
+                    A propos
+                  </MDBNavLink>
+                </MDBNavItem>
+                <MDBNavItem active>
+                  <MDBNavLink style={{ color: "blue" }} to="/">
+                    Contact
+                  </MDBNavLink>
+                </MDBNavItem>
+
                 {this.props.user.role === "Aide ménagère" ? (
                   <MDBNavItem>
                     <MDBNavLink to="/aide" style={{ color: "blue" }}>
