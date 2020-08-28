@@ -40,6 +40,18 @@ export const editAideInDB = (el) => {
         dispatch(editAide(res.data), window.location.reload(false))
       );
 };
+export const getOneAideFDB = () => {
+  return (dispatch) =>
+    axios
+      .get(`http://localhost:8000/chef-d'oeuvre/aides/OneAide`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log("get  one aide ", res.data);
+        dispatch(getAide);
+      })
+      .catch((err) => console.log("err one aide", err));
+};
 /******************************* DELETE ******************************/
 export const deleteAide = (payload) => {
   return {

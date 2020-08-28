@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import {
   MDBContainer,
   MDBBtn,
@@ -11,9 +12,16 @@ import {
   MDBIcon,
 } from "mdbreact";
 
+import EditAide from "./editAide";
+
 import axios from "axios";
 
-import { addAideToDB, getAideFromDB } from "../../actions/aideActionCreator";
+import {
+  addAideToDB,
+  getAideFromDB,
+  getOneAideFDB,
+  editAide,
+} from "../../actions/aideActionCreator";
 import { getUser } from "../../actions/auth";
 
 import { connect } from "react-redux";
@@ -28,7 +36,8 @@ class Postuler extends Component {
   };
   componentDidMount() {
     this.props.getUser();
-    this.props.getAideFromDB();
+    // this.props.getAideFromDB();
+    this.props.getOneAideFDB();
   }
   /***************************** */
   toggle = (nr) => () => {
@@ -97,6 +106,7 @@ class Postuler extends Component {
           >
             Postuler maintenant
           </MDBBtn>
+          <EditAide />
         </center>
         <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
           <MDBModalHeader toggle={this.toggle(14)}>
@@ -282,6 +292,7 @@ const mapDispatchToProps = (dispatch) => {
     addAide: (el) => dispatch(addAideToDB(el)),
     getUser: () => dispatch(getUser()),
     getAideFromDB: () => dispatch(getAideFromDB()),
+    getOneAideFDB: () => dispatch(getOneAideFDB()),
   };
 };
 

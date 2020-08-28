@@ -18,6 +18,7 @@ import { connect } from "react-redux";
 /******************************************************** ******/
 export class ReserverAide extends Component {
   state = {
+    service: "",
     jour: "",
     ville: "",
     modal: false,
@@ -111,6 +112,51 @@ export class ReserverAide extends Component {
             <option value="Samedi">Samedi</option>
             <option value="Dimanche">Dimanche</option>
           </select>
+          {/* ***********filtre par type de service ***************/}
+          <select
+            className="browser-default custom-select"
+            style={{ width: "200px" }}
+            onChange={(e) => this.setState({ service: e.target.value })}
+          >
+            <option value="">Choisir le service</option>
+            <option
+              value="Nettoyage domestique
+"
+            >
+              Nettoyage domestique
+            </option>
+            <option
+              value="Nettoyage de bureaux
+"
+            >
+              Nettoyage de bureaux
+            </option>
+            <option
+              value="Nettoyage de fin de location
+"
+            >
+              Nettoyage de fin de location
+            </option>
+            <option
+              value="Nettoyage des vitres
+"
+            >
+              Nettoyage des vitres
+            </option>
+            <option
+              value="Nettoyage de tapis
+"
+            >
+              Nettoyage de tapis
+            </option>
+            <option
+              value="Nettoyage des sols durs
+ 
+"
+            >
+              Nettoyage des sols durs
+            </option>
+          </select>
         </div>
         {/* ***********cards *******************/}
         {/* fonction filtre */}
@@ -121,6 +167,11 @@ export class ReserverAide extends Component {
             )
             .filter((dl) =>
               this.state.ville === "" ? dl : dl.ville === this.state.ville
+            )
+            .filter((serv) =>
+              this.state.service === ""
+                ? serv
+                : serv.service === this.state.service
             )
             .map((el) => (
               <div className="flip-card">
@@ -144,9 +195,7 @@ export class ReserverAide extends Component {
                     <h4>{el.ville}</h4>
                     <h4>{el.exp}</h4>
 
-                    <MDBBtn gradient="blue" onClick={this.toggle}>
-                      Connexion
-                    </MDBBtn>
+                    <MDBBtn color="amber">Réserver</MDBBtn>
                   </div>
                 </div>
               </div>

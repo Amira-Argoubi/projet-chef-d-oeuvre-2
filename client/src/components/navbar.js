@@ -57,18 +57,30 @@ export class Navbar extends Component {
             <MDBCollapse isOpen={this.state.collapse} navbar>
               <MDBNavbarNav left>
                 <MDBNavItem active>
-                  <MDBNavLink style={{ color: "blue" }} to="/">
+                  <MDBNavLink
+                    className="lien-navbar"
+                    style={{ color: "blue" }}
+                    to="/"
+                  >
                     <MDBIcon icon="home" fixed style={{ fontSize: "20px" }} />
                     Accueil
                   </MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem active>
-                  <MDBNavLink style={{ color: "blue" }} to="/">
+                  <MDBNavLink
+                    className="lien-navbar"
+                    style={{ color: "blue" }}
+                    to="/"
+                  >
                     A propos
                   </MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem active>
-                  <MDBNavLink style={{ color: "blue" }} to="/">
+                  <MDBNavLink
+                    className="lien-navbar"
+                    style={{ color: "blue" }}
+                    to="/"
+                  >
                     Contact
                   </MDBNavLink>
                 </MDBNavItem>

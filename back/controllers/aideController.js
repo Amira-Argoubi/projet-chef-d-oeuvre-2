@@ -1,6 +1,8 @@
 const AideSchema = require("../models/aideSchema");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
+  /*********************ADD aide ****************************** */
   addAide: (req, res) => {
     /* vérifier si l'annonce existe par le aide pour éviter l'ajout akthir min mara..*/
     const annonce = AideSchema.findById({
@@ -16,10 +18,23 @@ module.exports = {
         .catch((err) => res.status(401).send(err));
     }
   },
+  /**************** Get all aides *********************** */
   getAllAideS: async (req, res) => {
     const aide = await AideSchema.find();
 
     res.json(aide);
+  },
+  /******************** Get one aide ********************** */
+  getOneaide: async (req, res) => {
+    console.log(req.cookies.token);
+    const token = req.cookies.token;
+    if (!token) return res.send("error");
+    let decodeToken = jwt.verify(token, "privateKey");
+    console.log("id", decodeToken._id); //décodage de token par privatekey
+
+    await AideSchema.find({
+      prproprietaire: decodeToken._id,
+    }).then((user) => res.json(user));
   },
   /************************ Edit aide **********************/
   updateAide: async (req, res) => {
