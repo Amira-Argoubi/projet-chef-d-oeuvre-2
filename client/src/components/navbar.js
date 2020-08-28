@@ -87,7 +87,11 @@ export class Navbar extends Component {
 
                 {this.props.user.role === "Aide ménagère" ? (
                   <MDBNavItem>
-                    <MDBNavLink to="/aide" style={{ color: "blue" }}>
+                    <MDBNavLink
+                      className="lien-navbar"
+                      to="/aide"
+                      style={{ color: "blue" }}
+                    >
                       Aides ménagères
                     </MDBNavLink>
                   </MDBNavItem>
@@ -97,8 +101,19 @@ export class Navbar extends Component {
 
                 {this.props.user.role === "Client" ? (
                   <MDBNavItem>
-                    <MDBNavLink style={{ color: "blue" }} to="/client-reserve">
+                    <MDBNavLink
+                      className="lien-navbar"
+                      style={{ color: "blue" }}
+                      to="/client-reserve"
+                    >
                       Client-réservation
+                    </MDBNavLink>
+                    <MDBNavLink
+                      className="lien-navbar"
+                      style={{ color: "blue" }}
+                      to="/client-Attente"
+                    >
+                      Client-Attente
                     </MDBNavLink>
                   </MDBNavItem>
                 ) : (
@@ -107,6 +122,7 @@ export class Navbar extends Component {
                 {this.props.user.role === "Aide ménagère" ? (
                   <MDBNavItem>
                     <MDBNavLink
+                      className="lien-navbar"
                       style={{ color: "blue" }}
                       to="/gestion-reservation"
                     >
@@ -118,7 +134,11 @@ export class Navbar extends Component {
                 )}
                 <MDBNavItem>
                   {this.props.user.role === "Admin" ? (
-                    <MDBNavLink style={{ color: "blue" }} to="/gestion-users">
+                    <MDBNavLink
+                      className="lien-navbar"
+                      style={{ color: "blue" }}
+                      to="/gestion-users"
+                    >
                       gestion-users
                     </MDBNavLink>
                   ) : (

@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAideFromDB } from "../../actions/aideActionCreator";
+import { getReservation } from "../../actions/reservationAction";
+import { getUser } from "../../actions/auth";
 import { Label, Table, Button } from "semantic-ui-react";
 
 export class GestionReservation extends Component {
   componentDidMount() {
     this.props.getAideFromDB();
+    this.props.getReservation();
+    this.props.getUser();
   }
   render() {
+    const reservations = this.props.reservation.filter(
+      (el) => el.aide._id.toString() === this.props.user._id.toString()
+    );
+
     return (
       <div className="liste-reservation container">
         <Table celled>
@@ -25,13 +33,13 @@ export class GestionReservation extends Component {
           </Table.Header>
 
           <Table.Body>
-            {this.props.aides /*.filter((el_organizateurs) => this.el_organizateurs === "" ?
+            {reservations /*.filter((el_organizateurs) => this.el_organizateurs === "" ?
                             el_organizateurs : el_organizateurs === "maazza"
         )*/
               .map((el, i) => (
                 <Table.Row>
                   <Table.Cell>
-                    <Label ribbon>{el.nom}</Label>
+                    <Label ribbon>{el.client.nom_prenom}</Label>
                   </Table.Cell>
                   <Table.Cell>{el.ville}</Table.Cell>
                   <Table.Cell>{el.age}</Table.Cell>
@@ -76,7 +84,12 @@ export class GestionReservation extends Component {
 const mapStateToProps = (state) => {
   return {
     aides: state.aides,
-    // user: state.auth,
+    reservation: state.reservation,
+    user: state.auth,
   };
 };
-export default connect(mapStateToProps, { getAideFromDB })(GestionReservation);
+export default connect(mapStateToProps, {
+  getAideFromDB,
+  getReservation,
+  getUser,
+})(GestionReservation);

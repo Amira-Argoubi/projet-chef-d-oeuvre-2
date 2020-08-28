@@ -10,6 +10,18 @@ import {
   MDBInputGroup,
   MDBInput,
   MDBIcon,
+  MDBDropdown,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
+  MDBDropdownItem,
+} from "mdbreact";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCol,
 } from "mdbreact";
 
 import EditAide from "./editAide";
@@ -32,6 +44,18 @@ class Postuler extends Component {
   state = {
     modal14: false,
     selectedFile: [],
+    dispo: [],
+    valueExiste: "",
+    existe: "",
+    time: "",
+    Lundi: false,
+    Mardi: false,
+    Mercredi: false,
+    Jeudi: false,
+    Vendredi: false,
+    Samedi: false,
+    Dimanche: false,
+
     /************get user *****/
   };
   componentDidMount() {
@@ -61,6 +85,11 @@ class Postuler extends Component {
   };
   /************************************************************************* */
   render() {
+    const aide =
+      this.props.user &&
+      this.props.aides.filter(
+        (el) => el.proprietaire.toString() === this.props.user._id.toString()
+      );
     const villes = [
       "Bab El Bhar",
       "Bab Souika",
@@ -85,6 +114,16 @@ class Postuler extends Component {
       "Djebel Jelloud",
     ];
 
+    // const array = [...new Set(this.state.dispo)];
+    const {
+      Lundi,
+      Mardi,
+      Mercredi,
+      Jeudi,
+      Vendredi,
+      Samedi,
+      Dimanche,
+    } = this.state;
     return (
       <MDBContainer>
         <div className="text">
@@ -166,7 +205,134 @@ class Postuler extends Component {
               label="Numéro téléphone"
               outline
             />
-            <MDBInputGroup
+            <MDBDropdown dropright>
+              <MDBDropdownToggle caret color="primary">
+                Disponibilité
+              </MDBDropdownToggle>
+              <MDBDropdownMenu basic>
+                <MDBDropdownItem>
+                  {" "}
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      value="Lundi"
+                      class="custom-control-input"
+                      id="defaultUnchecked"
+                      onClick={() =>
+                        this.setState({ Lundi: !this.state.Lundi })
+                      }
+                    />
+                    <label class="custom-control-label" for="defaultUnchecked">
+                      Lundi
+                    </label>
+                  </div>
+                </MDBDropdownItem>
+                <MDBDropdownItem>
+                  {" "}
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      value="Mardi"
+                      class="custom-control-input"
+                      id="defaultUnchecked2"
+                      onClick={() =>
+                        this.setState({ Mardi: !this.state.Mardi })
+                      }
+                    />
+                    <label class="custom-control-label" for="defaultUnchecked2">
+                      Mardi
+                    </label>
+                  </div>
+                </MDBDropdownItem>
+                <MDBDropdownItem>
+                  {" "}
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      value="Mercredi"
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="defaultUnchecked3"
+                      onClick={() =>
+                        this.setState({ Mercredi: !this.state.Mercredi })
+                      }
+                    />
+                    <label class="custom-control-label" for="defaultUnchecked3">
+                      Mercredi
+                    </label>
+                  </div>
+                </MDBDropdownItem>
+                <MDBDropdownItem>
+                  {" "}
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      onClick={() =>
+                        this.setState({ Jeudi: !this.state.Jeudi })
+                      }
+                      value="Jeudi"
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="defaultUnchecked4"
+                    />
+                    <label class="custom-control-label" for="defaultUnchecked4">
+                      Jeudi
+                    </label>
+                  </div>
+                </MDBDropdownItem>
+                <MDBDropdownItem>
+                  {" "}
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="defaultUnchecked5"
+                      onClick={() =>
+                        this.setState({ Vendredi: !this.state.Vendredi })
+                      }
+                      value="Vendredi"
+                    />
+                    <label class="custom-control-label" for="defaultUnchecked5">
+                      Vendredi
+                    </label>
+                  </div>
+                </MDBDropdownItem>
+                <MDBDropdownItem>
+                  {" "}
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="defaultUnchecked6"
+                      onClick={() =>
+                        this.setState({ Samedi: !this.state.Samedi })
+                      }
+                      value="Samedi"
+                    />
+                    <label class="custom-control-label" for="defaultUnchecked6">
+                      Samedi
+                    </label>
+                  </div>
+                </MDBDropdownItem>
+                <MDBDropdownItem>
+                  {" "}
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      onClick={() =>
+                        this.setState({ Dimanche: !this.state.Dimanche })
+                      }
+                      value="Dimanche"
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="defaultUnchecked7"
+                    />
+                    <label class="custom-control-label" for="defaultUnchecked7">
+                      Dimanche
+                    </label>
+                  </div>
+                </MDBDropdownItem>
+              </MDBDropdownMenu>
+            </MDBDropdown>
+
+            {/* <MDBInputGroup
               containerClassName="mb-3"
               prepend="Jour"
               inputs={
@@ -184,7 +350,8 @@ class Postuler extends Component {
                   <option value="Dimanche">Dimanche</option>
                 </select>
               }
-            />
+            /> */}
+
             <MDBInputGroup
               containerClassName="mb-3"
               prepend="service"
@@ -214,6 +381,17 @@ class Postuler extends Component {
                 </select>
               }
             />
+            {/************* * time ***************/}
+            <div class="md-form md-outline">
+              <input
+                type="time"
+                id="default-picker"
+                class="form-control"
+                placeholder="Select time"
+                onChange={(e) => this.setState({ time: e.target.value })}
+              />
+              <label for="default-picker">Default Time Picker</label>
+            </div>
 
             <MDBInput
               onChange={(e) => this.setState({ exp: e.target.value })}
@@ -234,7 +412,16 @@ class Postuler extends Component {
                   photo: this.state.selectedFile.name,
                   ville: this.state.ville,
                   exp: this.state.exp,
-                  dispo: this.state.dispo,
+                  dispo: [
+                    Lundi ? "Lundi" : null,
+                    Mardi ? "Mardi" : null,
+                    Mercredi ? "Mercredi" : null,
+                    Jeudi ? "Jeudi" : null,
+                    Vendredi ? "Vendredi" : null,
+                    Samedi ? "Samedi" : null,
+                    Dimanche ? "Dimanche" : null,
+                  ],
+                  time: this.state.time,
                   num: this.state.num,
                   sexe: this.state.sexe,
                   service: this.state.service,
@@ -252,10 +439,10 @@ class Postuler extends Component {
 
         <center>
           {" "}
-          <div className="flip-card">
+          {/* <div className="flip-card">
             <div className="flip-card-inner">
               {/* filter l'aide connectéà ce moment */}
-              {this.props.aides
+          {/* {this.props.aides
                 .filter((el) => el.proprietaire === this.props.user._id)
                 .map((el) => (
                   <>
@@ -275,8 +462,39 @@ class Postuler extends Component {
                   </>
                 ))}
             </div>
-          </div>
+          </div> */}
         </center>
+        {/* new card */}
+        {/* filter l'aide connectéà ce moment */}
+
+        <MDBCol>
+          {aide.map((el) => (
+            <>
+              <MDBCard style={{ width: "22rem" }}>
+                <MDBCardImage
+                  className="img-fluid"
+                  src={"http://localhost:8000/" + el.photo}
+                  waves
+                />
+                <MDBCardBody>
+                  <MDBCardTitle>{el.nom}</MDBCardTitle>
+                  <MDBCardText>{el.age}</MDBCardText>
+                  <MDBCardText>
+                    {el.dispo.map((el) => (
+                      <p>{el}</p>
+                    ))}
+                  </MDBCardText>
+
+                  <MDBCardText>{el.sexe}</MDBCardText>
+
+                  <MDBCardText>{el.ville}</MDBCardText>
+
+                  <MDBBtn href="#">MDBBtn</MDBBtn>
+                </MDBCardBody>
+              </MDBCard>
+            </>
+          ))}
+        </MDBCol>
       </MDBContainer>
     );
   }

@@ -1,34 +1,41 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAideFromDB } from "../../actions/aideActionCreator";
+import { getReservation } from "../../actions/reservationAction";
+import { getUser } from "../../actions/auth";
 import { Label, Table, Button } from "semantic-ui-react";
 
-export class GestionReservation extends Component {
+export class ReservationAttente extends Component {
   componentDidMount() {
+    this.props.getUser();
     this.props.getAideFromDB();
+    this.props.getReservation();
   }
   render() {
+    const reservations = this.props.reservation.filter(
+      (el) => el.client._id.toString() === this.props.user._id.toString()
+    );
+
+    console.log("u", reservations);
     return (
       <div className="liste-reservation container">
-        <Table celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Nom-Prénom</Table.HeaderCell>
-              <Table.HeaderCell>Délégation</Table.HeaderCell>
-              <Table.HeaderCell>Description</Table.HeaderCell>
-              <Table.HeaderCell>Notes</Table.HeaderCell>
-              <Table.HeaderCell>Jour</Table.HeaderCell>
-              <Table.HeaderCell>nom_categorie</Table.HeaderCell>
-              {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
-              <Table.HeaderCell>Actions</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+        {reservations.length ? (
+          <Table celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Nom-Prénom</Table.HeaderCell>
+                <Table.HeaderCell>Délégation</Table.HeaderCell>
+                <Table.HeaderCell>Description</Table.HeaderCell>
+                <Table.HeaderCell>Notes</Table.HeaderCell>
+                <Table.HeaderCell>Jour</Table.HeaderCell>
+                <Table.HeaderCell>nom_categorie</Table.HeaderCell>
+                {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
+                <Table.HeaderCell>Actions</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
 
-          <Table.Body>
-            {this.props.aides /*.filter((el_organizateurs) => this.el_organizateurs === "" ?
-                            el_organizateurs : el_organizateurs === "maazza"
-        )*/
-              .map((el, i) => (
+            <Table.Body>
+              {reservations.map((el, i) => (
                 <Table.Row>
                   <Table.Cell>
                     <Label ribbon>{el.nom}</Label>
@@ -61,14 +68,17 @@ export class GestionReservation extends Component {
                   </Table.Cell>
                 </Table.Row>
               ))}{" "}
-          </Table.Body>
+            </Table.Body>
 
-          <Table.Footer>
-            <Table.Row>
-              <Table.HeaderCell colSpan="3"></Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer>
-        </Table>
+            <Table.Footer>
+              <Table.Row>
+                <Table.HeaderCell colSpan="3"></Table.HeaderCell>
+              </Table.Row>
+            </Table.Footer>
+          </Table>
+        ) : (
+          <h1>pas de reservations</h1>
+        )}
       </div>
     );
   }
@@ -76,7 +86,13 @@ export class GestionReservation extends Component {
 const mapStateToProps = (state) => {
   return {
     aides: state.aides,
-    // user: state.auth,
+    user: state.auth,
+    reservation: state.reservation,
   };
 };
-export default connect(mapStateToProps, { getAideFromDB })(GestionReservation);
+
+export default connect(mapStateToProps, {
+  getAideFromDB,
+  getReservation,
+  getUser,
+})(ReservationAttente);

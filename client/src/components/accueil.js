@@ -277,6 +277,8 @@ export class Accueil extends Component {
                     <h4>{el.ville}</h4>
                     <h4>{el.exp}</h4>
                     <h4>{el.service}</h4>
+                    <h4>{el.dispo}</h4>
+                    <h4>{el.sexe}</h4>
 
                     <MDBBtn
                       gradient="blue"

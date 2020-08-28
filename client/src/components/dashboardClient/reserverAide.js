@@ -11,6 +11,7 @@ import {
   MDBBtn,
 } from "mdbreact";
 import { getAideFromDB } from "../../actions/aideActionCreator";
+import { addReservationToDB } from "../../actions/reservationAction";
 import { getUser } from "../../actions/auth";
 import Navbar from ".././navbar";
 import { connect } from "react-redux";
@@ -195,7 +196,12 @@ export class ReserverAide extends Component {
                     <h4>{el.ville}</h4>
                     <h4>{el.exp}</h4>
 
-                    <MDBBtn color="amber">Réserver</MDBBtn>
+                    <MDBBtn
+                      color="amber"
+                      onClick={() => addReservationToDB(el, this.props.user)}
+                    >
+                      Réserver
+                    </MDBBtn>
                   </div>
                 </div>
               </div>
@@ -211,6 +217,8 @@ const mapStateToProps = (state) => {
     user: state.auth,
   };
 };
-export default connect(mapStateToProps, { getAideFromDB, getUser })(
-  ReserverAide
-);
+export default connect(mapStateToProps, {
+  getAideFromDB,
+  getUser,
+  addReservationToDB,
+})(ReserverAide);

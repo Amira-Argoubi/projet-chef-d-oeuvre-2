@@ -13,7 +13,7 @@ export const addAideToDB = (el) => {
     axios
       .post("http://localhost:8000/chef-d'oeuvre/aides/add", el)
       .then((res) => {
-        dispatch(addAide(res.data));
+        dispatch(addAide(res.data), window.location.reload());
 
         /*************** tester si l'aide a déjà postuler ************ */
         // if (res.data.msg) {

@@ -4,6 +4,7 @@ const ReservationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  time: { type: String },
   age: { type: Number, required: true },
   photo: { type: String },
   sexe: { type: String, required: true },
@@ -12,6 +13,8 @@ const ReservationSchema = new mongoose.Schema({
   dispo: { type: String, required: true },
   exp: { type: String, required: true },
   service: { type: String, required: true },
-  proprietaire: { type: String }, // attribut pour contenir l'id de l'aide pour apporter ces propres informations
+  annonce: { type: mongoose.Schema.Types.ObjectId, ref: "Aide" },
+  client: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  aide: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 module.exports = mongoose.model("Reservation", ReservationSchema);

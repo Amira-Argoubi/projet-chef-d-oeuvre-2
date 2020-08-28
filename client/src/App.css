@@ -138,6 +138,7 @@ strong {
 }
 
 /************************css footer*******/
+
 /***********************css image under navbar***/
 #apppage .gradient {
   background: -moz-linear-gradient(
@@ -208,4 +209,7 @@ strong {
   #apppage .view {
     min-height: 150vh;
   }
+}
+.liste-reservation {
+  margin-top: 200px;
 }

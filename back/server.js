@@ -6,6 +6,8 @@ const multer = require("multer"); //Multer adds a body object and a file or file
 const aideRoute = require("./routes/aideRoute");
 const authentifRoute = require("./routes/authRoute");
 
+const reservationRoute = require("./routes/reservationRoute");
+
 const app = express();
 app.use(cookie());
 
@@ -30,6 +32,7 @@ app.use(function (req, res, next) {
 
 app.use("/chef-d'oeuvre/aides", aideRoute);
 app.use("/chef-d'oeuvre/authentif", authentifRoute);
+app.use("/chef-d'oeuvre/reservation", reservationRoute);
 
 /******************** Connect to DB *********************** */
 
@@ -40,6 +43,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: true,
+    useCreateIndex: true,
   })
   .then(() => console.log("mongodb connected"))
   .catch((err) => console.log("amira", err));

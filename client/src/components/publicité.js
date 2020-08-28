@@ -47,7 +47,7 @@ class Pub extends React.Component {
                       veniam sapiente, fugiat! Commodi sequi non animi ea dolor
                       molestiae iste.
                     </h6>
-                    <MDBBtn color="white">Download</MDBBtn>
+                    <MDBBtn color="white">Reserver</MDBBtn>
                     <MDBBtn outline color="white" className="content">
                       Learn More
                     </MDBBtn>

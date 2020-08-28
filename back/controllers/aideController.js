@@ -5,22 +5,21 @@ module.exports = {
   /*********************ADD aide ****************************** */
   addAide: (req, res) => {
     /* vérifier si l'annonce existe par le aide pour éviter l'ajout akthir min mara..*/
-    const annonce = AideSchema.findById({
-      proprietaire: req.body.proprietaire,
-    });
-    if (annonce) res.status(200).send({ msg: "annonce existe" });
-    else {
-      const newAide = new AideSchema(req.body);
-      console.log(newAide);
-      newAide
-        .save()
-        .then(() => res.status(200).send("user added"))
-        .catch((err) => res.status(401).send(err));
-    }
+    // const annonce = AideSchema.findById({
+    //   proprietaire: req.body.proprietaire,
+    // });
+    // if (annonce) res.status(200).send({ msg: "annonce existe" });
+    // else {
+    const newAide = new AideSchema(req.body);
+    console.log(newAide);
+    newAide
+      .save()
+      .then(() => res.status(200).send("user added"))
+      .catch((err) => res.status(401).send(err));
   },
   /**************** Get all aides *********************** */
   getAllAideS: async (req, res) => {
-    const aide = await AideSchema.find();
+    const aide = await AideSchema.find().populate("proprietaire", "-password");
 
     res.json(aide);
   },

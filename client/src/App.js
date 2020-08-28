@@ -3,6 +3,7 @@ import "./App.css";
 import Postuler from "./components/dashboardAide/postuler-aide";
 import Accueil from "./components/accueil";
 import ReserverAide from "./components/dashboardClient/reserverAide";
+import ReservationAttente from "./components/dashboardClient/clientAttente";
 
 import GestionReservation from "./components/dashboardAide/gestion-reservation";
 import GestionUsers from "./components/dashbordAdmin/gestion-users";
@@ -33,6 +34,11 @@ export class App extends Component {
 
             <Route exact path="/aide" component={Postuler} />
             <Route exact path="/client-reserve" component={ReserverAide} />
+            <Route
+              exact
+              path="/client-Attente"
+              component={ReservationAttente}
+            />
 
             <Route
               exact
