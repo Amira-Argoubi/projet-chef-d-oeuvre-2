@@ -36,8 +36,8 @@ class Pub extends React.Component {
                 >
                   <MDBAnimation type="fadeInLeft" delay=".3s">
                     <h1 className="h1-responsive font-weight-bold mt-sm-5">
-                      <i class="fa fa-quote-left"></i>Un service d’aide à
-                      domicile de<strong> qualité</strong>
+                      <i class="fa fa-quote-left"></i> Un service d’aide à
+                      domicile de<strong> qualité</strong>{" "}
                       <i class="fa fa-quote-right"></i>
                     </h1>
                     <hr className="hr-light" />

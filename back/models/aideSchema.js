@@ -10,8 +10,6 @@ const AideSchema = new mongoose.Schema({
   sexe: { type: String, required: true },
   num: { type: Number, required: true },
   ville: { type: String, required: true },
-  // dispo: { type: String, required: true },
-
   dispo: [],
   exp: { type: String, required: true },
   service: { type: String, required: true },

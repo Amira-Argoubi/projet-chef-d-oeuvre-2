@@ -60,8 +60,8 @@ class Postuler extends Component {
   };
   componentDidMount() {
     this.props.getUser();
-    // this.props.getAideFromDB();
-    this.props.getOneAideFDB();
+    this.props.getAideFromDB();
+    //this.props.getOneAideFDB();
   }
   /***************************** */
   toggle = (nr) => () => {
@@ -85,11 +85,10 @@ class Postuler extends Component {
   };
   /************************************************************************* */
   render() {
-    const aide =
-      this.props.user &&
-      this.props.aides.filter(
-        (el) => el.proprietaire.toString() === this.props.user._id.toString()
-      );
+    const aide = this.props.aides.filter(
+      (el) => el.proprietaire._id.toString() === this.props.user._id.toString()
+    );
+    console.log("aide", aide);
     const villes = [
       "Bab El Bhar",
       "Bab Souika",
@@ -205,6 +204,7 @@ class Postuler extends Component {
               label="Numéro téléphone"
               outline
             />
+            {/**************** * dropdown de disponibilité **************/}
             <MDBDropdown dropright>
               <MDBDropdownToggle caret color="primary">
                 Disponibilité
@@ -468,32 +468,48 @@ class Postuler extends Component {
         {/* filter l'aide connectéà ce moment */}
 
         <MDBCol>
-          {aide.map((el) => (
-            <>
-              <MDBCard style={{ width: "22rem" }}>
-                <MDBCardImage
-                  className="img-fluid"
-                  src={"http://localhost:8000/" + el.photo}
-                  waves
-                />
-                <MDBCardBody>
-                  <MDBCardTitle>{el.nom}</MDBCardTitle>
-                  <MDBCardText>{el.age}</MDBCardText>
-                  <MDBCardText>
-                    {el.dispo.map((el) => (
-                      <p>{el}</p>
-                    ))}
-                  </MDBCardText>
+          <div className="all-cards">
+            {aide.map((el) => (
+              <div>
+                <div class="card-container">
+                  <span class="pro">PRO</span>
+                  <img
+                    class="round"
+                    src={"http://localhost:8000/" + el.photo}
+                    style={({ width: "200px" }, { height: "200px" })}
+                    alt="user"
+                  />
+                  <h3>{el.nom}</h3>
+                  <h6>{el.ville}</h6>
 
-                  <MDBCardText>{el.sexe}</MDBCardText>
+                  <h6>{el.age}</h6>
+                  <h6>{el.exp}</h6>
+                  <p>
+                    {el.service}
+                    <br /> front-end developer
+                  </p>
+                  <div class="buttons">
+                    {/* {!this.props.user.role &&
+                    this.props.user.role !== "Aide ménagère" ? ( */}
+                    <button class="primary">Modifier</button>
+                    {/* ) : this.props.user.role === "Client" ? (
+                    // add réservation */}
+                    <button class="primary ghost">Effacer </button>
+                    {/* ) : ( "" )} */}
+                  </div>
 
-                  <MDBCardText>{el.ville}</MDBCardText>
-
-                  <MDBBtn href="#">MDBBtn</MDBBtn>
-                </MDBCardBody>
-              </MDBCard>
-            </>
-          ))}
+                  <div class="skills">
+                    <h6>{el.sexe}</h6>{" "}
+                    <ul>
+                      {el.dispo.map((el) => (
+                        <li>{el}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </MDBCol>
       </MDBContainer>
     );

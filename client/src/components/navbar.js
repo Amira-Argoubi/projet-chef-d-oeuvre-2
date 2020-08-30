@@ -38,17 +38,18 @@ export class Navbar extends Component {
   }
 
   render() {
-    console.log("z", this.props.user);
+    //console.log("z", this.props.user);
     const bgPink = { backgroundColor: "#ffffff" };
     return (
       <div>
         <header>
           <MDBNavbar style={bgPink} dark expand="md" scrolling fixed="top">
+            {/************* * logo ********************************************/}
             <MDBNavbarBrand href="/">
               <strong className="logo-nav" style={{ color: "blue" }}>
                 <img src={Logo} alt="logo" />
                 <h2 style={{ fontFamily: "Gotham-book" }}>
-                  i<span style={{ color: "rgb(230, 227, 20)" }}>C</span>
+                  i<span style={{ color: "#febb0b" }}>C</span>
                   LEANit
                 </h2>
               </strong>
@@ -101,13 +102,6 @@ export class Navbar extends Component {
 
                 {this.props.user.role === "Client" ? (
                   <MDBNavItem>
-                    <MDBNavLink
-                      className="lien-navbar"
-                      style={{ color: "blue" }}
-                      to="/client-reserve"
-                    >
-                      Client-réservation
-                    </MDBNavLink>
                     <MDBNavLink
                       className="lien-navbar"
                       style={{ color: "blue" }}

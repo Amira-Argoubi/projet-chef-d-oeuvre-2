@@ -4,7 +4,7 @@ import Logo from "./images/logo.png";
 
 const FooterPage = () => {
   return (
-    <div className="footer" style={{ color: "black" }}>
+    <div className="footer-app" style={{ color: "black" }}>
       <hr style={{ backgroundColor: "rgba(29, 210, 177, 0.7)" }}></hr>
       <MDBFooter color="white" className="font-small pt-4 mt-4">
         <MDBContainer fluid className="text-center text-md-left">
