@@ -14,5 +14,6 @@ export const LOGOUT = "LOGOUT";
 /***********Reservation********** */
 export const GET_RESERVATION = "GET_RESERVATION";
 export const ADD_RESERVATION = "ADD_RESERVATION";
+export const EDIT_DECISION = "EDIT_DECISION";
 
 //export const REGISTER_FAIL = "REGISTER_FAIL";

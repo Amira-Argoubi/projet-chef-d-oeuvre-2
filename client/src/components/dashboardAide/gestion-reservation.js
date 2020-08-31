@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAideFromDB } from "../../actions/aideActionCreator";
-import { getReservation } from "../../actions/reservationAction";
+import {
+  getReservation,
+  editDecisionInDB,
+} from "../../actions/reservationAction";
 import { getUser } from "../../actions/auth";
 import { Label, Table, Button } from "semantic-ui-react";
 
 export class GestionReservation extends Component {
+  state = {
+    decision: "Validée",
+    deci: "Annulée",
+  };
   componentDidMount() {
     this.props.getAideFromDB();
     this.props.getReservation();
@@ -26,7 +33,7 @@ export class GestionReservation extends Component {
               <Table.HeaderCell>Description</Table.HeaderCell>
               <Table.HeaderCell>Notes</Table.HeaderCell>
               <Table.HeaderCell>Jour</Table.HeaderCell>
-              <Table.HeaderCell>nom_categorie</Table.HeaderCell>
+              <Table.HeaderCell>decision</Table.HeaderCell>
               {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
               <Table.HeaderCell>Actions</Table.HeaderCell>
             </Table.Row>
@@ -45,7 +52,7 @@ export class GestionReservation extends Component {
                   <Table.Cell>{el.age}</Table.Cell>
                   <Table.Cell>{el.sexe}</Table.Cell>
                   <Table.Cell>{el.dispo}</Table.Cell>
-                  <Table.Cell>{el.exp}</Table.Cell>
+                  <Table.Cell>{el.decision}</Table.Cell>
                   {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}
 
                   <Table.Cell className="pos-Action ">
@@ -55,14 +62,24 @@ export class GestionReservation extends Component {
                     <Button
                       outline
                       size="sm"
-                      onClick={() => this.props.deleteEvent(el._id)}
+                      onClick={() =>
+                        this.props.editDecisionInDB({
+                          _id: el._id,
+                          decision: this.state.decision,
+                        })
+                      }
                     >
                       <i class="fas fa-check-square"></i>
                     </Button>
                     <Button
                       outline
                       size="sm"
-                      onClick={() => this.props.deleteEvent(el._id)}
+                      onClick={() =>
+                        this.props.editDecisionInDB({
+                          _id: el._id,
+                          decision: this.state.deci,
+                        })
+                      }
                     >
                       <i class="fas fa-trash"></i>
                     </Button>
@@ -92,4 +109,5 @@ export default connect(mapStateToProps, {
   getAideFromDB,
   getReservation,
   getUser,
+  editDecisionInDB,
 })(GestionReservation);

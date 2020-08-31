@@ -37,6 +37,8 @@ module.exports = {
         annonce,
         client,
         aide,
+        tel_client,
+        adresse_client,
       } = req.body;
       const reservation = new Reservation({
         nom,
@@ -51,11 +53,26 @@ module.exports = {
         annonce,
         client,
         aide,
+        tel_client,
+        adresse_client,
       });
       reservation.save();
       res.send(reservation);
     } catch (error) {
       console.error(error.message);
+      res.status(500).send("Server error");
+    }
+  },
+  /**************************** Edit Decision ********************/
+  updateDecision: async (req, res) => {
+    console.log("chhhj");
+    try {
+      decision = await Reservation.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+      });
+      res.send(decision);
+    } catch (err) {
+      console.error(err.message);
       res.status(500).send("Server error");
     }
   },

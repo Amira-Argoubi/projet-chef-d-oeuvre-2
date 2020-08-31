@@ -13,11 +13,11 @@ const ReservationSchema = new mongoose.Schema({
   dispo: [],
   exp: { type: String, required: true },
   service: { type: String, required: true },
-  //adresse_client: { type: String, required: true },
-  //tel_client: { type: String, required: true },
+  adresse_client: { type: String },
+  tel_client: { type: Number },
   annonce: { type: mongoose.Schema.Types.ObjectId, ref: "Aide" },
   client: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   aide: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  //decision: { type: String, default: "En attente" },
+  decision: { type: String, default: "En attente" },
 });
 module.exports = mongoose.model("Reservation", ReservationSchema);

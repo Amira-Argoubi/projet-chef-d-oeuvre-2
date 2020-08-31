@@ -141,13 +141,6 @@ export class Navbar extends Component {
                 </MDBNavItem>
               </MDBNavbarNav>
               <MDBNavbarNav right>
-                {/* <MDBBtn
-            gradient="blue"
-            onClick={this.toggle}
-            style={{ borderRadius: "20px" }}
-          >
-            Connexion
-          </MDBBtn> */}
                 {this.props.user.role ? (
                   <MDBBtn
                     gradient="blue"

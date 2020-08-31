@@ -224,12 +224,7 @@ export class Accueil extends Component {
                       </button>
                     ) : this.props.user.role === "Client" ? (
                       //  / add réservation
-                      <button
-                        class="primary ghost"
-                        onClick={this.toggleReservation}
-                      >
-                        Following{" "}
-                      </button>
+                      <AddReservation el={el} />
                     ) : (
                       ""
                     )}
@@ -384,80 +379,6 @@ export class Accueil extends Component {
           </MDBContainer>
         </div>
         {/*************************** modal pour confirmation de reservation ***********************/}
-        <MDBContainer>
-          <MDBModal
-            isOpen={this.state.modal3}
-            toggle={this.toggleReservation}
-            centered
-          >
-            <MDBModalHeader toggle={this.toggleReservation}>
-              MDBModal title
-            </MDBModalHeader>
-            <MDBModalBody>
-              <MDBInput
-                onChange={(e) =>
-                  this.setState({ adresse_client: e.target.value })
-                }
-                label="adresse"
-                outline
-              />
-              <MDBInput
-                onChange={(e) => this.setState({ tel_client: e.target.value })}
-                label="num-tel"
-                outline
-              />
-              <MDBDropdown dropright>
-                <MDBDropdownToggle caret color="primary">
-                  Disponibilité
-                </MDBDropdownToggle>
-                <MDBDropdownMenu basic>
-                  {/* {this.props.aides.dispo.map((el) => (
-                    <MDBDropdownItem>
-                      <input
-                        type="checkbox"
-                        value="Lundi"
-                        class="custom-control-input"
-                        id="defaultUnchecked"
-                      />
-                      <label
-                        class="custom-control-label"
-                        for="defaultUnchecked"
-                      >
-                        {el}
-                      </label>
-                    </MDBDropdownItem>
-                  ))} */}
-                  {/* <MDBDropdownItem>
-                    {" "}
-                    <div class="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        value="Lundi"
-                        class="custom-control-input"
-                        id="defaultUnchecked"
-                        onClick={() =>
-                          this.setState({ Lundi: !this.state.Lundi })
-                        }
-                      />
-                      <label
-                        class="custom-control-label"
-                        for="defaultUnchecked"
-                      >
-                        Lundi
-                      </label>
-                    </div>
-                  </MDBDropdownItem> */}
-                </MDBDropdownMenu>
-              </MDBDropdown>
-            </MDBModalBody>
-            <MDBModalFooter>
-              <MDBBtn color="secondary" onClick={this.toggleReservation}>
-                Close
-              </MDBBtn>
-              <MDBBtn color="primary">Save changes</MDBBtn>
-            </MDBModalFooter>
-          </MDBModal>
-        </MDBContainer>
       </div>
     );
   }

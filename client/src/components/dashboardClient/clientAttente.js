@@ -25,10 +25,13 @@ export class ReservationAttente extends Component {
               <Table.Row>
                 <Table.HeaderCell>Nom-Prénom</Table.HeaderCell>
                 <Table.HeaderCell>Délégation</Table.HeaderCell>
-                <Table.HeaderCell>Description</Table.HeaderCell>
-                <Table.HeaderCell>Notes</Table.HeaderCell>
+                <Table.HeaderCell>Temps</Table.HeaderCell>
+                <Table.HeaderCell>Service</Table.HeaderCell>
                 <Table.HeaderCell>Jour</Table.HeaderCell>
-                <Table.HeaderCell>nom_categorie</Table.HeaderCell>
+                <Table.HeaderCell>Expérience</Table.HeaderCell>
+                <Table.HeaderCell>Age</Table.HeaderCell>
+                <Table.HeaderCell>Décision</Table.HeaderCell>
+
                 {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
                 <Table.HeaderCell>Actions</Table.HeaderCell>
               </Table.Row>
@@ -41,10 +44,13 @@ export class ReservationAttente extends Component {
                     <Label ribbon>{el.nom}</Label>
                   </Table.Cell>
                   <Table.Cell>{el.ville}</Table.Cell>
-                  <Table.Cell>{el.age}</Table.Cell>
-                  <Table.Cell>{el.sexe}</Table.Cell>
+                  <Table.Cell>{el.time}</Table.Cell>
+                  <Table.Cell>{el.service}</Table.Cell>
                   <Table.Cell>{el.dispo}</Table.Cell>
                   <Table.Cell>{el.exp}</Table.Cell>
+                  <Table.Cell>{el.age}</Table.Cell>
+                  <Table.Cell>{el.decision}</Table.Cell>
+
                   {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}
 
                   <Table.Cell className="pos-Action ">
