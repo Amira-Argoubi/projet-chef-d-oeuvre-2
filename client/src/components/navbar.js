@@ -93,7 +93,7 @@ export class Navbar extends Component {
                       to="/aide"
                       style={{ color: "blue" }}
                     >
-                      Aides ménagères
+                      Annonce
                     </MDBNavLink>
                   </MDBNavItem>
                 ) : (
@@ -128,13 +128,22 @@ export class Navbar extends Component {
                 )}
                 <MDBNavItem>
                   {this.props.user.role === "Admin" ? (
-                    <MDBNavLink
-                      className="lien-navbar"
-                      style={{ color: "blue" }}
-                      to="/gestion-users"
-                    >
-                      gestion-users
-                    </MDBNavLink>
+                    <>
+                      <MDBNavLink
+                        className="lien-navbar"
+                        style={{ color: "blue" }}
+                        to="/gestion-users"
+                      >
+                        gestion-users
+                      </MDBNavLink>
+                      <MDBNavLink
+                        className="lien-navbar"
+                        style={{ color: "blue" }}
+                        to="/gestion-reserv"
+                      >
+                        gestion-reserv
+                      </MDBNavLink>
+                    </>
                   ) : (
                     ""
                   )}

@@ -47,7 +47,7 @@ class Postuler extends Component {
     dispo: [],
     valueExiste: "",
     existe: "",
-    time: "",
+
     Lundi: false,
     Mardi: false,
     Mercredi: false,
@@ -381,17 +381,6 @@ class Postuler extends Component {
                 </select>
               }
             />
-            {/************* * time ***************/}
-            <div class="md-form md-outline">
-              <input
-                type="time"
-                id="default-picker"
-                class="form-control"
-                placeholder="Select time"
-                onChange={(e) => this.setState({ time: e.target.value })}
-              />
-              <label for="default-picker">Default Time Picker</label>
-            </div>
 
             <MDBInput
               onChange={(e) => this.setState({ exp: e.target.value })}
@@ -421,7 +410,6 @@ class Postuler extends Component {
                     Samedi ? "Samedi" : null,
                     Dimanche ? "Dimanche" : null,
                   ],
-                  time: this.state.time,
                   num: this.state.num,
                   sexe: this.state.sexe,
                   service: this.state.service,

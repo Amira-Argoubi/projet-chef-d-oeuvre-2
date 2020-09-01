@@ -4,7 +4,6 @@ const AideSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  time: { type: String },
   age: { type: Number, required: true },
   photo: { type: String },
   sexe: { type: String, required: true },

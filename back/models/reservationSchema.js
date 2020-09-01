@@ -4,7 +4,6 @@ const ReservationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  time: { type: String },
   age: { type: Number, required: true },
   photo: { type: String },
   sexe: { type: String, required: true },
@@ -19,5 +18,6 @@ const ReservationSchema = new mongoose.Schema({
   client: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   aide: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   decision: { type: String, default: "En attente" },
+  devis: { type: String },
 });
 module.exports = mongoose.model("Reservation", ReservationSchema);

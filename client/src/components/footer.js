@@ -38,10 +38,20 @@ const FooterPage = () => {
                   <h5 class="widget-title">
                     Contactez-Nous<span></span>
                   </h5>
-                  <p>Get access to your full Training and Marketing Suite.</p>
-                  <a class="btn" href="#." target="_blank">
-                    Register Now
-                  </a>
+                  <ul class="contacts">
+                    <li>
+                      <i class="fas fa-envelope contact-icon"> </i>
+                      amiraargoubisimplon@gmail.com
+                    </li>
+                    <li>
+                      <i class="fas fa-map-marker-alt contact-icon"></i>
+                      1003,Cité Olympique-Tunis
+                    </li>
+                    <li>
+                      <i class="fas fa-phone-alt contact-icon"> </i>
+                      (+216)93 534 792
+                    </li>
+                  </ul>
                 </div>
               </div>
 
@@ -51,40 +61,40 @@ const FooterPage = () => {
                     Suivez-Nous<span></span>
                   </h5>
 
-                  <p>
-                    <a href="mailto:info@domain.com" title="glorythemes">
-                      info@domain.com
+                  <div className="réseaux sociaux">
+                    <ul class="social-footer2">
+                      <li class="">
+                        <a
+                          href="https://www.linkedin.com/in/amira-argoubi-749952164/"
+                          target="_blank"
+                          title="linkedIn"
+                        >
+                          <i class="fab fa-linkedin linked"></i>
+                        </a>
+                      </li>
+                      <li class="">
+                        <a
+                          href="https://www.facebook.com/amira.marmour"
+                          target="_blank"
+                          title="facebook"
+                        >
+                          <i class="fab fa-facebook face"></i>
+                        </a>
+                      </li>
+                      <li class="">
+                        <a
+                          title="github"
+                          target="_blank"
+                          href="https://github.com/Amira-Argoubi"
+                        >
+                          <i class="fab fa-github github"></i>
+                        </a>
+                      </li>
+                    </ul>
+                    <a class="btn button-footer" href="#." target="_blank">
+                      Register Now
                     </a>
-                  </p>
-                  <ul class="social-footer2">
-                    <li class="">
-                      <a
-                        href="https://www.facebook.com/"
-                        target="_blank"
-                        title="Facebook"
-                      >
-                        <i class="fab fa-linkedin"></i>
-                      </a>
-                    </li>
-                    <li class="">
-                      <a
-                        href="https://twitter.com"
-                        target="_blank"
-                        title="Twitter"
-                      >
-                        <i class="fab fa-facebook"></i>
-                      </a>
-                    </li>
-                    <li class="">
-                      <a
-                        title="instagram"
-                        target="_blank"
-                        href="https://www.instagram.com/"
-                      >
-                        <i class="fab fa-linkedin"></i>
-                      </a>
-                    </li>
-                  </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -97,7 +107,7 @@ const FooterPage = () => {
         >
           <MDBContainer fluid>
             &copy; {new Date().getFullYear()} Copyright:{" "}
-            <a href="https://www.mdbootstrap.com"> MDBootstrap.com </a>
+            <a href="#"> ARGOUBY Amira </a>
           </MDBContainer>
         </div>
       </footer>

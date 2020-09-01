@@ -16,6 +16,7 @@ import { connect } from "react-redux";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FooterPage from "./components/footer";
+import GestionReserv from "./components/dashbordAdmin/gestion-admin";
 
 export class App extends Component {
   componentDidMount() {
@@ -46,6 +47,8 @@ export class App extends Component {
             />
 
             <Route exact path="/gestion-users" component={GestionUsers} />
+
+            <Route exact path="/gestion-reserv" component={GestionReserv} />
           </Switch>
         </Router>
         <FooterPage />

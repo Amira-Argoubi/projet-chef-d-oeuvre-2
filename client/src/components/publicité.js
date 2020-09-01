@@ -63,8 +63,17 @@ class Pub extends React.Component {
             </MDBContainer>
           </MDBMask>
         </MDBView>
-
-        <MDBContainer>
+        {/* /**************************** */}
+        <div class="jumbotron jumbotron-fluid container">
+          <div class="container">
+            <h4 class="display-4">Fluid jumbotron</h4>
+            <p class="lead">
+              This is a modified jumbotron that occupies the entire horizontal
+              space of its parent.
+            </p>
+          </div>
+        </div>
+        {/* <MDBContainer>
           <MDBRow className="py-5">
             <MDBCol md="12" className="text-center">
               <p>
@@ -78,7 +87,7 @@ class Pub extends React.Component {
               </p>
             </MDBCol>
           </MDBRow>
-        </MDBContainer>
+        </MDBContainer> */}
       </div>
     );
   }

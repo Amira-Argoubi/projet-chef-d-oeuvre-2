@@ -104,6 +104,34 @@ app.post("/image", (req, res) => {
     }
   });
 });
+/*********************** upload devis ************************ */
+app.use(express.static("./devis"));
+const storag = multer.diskStorage({
+  destination: "./devis",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const uploa = multer({
+  storage: storag,
+  limits: { fileSize: 3000000 },
+}).single("devis");
+
+app.post("/", (req, res) => {
+  uploa(req, res, (err) => {
+    if (err) {
+      res.send({ msg: err });
+    } else {
+      if (req.file == undefined) {
+        res.send({ msg: "Error: No File Selected!" });
+      } else {
+        if (req.file) res.send(req.file.filename);
+        else res.send("file undifind");
+        console.log(req.file);
+      }
+    }
+  });
+});
 
 app.listen(8000, () => {
   console.log("you're connected on 8000");

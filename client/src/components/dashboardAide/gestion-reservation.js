@@ -34,7 +34,6 @@ export class GestionReservation extends Component {
               <Table.HeaderCell>Notes</Table.HeaderCell>
               <Table.HeaderCell>Jour</Table.HeaderCell>
               <Table.HeaderCell>decision</Table.HeaderCell>
-              {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
               <Table.HeaderCell>Actions</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -53,12 +52,8 @@ export class GestionReservation extends Component {
                   <Table.Cell>{el.sexe}</Table.Cell>
                   <Table.Cell>{el.dispo}</Table.Cell>
                   <Table.Cell>{el.decision}</Table.Cell>
-                  {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}
 
                   <Table.Cell className="pos-Action ">
-                    {/* <Button secondary>
-                      <ModifEvent el={el} />
-                    </Button> */}
                     <Button
                       outline
                       size="sm"

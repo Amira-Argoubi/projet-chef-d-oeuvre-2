@@ -22,6 +22,13 @@ import {
   MDBCardTitle,
 } from "mdbreact";
 import tof from "./images/ph1.png";
+import tof1 from "./images/tof1.png";
+import tof2 from "./images/tof2.png";
+import tof3 from "./images/tof3.png";
+import tof4 from "./images/tof4.png";
+import tof5 from "./images/tof5.png";
+import tof6 from "./images/tof6.png";
+
 import { login } from "../actions/auth";
 import { getAideFromDB } from "../actions/aideActionCreator";
 import { getUser } from "../actions/auth";
@@ -180,8 +187,41 @@ export class Accueil extends Component {
             </option>
           </select>
         </div>
+        {/* différents services */}
+        <div className="services1 container">
+          <img src={tof1} alt="tof1" />
+          <img src={tof2} alt="tof1" />
+          <img src={tof3} alt="tof1" />
+        </div>
+        <div className="services2 container">
+          <img src={tof4} alt="tof1" />
+          <img src={tof5} alt="tof1" />
+          <img src={tof6} alt="tof1" />
+        </div>
         {/* tof */}
-        <img src={tof} alt="tof" />
+        {/* <div className="cards-horizontale">
+          <div class="card mb-3" style={{ width: "540px" }}>
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="..." class="card-img" alt="..." />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <img src={tof} alt="tof" />
+        </div> */}
 
         {/* ***********new cards *******************/}
         <div className="all-cards">

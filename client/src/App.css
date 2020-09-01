@@ -142,11 +142,36 @@ strong {
 /*==================== 
 	Footer 
 ====================== */
+/* icone réseaux sociaux */
+.fab {
+  font-size: 30px;
+  margin-top: 25px;
+}
+.face {
+  padding-left: 30px;
+}
+.github {
+  padding-left: 60px;
+}
+.button-footer {
+  margin-top: 50px !important;
+}
+
+/* icon contact */
+.contact-icon {
+  font-size: 20px;
+  color: rgba(29, 210, 177);
+}
+.contacts li {
+  line-height: 50px;
+}
 
 /* Main Footer */
+
 footer .main-footer {
   padding: 20px 0;
   background: #1f1a36;
+  height: 300px;
 }
 footer ul {
   padding-left: 0;
@@ -515,4 +540,35 @@ button.primary.ghost {
   font-size: 12px;
   margin: 0 7px 7px 0;
   padding: 7px;
+}
+/************************ css component publicité *****************/
+.jumbotron {
+  text-align: center;
+  margin-top: -50px;
+  color: #03bfcb;
+  opacity: 0.8;
+  background-color: #ffff;
+}
+
+.jumbotron h1 {
+  font-family: "Gloria Hallelujah", cursive;
+}
+.jumbotron p {
+  font-family: "Parisienne", cursive;
+  font-weight: bold;
+  font-size: 30px;
+  float: center;
+}
+/****************** css cards horizontale ***************/
+.cards-horizontale {
+  margin-top: 150px;
+}
+/************* services **********/
+.services1,
+.services2 {
+  background-color: rgb(239, 245, 247);
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 150px;
+  justify-content: space-around;
 }

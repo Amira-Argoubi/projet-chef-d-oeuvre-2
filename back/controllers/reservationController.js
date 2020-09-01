@@ -39,6 +39,7 @@ module.exports = {
         aide,
         tel_client,
         adresse_client,
+        devis,
       } = req.body;
       const reservation = new Reservation({
         nom,
@@ -55,6 +56,7 @@ module.exports = {
         aide,
         tel_client,
         adresse_client,
+        devis,
       });
       reservation.save();
       res.send(reservation);

@@ -30,8 +30,8 @@ export class ReservationAttente extends Component {
                 <Table.HeaderCell>Jour</Table.HeaderCell>
                 <Table.HeaderCell>Expérience</Table.HeaderCell>
                 <Table.HeaderCell>Age</Table.HeaderCell>
-                <Table.HeaderCell>Décision</Table.HeaderCell>
 
+                <Table.HeaderCell>Devis</Table.HeaderCell>
                 {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
                 <Table.HeaderCell>Actions</Table.HeaderCell>
               </Table.Row>
@@ -49,9 +49,16 @@ export class ReservationAttente extends Component {
                   <Table.Cell>{el.dispo}</Table.Cell>
                   <Table.Cell>{el.exp}</Table.Cell>
                   <Table.Cell>{el.age}</Table.Cell>
-                  <Table.Cell>{el.decision}</Table.Cell>
-
-                  {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}
+                  <Table.Cell>
+                    {el.decision === "Validée" ? (
+                      <img
+                        src={"http://localhost:8000/" + el.devis}
+                        width="50px"
+                      />
+                    ) : (
+                      el.decision
+                    )}
+                  </Table.Cell>
 
                   <Table.Cell className="pos-Action ">
                     {/* <Button secondary>
