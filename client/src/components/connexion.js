@@ -70,6 +70,12 @@ export class Connex extends Component {
                           }
                         />
                       </div>
+                      <p className="font-small grey-text d-flex justify-content-end">
+                        Not a member?
+                        <a href="#!" className="blue-text ml-1">
+                          S'inscrire
+                        </a>
+                      </p>
                     </form>
                   </MDBCol>
                 </MDBRow>

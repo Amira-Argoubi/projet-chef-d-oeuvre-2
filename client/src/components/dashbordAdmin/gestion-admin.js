@@ -36,18 +36,24 @@ export class GestionReserv extends Component {
   };
   render() {
     return (
-      <div className="liste-reservation container">
+      <div className="liste-reservation ">
         <Table celled>
-          <Table.Header>
+          <Table.Header className="table-header">
             <Table.Row>
-              <Table.HeaderCell>Nom-Prénom-client</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">
+                Nom-Prénom-client
+              </Table.HeaderCell>
               <Table.HeaderCell>Délégation</Table.HeaderCell>
-              <Table.HeaderCell>Description</Table.HeaderCell>
-              <Table.HeaderCell>Notes</Table.HeaderCell>
-              <Table.HeaderCell>Jour</Table.HeaderCell>
-              <Table.HeaderCell>Decision</Table.HeaderCell>
-              <Table.HeaderCell>Actions</Table.HeaderCell>
+              <Table.HeaderCell>Num-Tél</Table.HeaderCell>
+              <Table.HeaderCell>Age</Table.HeaderCell>
+
+              <Table.HeaderCell>Adresse</Table.HeaderCell>
+              <Table.HeaderCell>Service</Table.HeaderCell>
+              <Table.HeaderCell>Jours</Table.HeaderCell>
               <Table.HeaderCell>Devis</Table.HeaderCell>
+              <Table.HeaderCell>Actions</Table.HeaderCell>
+
+              <Table.HeaderCell> Décision</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -55,20 +61,29 @@ export class GestionReserv extends Component {
             {this.props.reservation.map((el, i) => (
               <Table.Row>
                 <Table.Cell>
-                  <Label ribbon>{el.client.nom_prenom}</Label>
+                  <Label ribbon>{el.nom_prenom}</Label>
                 </Table.Cell>
                 <Table.Cell>{el.ville}</Table.Cell>
+                <Table.Cell>{el.num_client}</Table.Cell>
+
                 <Table.Cell>{el.age}</Table.Cell>
-                <Table.Cell>{el.sexe}</Table.Cell>
-                <Table.Cell>{el.dispo}</Table.Cell>
-                <Table.Cell>{el.decision}</Table.Cell>
+                <Table.Cell>{el.adresse_client}</Table.Cell>
+                <Table.Cell>{el.service}</Table.Cell>
+                <Table.Cell>
+                  {el.dispo.map((el) => (
+                    <p>{el}</p>
+                  ))}
+                </Table.Cell>
                 <Table.Cell className="pos-Action ">
                   <MDBInput
                     type="file"
                     onChange={(e) => this.handleInput(e)}
                     outline
                   />
+                </Table.Cell>
+                <Table.Cell className="action-button">
                   <Button
+                    className="valider-button"
                     outline
                     size="sm"
                     onClick={() => (
@@ -80,9 +95,10 @@ export class GestionReserv extends Component {
                       })
                     )}
                   >
-                    <i class="fas fa-check-square"></i>
+                    <i class="fas fa-check-square valider"></i>
                   </Button>
                   <Button
+                    className="annuler-button"
                     outline
                     size="sm"
                     onClick={() =>
@@ -92,10 +108,12 @@ export class GestionReserv extends Component {
                       })
                     }
                   >
-                    <i class="fas fa-trash"></i>
+                    <i class="fas fa-trash annuler"></i>
                   </Button>
                 </Table.Cell>
+
                 <Table.Cell>
+                  {" "}
                   {el.decision === "Validée" ? (
                     <img
                       src={"http://localhost:8000/" + el.devis}

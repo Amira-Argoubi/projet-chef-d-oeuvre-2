@@ -1,5 +1,10 @@
 import axios from "axios";
-import { REGISTER_SUCCESS, USER_LOADED, LOGIN_SUCCESS } from "./types";
+import {
+  REGISTER_SUCCESS,
+  USER_LOADED,
+  LOGIN_SUCCESS,
+  EDIT_USER,
+} from "./types";
 
 export function register(el) {
   console.log(el);
@@ -12,7 +17,7 @@ export function register(el) {
           // console.log("amira", res.data)
         )
       )
-      .catch((err) => alert("Créez un compte"));
+      .catch((err) => console.log("Créez un compte"));
 }
 
 export function login(el) {
@@ -50,6 +55,42 @@ export const getUser = () => async (dispatch) => {
     console.log(err);
   }
 };
+/*************************** EDIT ****************************/
+export const editUser = (payload) => {
+  return {
+    type: EDIT_USER,
+    payload,
+  };
+};
+// export const editUserInDB = (el) => {
+//   return (dispatch) =>
+//     axios
+//       .patch(
+//         `http://localhost:8000/chef-d'oeuvre/authentif/update/${el._id}`,
+//         el
+//       )
+//       .then((res) => dispatch(window.location.reload()));
+// };
+
+export const editUserInDB = (el) => {
+  return (dispatch) => {
+    console.log("props", el);
+    axios
+      .patch(
+        `http://localhost:8000/chef-d'oeuvre/authentif/update/${el._id}`,
+        el,
+        { withCredentials: true }
+      )
+      .then((res) => {
+        dispatch(editUser(res.data));
+        console.log(res.data);
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
+  };
+};
+/*************************** LOGOUT ****************************/
+
 export function logout() {
   return () =>
     axios

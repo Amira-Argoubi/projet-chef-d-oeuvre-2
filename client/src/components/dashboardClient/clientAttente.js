@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAideFromDB } from "../../actions/aideActionCreator";
-import { getReservation } from "../../actions/reservationAction";
+import {
+  getReservation,
+  deleteReservationInDB,
+} from "../../actions/reservationAction";
 import { getUser } from "../../actions/auth";
 import { Label, Table, Button } from "semantic-ui-react";
 
@@ -23,16 +26,13 @@ export class ReservationAttente extends Component {
           <Table celled>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Nom-Prénom</Table.HeaderCell>
+                <Table.HeaderCell>Nom-Prénom-Aide</Table.HeaderCell>
                 <Table.HeaderCell>Délégation</Table.HeaderCell>
-                <Table.HeaderCell>Temps</Table.HeaderCell>
                 <Table.HeaderCell>Service</Table.HeaderCell>
                 <Table.HeaderCell>Jour</Table.HeaderCell>
                 <Table.HeaderCell>Expérience</Table.HeaderCell>
                 <Table.HeaderCell>Age</Table.HeaderCell>
-
                 <Table.HeaderCell>Devis</Table.HeaderCell>
-                {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
                 <Table.HeaderCell>Actions</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
@@ -44,7 +44,6 @@ export class ReservationAttente extends Component {
                     <Label ribbon>{el.nom}</Label>
                   </Table.Cell>
                   <Table.Cell>{el.ville}</Table.Cell>
-                  <Table.Cell>{el.time}</Table.Cell>
                   <Table.Cell>{el.service}</Table.Cell>
                   <Table.Cell>{el.dispo}</Table.Cell>
                   <Table.Cell>{el.exp}</Table.Cell>
@@ -64,17 +63,11 @@ export class ReservationAttente extends Component {
                     {/* <Button secondary>
                       <ModifEvent el={el} />
                     </Button> */}
+
                     <Button
                       outline
                       size="sm"
-                      onClick={() => this.props.deleteEvent(el._id)}
-                    >
-                      <i class="fas fa-check-square"></i>
-                    </Button>
-                    <Button
-                      outline
-                      size="sm"
-                      onClick={() => this.props.deleteEvent(el._id)}
+                      onClick={() => this.props.deleteReservationInDB(el._id)}
                     >
                       <i class="fas fa-trash"></i>
                     </Button>
@@ -108,4 +101,5 @@ export default connect(mapStateToProps, {
   getAideFromDB,
   getReservation,
   getUser,
+  deleteReservationInDB,
 })(ReservationAttente);

@@ -14,25 +14,18 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
-} from "mdbreact";
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
   MDBCol,
 } from "mdbreact";
 
 import EditAide from "./editAide";
 
 import axios from "axios";
-
+import { deleteAideInDB } from "../../actions/aideActionCreator";
 import {
   addAideToDB,
   getAideFromDB,
-  getOneAideFDB,
-  editAide,
+  // getOneAideFDB,
+  // editAide,
 } from "../../actions/aideActionCreator";
 import { getUser } from "../../actions/auth";
 
@@ -45,8 +38,8 @@ class Postuler extends Component {
     modal14: false,
     selectedFile: [],
     dispo: [],
-    valueExiste: "",
-    existe: "",
+    // valueExiste: "",
+    // existe: "",
 
     Lundi: false,
     Mardi: false,
@@ -85,10 +78,11 @@ class Postuler extends Component {
   };
   /************************************************************************* */
   render() {
+    console.log(this.props.aides);
     const aide = this.props.aides.filter(
       (el) => el.proprietaire._id.toString() === this.props.user._id.toString()
     );
-    console.log("aide", aide);
+
     const villes = [
       "Bab El Bhar",
       "Bab Souika",
@@ -144,7 +138,6 @@ class Postuler extends Component {
           >
             Postuler maintenant
           </MDBBtn>
-          <EditAide />
         </center>
         <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
           <MDBModalHeader toggle={this.toggle(14)}>
@@ -332,26 +325,6 @@ class Postuler extends Component {
               </MDBDropdownMenu>
             </MDBDropdown>
 
-            {/* <MDBInputGroup
-              containerClassName="mb-3"
-              prepend="Jour"
-              inputs={
-                <select
-                  className="browser-default custom-select"
-                  onChange={(e) => this.setState({ dispo: e.target.value })}
-                >
-                  <option>Choisir le jour</option>
-                  <option value="Lundi">Lundi</option>
-                  <option value="Mardi">Mardi</option>
-                  <option value="Mercredi">Mercredi</option>
-                  <option value="Jeudi">Jeudi</option>
-                  <option value="Vendredi">Vendredi</option>
-                  <option value="Samedi">Samedi</option>
-                  <option value="Dimanche">Dimanche</option>
-                </select>
-              }
-            /> */}
-
             <MDBInputGroup
               containerClassName="mb-3"
               prepend="service"
@@ -425,33 +398,6 @@ class Postuler extends Component {
         {/*************** **** card ****************/}
         <h1>Card Flip with Text</h1>
 
-        <center>
-          {" "}
-          {/* <div className="flip-card">
-            <div className="flip-card-inner">
-              {/* filter l'aide connectéà ce moment */}
-          {/* {this.props.aides
-                .filter((el) => el.proprietaire === this.props.user._id)
-                .map((el) => (
-                  <>
-                    <div className="flip-card-front">
-                      <img
-                        className="card-aide"
-                        src={"http://localhost:8000/" + el.photo}
-                        alt="Avatar"
-                      />
-                      <p>{el.nom}</p>
-                    </div>
-                    <div className="flip-card-back">
-                      <h1>{el.age}</h1>
-                      <p>Architect & Engineer</p>
-                      <p>We love that guy</p>
-                    </div>
-                  </>
-                ))}
-            </div>
-          </div> */}
-        </center>
         {/* new card */}
         {/* filter l'aide connectéà ce moment */}
 
@@ -479,10 +425,16 @@ class Postuler extends Component {
                   <div class="buttons">
                     {/* {!this.props.user.role &&
                     this.props.user.role !== "Aide ménagère" ? ( */}
-                    <button class="primary">Modifier</button>
+                    {/* <button class="primary">Modifier</button> */}
+                    <EditAide aide={el} />
                     {/* ) : this.props.user.role === "Client" ? (
                     // add réservation */}
-                    <button class="primary ghost">Effacer </button>
+                    <button
+                      class="primary ghost"
+                      onClick={() => this.props.deleteAide(el._id)}
+                    >
+                      Effacer{" "}
+                    </button>
                     {/* ) : ( "" )} */}
                   </div>
 
@@ -514,7 +466,8 @@ const mapDispatchToProps = (dispatch) => {
     addAide: (el) => dispatch(addAideToDB(el)),
     getUser: () => dispatch(getUser()),
     getAideFromDB: () => dispatch(getAideFromDB()),
-    getOneAideFDB: () => dispatch(getOneAideFDB()),
+    deleteAide: (id) => dispatch(deleteAideInDB(id)),
+    // getOneAideFDB: () => dispatch(getOneAideFDB()),
   };
 };
 

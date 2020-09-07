@@ -6,11 +6,10 @@ import Accueil from "./components/accueil";
 import ReservationAttente from "./components/dashboardClient/clientAttente";
 
 import GestionReservation from "./components/dashboardAide/gestion-reservation";
-import GestionUsers from "./components/dashbordAdmin/gestion-users";
 import { getAideFromDB } from "./actions/aideActionCreator";
 import { getUser } from "./actions/auth";
 import { login } from "./actions/auth";
-
+import Profil from "./components/profil";
 import Navbar from "./components/navbar";
 import { connect } from "react-redux";
 
@@ -39,14 +38,13 @@ export class App extends Component {
               path="/client-Attente"
               component={ReservationAttente}
             />
+            <Route exact path="/modif-profil" component={Profil} />
 
             <Route
               exact
               path="/gestion-reservation"
               component={GestionReservation}
             />
-
-            <Route exact path="/gestion-users" component={GestionUsers} />
 
             <Route exact path="/gestion-reserv" component={GestionReserv} />
           </Switch>

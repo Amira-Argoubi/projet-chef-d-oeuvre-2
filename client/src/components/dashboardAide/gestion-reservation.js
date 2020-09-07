@@ -50,8 +50,22 @@ export class GestionReservation extends Component {
                   <Table.Cell>{el.ville}</Table.Cell>
                   <Table.Cell>{el.age}</Table.Cell>
                   <Table.Cell>{el.sexe}</Table.Cell>
-                  <Table.Cell>{el.dispo}</Table.Cell>
-                  <Table.Cell>{el.decision}</Table.Cell>
+                  <Table.Cell>
+                    {el.dispo.map((el) => (
+                      <p>{el}</p>
+                    ))}
+                  </Table.Cell>
+                  <Table.Cell>
+                    {el.decision === "Validée" ? (
+                      <>
+                        <p>{el.tel_client}</p>
+                        <p>{el.adresse_client}</p>
+                        <p>{el.client.nom_prenom}</p>
+                      </>
+                    ) : (
+                      el.decision
+                    )}
+                  </Table.Cell>
 
                   <Table.Cell className="pos-Action ">
                     <Button

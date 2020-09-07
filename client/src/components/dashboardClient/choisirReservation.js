@@ -42,7 +42,7 @@ export class AddReservation extends Component {
       <div className="add-reservation">
         <MDBContainer>
           <button class="primary ghost" onClick={this.toggleReservation}>
-            Following{" "}
+            Réserver{" "}
           </button>
           <MDBModal
             isOpen={this.state.modal3}
@@ -93,7 +93,7 @@ export class AddReservation extends Component {
             </MDBModalBody>
             <MDBModalFooter>
               <MDBBtn color="secondary" onClick={this.toggleReservation}>
-                Close
+                Fermer
               </MDBBtn>
               <MDBBtn
                 color="primary"
@@ -114,10 +114,11 @@ export class AddReservation extends Component {
                     aide: el.proprietaire,
                     adresse_client: this.state.adresse_client,
                     tel_client: this.state.tel_client,
+                    date: Date.now(),
                   })
                 }
               >
-                Save changes
+                Réserver
               </MDBBtn>
             </MDBModalFooter>
           </MDBModal>

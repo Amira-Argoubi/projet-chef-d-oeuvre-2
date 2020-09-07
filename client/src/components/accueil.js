@@ -105,7 +105,7 @@ export class Accueil extends Component {
           <h1>
             {" "}
             <i class="fa fa-quote-left"></i>
-            <span class="black">
+            <span class="text-with-quotes">
               <p> Réservez votre ménage à domicile en un simple clic</p>
             </span>
             <i class="fa fa-quote-right"></i>
@@ -188,7 +188,7 @@ export class Accueil extends Component {
           </select>
         </div>
         {/* différents services */}
-        <div className="services1 container">
+        {/* <div className="services1 container">
           <img src={tof1} alt="tof1" />
           <img src={tof2} alt="tof1" />
           <img src={tof3} alt="tof1" />
@@ -197,7 +197,7 @@ export class Accueil extends Component {
           <img src={tof4} alt="tof1" />
           <img src={tof5} alt="tof1" />
           <img src={tof6} alt="tof1" />
-        </div>
+        </div> */}
         {/* tof */}
         {/* <div className="cards-horizontale">
           <div class="card mb-3" style={{ width: "540px" }}>
@@ -227,7 +227,7 @@ export class Accueil extends Component {
         <div className="all-cards">
           {this.props.aides
             .filter((jr) =>
-              this.state.jour === "" ? jr : jr.dispo === this.state.jour
+              this.state.jour === "" ? jr : jr.dispo.includes(this.state.jour)
             )
             .filter((dl) =>
               this.state.ville === "" ? dl : dl.ville === this.state.ville
@@ -260,7 +260,7 @@ export class Accueil extends Component {
                     {!this.props.user.role &&
                     this.props.user.role !== "Aide ménagère" ? (
                       <button class="primary" onClick={this.toggle}>
-                        Message
+                        Connexion
                       </button>
                     ) : this.props.user.role === "Client" ? (
                       //  / add réservation

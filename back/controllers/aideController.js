@@ -1,21 +1,33 @@
 const AideSchema = require("../models/aideSchema");
+const User = require("../models/userSchema");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
   /*********************ADD aide ****************************** */
-  addAide: (req, res) => {
+  addAide: async (req, res) => {
     /* vérifier si l'annonce existe par le aide pour éviter l'ajout akthir min mara..*/
-    // const annonce = AideSchema.findById({
-    //   proprietaire: req.body.proprietaire,
-    // });
-    // if (annonce) res.status(200).send({ msg: "annonce existe" });
-    // else {
-    const newAide = new AideSchema(req.body);
-    console.log(newAide);
-    newAide
-      .save()
-      .then(() => res.status(200).send("user added"))
-      .catch((err) => res.status(401).send(err));
+    const { proprietaire } = req.body;
+
+    let annonce = await AideSchema.find();
+    // let existe = annonce.filter(el=>el.prproprietaire.toString() === proprietaire.toString()
+    // );
+    let existe = annonce.filter(
+      (el) => el.proprietaire.toString() === req.body.proprietaire.toString()
+    );
+
+    console.log(existe.length);
+    if (existe.length !== 0) {
+      res.json({ msg: "is existe" });
+      console.log(true);
+    } else {
+      console.log(false);
+      const newAide = new AideSchema(req.body);
+
+      newAide
+        .save()
+        .then(() => res.status(200).send("user added"))
+        .catch((err) => res.status(401).send(err));
+    }
   },
   /**************** Get all aides *********************** */
   getAllAideS: async (req, res) => {
@@ -37,7 +49,6 @@ module.exports = {
   },
   /************************ Edit aide **********************/
   updateAide: async (req, res) => {
-    console.log("chhhj");
     try {
       aide = await AideSchema.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -52,7 +63,7 @@ module.exports = {
   deleteAide: (req, res) => {
     AideSchema.findOneAndDelete({ _id: req.params.id }) ///
       .then(() => res.json({ success: true }))
-      .catch((err) => res.status(404).json({ success: false }));
+      .catch(() => res.status(404).json({ success: false }));
   },
 
   // getoneAide: async (req, res) => {
@@ -65,11 +76,6 @@ module.exports = {
 //   AideSchema.findByIdAndUpdate(req.params.id, req.body, (req, donner) => {
 //     /* .then((user) => res.status(200).send(user))
 //     .catch((err) => res.status(401).send(err))*/
-//     res.status(200).send(donner);
-//   });
-// },
-// delateaide: (req, res) => {
-//   AideSchema.findByIdAndDelete(req.params.id, (req, donner) => {
 //     res.status(200).send(donner);
 //   });
 // },

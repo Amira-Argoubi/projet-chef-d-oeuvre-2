@@ -1,5 +1,11 @@
-import { GET_RESERVATION, ADD_RESERVATION, EDIT_DECISION } from "./types";
+import {
+  GET_RESERVATION,
+  ADD_RESERVATION,
+  EDIT_DECISION,
+  DELETE_RESERVATION,
+} from "./types";
 import axios from "axios";
+/*********************** GET Reservation********************** */
 export const getReservation = (user) => async (dispatch) => {
   try {
     const res = await axios.get(
@@ -14,6 +20,8 @@ export const getReservation = (user) => async (dispatch) => {
     console.log(error);
   }
 };
+/*********************** ADD Reservation ********************** */
+
 export const addReservation = (payload) => {
   return {
     type: ADD_RESERVATION,
@@ -26,10 +34,30 @@ export const addReservationToDB = (el) => {
     axios
       .post("http://localhost:8000/chef-d'oeuvre/reservation/add", el)
       .then((res) => {
-        dispatch(addReservation(res.data), window.location.reload());
+        if (res.data.msg) {
+          alert(res.data.msg);
+        } else {
+          dispatch(addReservation(res.data), window.location.reload());
+        }
       });
 };
-/*************************** EDIT ****************************/
+/*********************** DELETE Reservation********************** */
+export const deleteReservation = (payload) => {
+  return {
+    type: DELETE_RESERVATION,
+    payload,
+  };
+};
+export const deleteReservationInDB = (el) => {
+  return (dispatch) =>
+    axios
+      .delete(`http://localhost:8000/chef-d'oeuvre/reservation/delete/${el}`)
+      .then((res) =>
+        dispatch(deleteReservation(res.data), window.location.reload(false))
+      );
+};
+
+/*************************** EDIT Decision ****************************/
 export const editDecision = (payload) => {
   return {
     type: EDIT_DECISION,

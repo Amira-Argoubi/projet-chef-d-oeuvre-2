@@ -102,26 +102,44 @@ export class Navbar extends Component {
 
                 {this.props.user.role === "Client" ? (
                   <MDBNavItem>
-                    <MDBNavLink
-                      className="lien-navbar"
-                      style={{ color: "blue" }}
-                      to="/client-Attente"
-                    >
-                      Client-Attente
-                    </MDBNavLink>
+                    <>
+                      <MDBNavLink
+                        className="lien-navbar"
+                        style={{ color: "blue" }}
+                        to="/client-Attente"
+                      >
+                        Client-Attente
+                      </MDBNavLink>
+                      <MDBNavLink
+                        className="lien-navbar"
+                        style={{ color: "blue" }}
+                        to="/modif-profil"
+                      >
+                        Mon profil
+                      </MDBNavLink>
+                    </>
                   </MDBNavItem>
                 ) : (
                   ""
                 )}
                 {this.props.user.role === "Aide ménagère" ? (
                   <MDBNavItem>
-                    <MDBNavLink
-                      className="lien-navbar"
-                      style={{ color: "blue" }}
-                      to="/gestion-reservation"
-                    >
-                      gestion-réservations
-                    </MDBNavLink>
+                    <>
+                      <MDBNavLink
+                        className="lien-navbar"
+                        style={{ color: "blue" }}
+                        to="/gestion-reservation"
+                      >
+                        Mes réservations
+                      </MDBNavLink>
+                      <MDBNavLink
+                        className="lien-navbar"
+                        style={{ color: "blue" }}
+                        to="/modif-profil"
+                      >
+                        Mon profil
+                      </MDBNavLink>
+                    </>
                   </MDBNavItem>
                 ) : (
                   ""
@@ -132,16 +150,16 @@ export class Navbar extends Component {
                       <MDBNavLink
                         className="lien-navbar"
                         style={{ color: "blue" }}
-                        to="/gestion-users"
+                        to="/gestion-reserv"
                       >
-                        gestion-users
+                        Gestion-reserv
                       </MDBNavLink>
                       <MDBNavLink
                         className="lien-navbar"
                         style={{ color: "blue" }}
-                        to="/gestion-reserv"
+                        to="/modif-profil"
                       >
-                        gestion-reserv
+                        Mon profil
                       </MDBNavLink>
                     </>
                   ) : (
@@ -156,7 +174,7 @@ export class Navbar extends Component {
                     style={{ borderRadius: "20px" }}
                     onClick={() => this.props.logout()}
                   >
-                    logout{" "}
+                    Déconnexion{" "}
                   </MDBBtn>
                 ) : (
                   <Connex />

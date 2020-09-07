@@ -13,8 +13,12 @@ export const addAideToDB = (el) => {
     axios
       .post("http://localhost:8000/chef-d'oeuvre/aides/add", el)
       .then((res) => {
-        dispatch(addAide(res.data), window.location.reload());
-
+        if (res.data.msg) {
+          alert(res.data.msg);
+          dispatch(window.location.reload());
+        } else {
+          dispatch(addAide(res.data), window.location.reload());
+        }
         /*************** tester si l'aide a déjà postuler ************ */
         // if (res.data.msg) {
         //   alert("annonce existe déjà");
@@ -62,7 +66,7 @@ export const deleteAide = (payload) => {
 export const deleteAideInDB = (el) => {
   return (dispatch) =>
     axios
-      .patch(`http://localhost:8000/chef-d'oeuvre/aides/deleteAide/${el._id}`)
+      .delete(`http://localhost:8000/chef-d'oeuvre/aides/deleteAide/${el}`)
       .then((res) =>
         dispatch(deleteAide(res.data), window.location.reload(false))
       );

@@ -1,82 +1,10 @@
-/*******CSS card de l'aide****************/
-/* body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.flip-card {
-  background-color: transparent;
-  width: 300px;
-  height: 400px;
-  perspective: 1000px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.flip-card-front {
-  background-color: #cdd9dd;
-  color: white;
-  overflow: hidden;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-}
-
-.flip-card-back {
-  background-color: #cdd9dd;
-  color: rgb(255, 255, 255);
-  transform: rotateY(180deg);
-  overflow: hidden;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-}
-.card-aide {
-  overflow: hidden;
-  -webkit-border-radius: 100px;
-
-  -moz-border-radius: 100px;
-  margin-top: 20px;
-
-  -moz-box-shadow: 0px 0px 10px #343434;
-  -webkit-box-shadow: 0px 0px 10px #343434;
-  -o-box-shadow: 0px 0px 10px #343434;
-  box-shadow: 0px 0px 10px #343434;
-  width: 200px;
-  height: 200px;
-}
-.card-aide img {
-  padding-top: 10px;
-} */
-
 /************css navbar******************/
 .logo-nav {
   margin-left: 30px;
 }
 .lien-navbar {
   font-size: 25px;
+  font-family: Gotham-book;
 }
 /***********css cards accueil***********/
 .cards {
@@ -287,6 +215,7 @@ footer.light .footer-copyright {
   position: relative;
   width: 20%;
 }
+
 .widget-title span::after {
   background: inherit;
   content: "";
@@ -361,7 +290,7 @@ ul.social-footer2 li a {
 .btn {
   background-color: rgba(29, 210, 177) !important;
 }
-/***********************css image under navbar*********************************/
+/*********************** css image under navbar *********************************/
 #apppage .gradient {
   background: -moz-linear-gradient(
     45deg,
@@ -432,10 +361,28 @@ ul.social-footer2 li a {
     min-height: 150vh;
   }
 }
-/************************table de réservation*******************************************/
+/************************ table de réservation *******************************************/
+.table-header {
+  background-color: lightseagreen;
+  color: white;
+}
+.title-header {
+  font-weight: 50px;
+}
 .liste-reservation {
   margin-top: 200px;
+  margin-bottom: 100px;
 }
+.action-button {
+  display: flex;
+  justify-content: space-around;
+  background-color: #1f1a36;
+  margin-top: 20px;
+}
+.fas {
+  color: #febb0b;
+}
+
 /**********************************new card profile***************************************/
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 
@@ -474,7 +421,7 @@ p {
   background-color: #ffffff;
   border-radius: 5px;
   box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
-  color: #b3b8cd;
+  color: #8a8c94;
   padding-top: 10px;
   position: relative;
   width: 350px;
@@ -571,4 +518,71 @@ button.primary.ghost {
   flex-wrap: wrap;
   margin-top: 150px;
   justify-content: space-around;
+}
+/*********** css text with quotes ***********/
+.text-with-quotes p {
+  font-family: "Roboto Mono", monospace;
+  font-size: 50px;
+  line-height: 80px;
+  color: #08080836 !important;
+}
+/************************ page profil **************************/
+#classicformpage .view {
+  background-image: url("http://mdbootstrap.com/img/Photos/Others/images/91.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+}
+
+#classicformpage .gradient {
+  background: -webkit-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.7),
+    rgba(72, 15, 144, 0.4) 100%
+  );
+  background: -webkit-gradient(
+    linear,
+    45deg,
+    from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)
+  );
+  background: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.7),
+    rgba(72, 15, 144, 0.4) 100%
+  );
+}
+
+#classicformpage .card {
+  background-color: rgba(126, 123, 215, 0.2);
+}
+
+#classicformpage h6 {
+  line-height: 1.7;
+}
+
+#classicformpage .navbar {
+  transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+}
+
+#classicformpage .top-nav-collapse {
+  background: #424f95 !important;
+}
+
+@media (max-width: 768px) {
+  #classicformpage .navbar:not(.top-nav-collapse) {
+    background: #424f95 !important;
+  }
+}
+
+#classicformpage label {
+  color: #fff !important;
+}
+
+#classicformpage {
+  margin-top: 150px;
+}
+/******************** modal connexion ****************/
+.font-small {
+  margin-left: 400px;
 }

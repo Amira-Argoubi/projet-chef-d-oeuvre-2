@@ -40,30 +40,54 @@ module.exports = {
         tel_client,
         adresse_client,
         devis,
+        date,
       } = req.body;
-      const reservation = new Reservation({
-        nom,
-        age,
-        photo,
-        sexe,
-        num,
-        ville,
-        dispo,
-        exp,
-        service,
-        annonce,
-        client,
-        aide,
-        tel_client,
-        adresse_client,
-        devis,
-      });
-      reservation.save();
-      res.send(reservation);
+      let ancienreservation = await Reservation.find();
+
+      let existAnnonce = ancienreservation.filter(
+        (el) =>
+          el.client._id.toString() === client._id.toString() &&
+          el.annonce._id.toString() === annonce._id.toString()
+      );
+
+      // let existAnnonce = existeClient.filter(
+      //   (el) => el.annonce._id.toString() === annonce._id.toString()
+      // );
+
+      if (existAnnonce.length !== 0) {
+        res.json({ msg: "you have already add this reservation" });
+      } else {
+        const reservation = new Reservation({
+          nom,
+          age,
+          photo,
+          sexe,
+          num,
+          ville,
+          dispo,
+          exp,
+          service,
+          annonce,
+          client,
+          aide,
+          tel_client,
+          adresse_client,
+          devis,
+          date,
+        });
+        reservation.save();
+        res.send(reservation);
+      }
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Server error");
     }
+  },
+  /******************** Delete reservation ************************ */
+  deleteReservation: (req, res) => {
+    Reservation.findOneAndDelete({ _id: req.params.id }) ///
+      .then(() => res.json({ success: true }))
+      .catch(() => res.status(404).json({ success: false }));
   },
   /**************************** Edit Decision ********************/
   updateDecision: async (req, res) => {
