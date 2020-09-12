@@ -1,4 +1,6 @@
 const Reservation = require("../models/reservationSchema");
+/********************* package installé pour date ****************** */
+const moment = require("moment");
 module.exports = {
   /*************************** Get reservation ****************** */
   getReservation: async (req, res) => {
@@ -40,7 +42,8 @@ module.exports = {
         tel_client,
         adresse_client,
         devis,
-        date,
+        date_start,
+        date_end,
       } = req.body;
       let ancienreservation = await Reservation.find();
 
@@ -53,6 +56,11 @@ module.exports = {
       // let existAnnonce = existeClient.filter(
       //   (el) => el.annonce._id.toString() === annonce._id.toString()
       // );
+      /******************* méthode pour enregistrer la format de date ******************* */
+      const date = moment().format("YYYY-MM-DD");
+      const dateoff = moment(date, "YYYY-MM-DD")
+        .add(5, "days")
+        .format("YYYY-MM-DD");
 
       if (existAnnonce.length !== 0) {
         res.json({ msg: "you have already add this reservation" });
@@ -73,7 +81,9 @@ module.exports = {
           tel_client,
           adresse_client,
           devis,
-          date,
+          dateoff,
+          date_start,
+          date_end,
         });
         reservation.save();
         res.send(reservation);

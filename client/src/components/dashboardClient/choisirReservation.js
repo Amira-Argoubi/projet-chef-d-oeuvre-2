@@ -65,6 +65,21 @@ export class AddReservation extends Component {
                 label="num-tel"
                 outline
               />
+
+              <MDBInput
+                type="date"
+                onChange={(e) => this.setState({ date_start: e.target.value })}
+                label="Date-start"
+                min="2020-09-09"
+                outline
+              />
+              <MDBInput
+                type="date"
+                onChange={(e) => this.setState({ date_end: e.target.value })}
+                label="Date-end"
+                min="2020-09-09"
+                outline
+              />
               {/* <MDBDropdown dropright>
                 <MDBDropdownToggle caret color="primary">
                   Disponibilité
@@ -114,6 +129,8 @@ export class AddReservation extends Component {
                     aide: el.proprietaire,
                     adresse_client: this.state.adresse_client,
                     tel_client: this.state.tel_client,
+                    date_start: this.state.date_start,
+                    date_end: this.state.date_end,
                     date: Date.now(),
                   })
                 }

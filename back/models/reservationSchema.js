@@ -20,7 +20,10 @@ const ReservationSchema = new mongoose.Schema({
   aide: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   decision: { type: String, default: "En attente" },
   devis: { type: String },
-  date: { type: String, required: true },
+  dateoff: { type: String },
+  paiement: { type: String },
+  date_start:{ type: String },
+  date_end:{ type: String }
 });
 
 module.exports = mongoose.model("Reservation", ReservationSchema);

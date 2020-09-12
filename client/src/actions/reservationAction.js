@@ -29,7 +29,7 @@ export const addReservation = (payload) => {
   };
 };
 export const addReservationToDB = (el) => {
-  // console.log(el);
+  console.log(el);
   return (dispatch) =>
     axios
       .post("http://localhost:8000/chef-d'oeuvre/reservation/add", el)
@@ -72,6 +72,6 @@ export const editDecisionInDB = (el) => {
         el
       )
       .then((res) =>
-        dispatch(editDecision(res.data), window.location.reload(false))
+        dispatch(editDecision(res.data), window.location.reload())
       );
 };

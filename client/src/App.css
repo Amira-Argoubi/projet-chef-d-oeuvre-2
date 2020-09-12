@@ -5,6 +5,13 @@
 .lien-navbar {
   font-size: 25px;
   font-family: Gotham-book;
+  margin-left: 40px;
+}
+.link-nav {
+  display: flex;
+}
+.nom-app {
+  color: rgb(56, 56, 241);
 }
 /***********css cards accueil***********/
 .cards {
@@ -18,16 +25,18 @@ hr {
   height: 1px;
 }
 
-/****************css carousel***********/
-.caroussel {
-  margin-top: 200px;
-}
 /************css filtres****************/
 .filtre {
   margin-top: 80px;
   display: flex;
   justify-content: space-around;
 }
+.card-image {
+  background-image: url("./components/images/ar1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /***********css table de réservations****/
 .liste-reserv-aide {
   margin-top: 100px;
@@ -35,6 +44,16 @@ hr {
 .liste-reserv-aide h1 {
   text-align: center;
 }
+.reservation-client {
+  margin-top: 200px;
+}
+.but-etat {
+  border-radius: 50%;
+}
+.filtre-ville {
+  color: red;
+}
+
 /***************** css text ****************/
 .text {
   margin-top: 100px;
@@ -55,16 +74,26 @@ strong {
   font-style: oblique;
 }
 /******************* css pagination ******************/
-#page-numbers > li {
-  margin-right: 0.3em;
-  color: blue;
-  user-select: none;
-  cursor: pointer;
-  list-style-type: none;
-  display: inline-block;
-  /* float: right; */
+.ant-pagination-item-link {
+  border-radius: 50% !important;
+  background-color: #74dbe2 !important;
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 20px !important;
+}
+.ant-pagination-item {
+  padding-top: 1px;
+  border-radius: 50% !important;
+  font-size: 25px !important;
+  width: 50px !important;
+  height: 50px !important;
+  margin-top: 18px;
+  padding-top: 10px;
 }
 
+.pagination {
+  justify-content: center;
+}
 /************************css footer*******/
 
 /*==================== 
@@ -373,11 +402,13 @@ ul.social-footer2 li a {
   margin-top: 200px;
   margin-bottom: 100px;
 }
-.action-button {
-  display: flex;
-  justify-content: space-around;
-  background-color: #1f1a36;
-  margin-top: 20px;
+
+.but-confirm,
+.but-annul {
+  font-size: 40px;
+  color: #febb0b;
+  box-shadow: 10px 10px 10px grey;
+  border: none;
 }
 .fas {
   color: #febb0b;
@@ -400,7 +431,7 @@ ul.social-footer2 li a {
   justify-content: space-around;
 
   min-height: 100vh;
-  margin-bottom: 450px;
+  margin-bottom: -100px;
 }
 
 h3 {
@@ -492,7 +523,7 @@ button.primary.ghost {
 .jumbotron {
   text-align: center;
   margin-top: -50px;
-  color: #03bfcb;
+  color: #1408bd;
   opacity: 0.8;
   background-color: #ffff;
 }
@@ -506,10 +537,7 @@ button.primary.ghost {
   font-size: 30px;
   float: center;
 }
-/****************** css cards horizontale ***************/
-.cards-horizontale {
-  margin-top: 150px;
-}
+
 /************* services **********/
 .services1,
 .services2 {
@@ -524,7 +552,8 @@ button.primary.ghost {
   font-family: "Roboto Mono", monospace;
   font-size: 50px;
   line-height: 80px;
-  color: #08080836 !important;
+  color: #1408bd !important;
+  font-weight: bold;
 }
 /************************ page profil **************************/
 #classicformpage .view {
@@ -586,3 +615,271 @@ button.primary.ghost {
 .font-small {
   margin-left: 400px;
 }
+.redadminbb {
+  background: rgba(248, 5, 5, 0.055);
+}
+.msg {
+  margin-top: 150px;
+}
+/************* cards horizontales + carousel ********************/
+/* body {
+  background-color:  #eee;
+} */
+.card-horizontale {
+  margin-top: 150px;
+}
+.container-carousel {
+  margin-top: 100px;
+  max-width: 1800px;
+  width: 1800px;
+  margin: auto;
+  display: block;
+}
+
+.titre {
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+
+.card-block {
+  font-size: 1em;
+  position: relative;
+  margin: 0;
+  padding: 1em;
+  border: none;
+  border-top: 1px solid rgba(34, 36, 38, 0.1);
+  box-shadow: none;
+}
+.card {
+  font-size: 1em;
+  overflow: hidden;
+  padding: 5;
+  border: none;
+  border-radius: 0.28571429rem;
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  margin-top: 20px;
+}
+
+.carousel-indicators li {
+  border-radius: 12px;
+  width: 12px;
+  height: 12px;
+  background-color: #404040;
+}
+.carousel-indicators li {
+  border-radius: 12px;
+  width: 12px;
+  height: 12px;
+  background-color: #404040;
+}
+.carousel-indicators .active {
+  background-color: white;
+  max-width: 12px;
+  margin: 0 3px;
+  height: 12px;
+}
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+.btn {
+  margin-top: auto;
+}
+/********************* css button retour au top de la page ************/
+/* stat */
+
+.step img {
+  /*  max-width: 4.125rem;
+  max-height: 4.375rem; */
+}
+.steps__items {
+  justify-content: center;
+}
+.trustproof {
+  background: url(https://production-sg-h2.s3.amazonaws.com/assets/434/Helpling-HP-header.min.jpg)
+    no-repeat 50%;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 2rem;
+}
+.trust__items {
+  text-align: center;
+  font-family: Lato, sans-serif;
+}
+.trust {
+  margin: 1.5rem 0.375rem;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+.trust--bold {
+  font-weight: 900;
+  font-size: 3rem;
+  margin: -2rem 0rem -0.75rem 0;
+}
+.usp__block img {
+  max-width: 5rem;
+  max-height: 4.125rem;
+  padding-bottom: 0.5rem;
+}
+.usp__block div {
+  min-height: 7rem;
+}
+#usp {
+  background: #fff;
+}
+.usp__block {
+  box-shadow: 0px 0px 5px 4px #f3f3f3;
+  border: 1px solid #dddddd;
+}
+.services {
+  padding: 3.125rem 1rem;
+  background: #fff;
+}
+
+#cta {
+  background: url(https://production-nl-h2.s3.amazonaws.com/assets/943/2000x1000-footer-kitchen.jpg)
+    no-repeat center bottom;
+  background-size: cover;
+}
+.trustpilot {
+  padding: 3rem 1rem 1rem 1rem;
+}
+.content {
+  padding-bottom: 3rem;
+}
+.content__picture--text {
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0)
+    ),
+    url(https://production-de-h2.s3.amazonaws.com/assets/1785/putzfrau_background_dark.jpg)
+      no-repeat left top;
+  background-size: cover;
+}
+.why-helpling {
+  background: #f3f3f3;
+}
+
+@media screen and (min-width: 1024px) {
+  .hero.hero--small .hero__form--content .row {
+    justify-content: flex-start;
+  }
+
+  .steps {
+    padding: 3rem;
+  }
+  .button.expanded {
+    height: 3.75rem;
+  }
+  .usp__block {
+    min-height: 31rem;
+  }
+  .trust__items .columns:nth-child(2) {
+    border-right: 0.1rem solid #fff;
+  }
+  .hero--small h1 {
+    font-size: 2.9rem !important;
+  }
+  #cta {
+    max-height: 45rem;
+  }
+  .services h2 {
+    padding-bottom: 1.5rem;
+    font-size: 32px;
+  }
+}
+
+.trust__items .columns:nth-child(2n + 1) {
+  border-right: 0.1rem solid #fff;
+}
+.trust__items .columns:nth-child(1n + 3) {
+  border-top: 0.1rem solid #fff;
+}
+
+.trust {
+  font-size: 0.85rem;
+}
+.trust--bold {
+  margin: -1.5rem 0rem -0.25rem 0;
+  font-size: 1.75rem;
+}
+.content__short__image {
+  background-size: contain !important;
+  padding-top: 10.25rem;
+}
+.content__short {
+  padding: 0rem 0;
+}
+.simple-section {
+  padding: 1.75rem 0rem;
+}
+.usp__block div {
+  min-height: unset;
+}
+#usp {
+  padding: 2rem 1rem;
+}
+#usp .button.primary {
+  margin-top: 1rem;
+}
+.usp__block {
+  margin: 0.1875rem 0.1875rem 1rem 0.1875rem;
+  padding: 0.525rem 1.25rem 1.525rem;
+}
+#cta {
+  max-height: 27rem;
+}
+.trustproof {
+  padding: 2.5rem 30px;
+}
+.trust {
+  font-size: 0.85rem;
+}
+.trust--bold {
+  margin: -1.5rem 0rem -0.25rem 0;
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 360px) {
+  .trust {
+    font-size: 0.9rem;
+  }
+  .trust--bold {
+    font-size: 40px;
+  }
+}
+
+.text__bullets li::before {
+  display: inline-block;
+  content: "";
+  height: 0.8125rem;
+  width: 0.8125rem;
+  margin-right: 0.5rem;
+  background: url(https://production-de-h2.s3.amazonaws.com/assets/841/checkmark.svg)
+    bottom left no-repeat;
+  background-size: contain;
+}
+@media screen and (min-width: 1024px) {
+  .text__bullets ul {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .text__bullets ul {
+    margin-bottom: 30px;
+  }
+}
+.text-size {
+  font-size: 20px;
+}
+/* Why Helpling section ends here */

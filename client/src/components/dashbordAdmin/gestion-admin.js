@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAideFromDB } from "../../actions/aideActionCreator";
+import { Pagination } from "antd";
+import moment from "moment";
+import { Redirect } from "react-router-dom";
+
 import {
   getReservation,
   editDecisionInDB,
@@ -15,6 +19,8 @@ export class GestionReserv extends Component {
     decision: "Validée",
     deci: "Annulée",
     devis: "",
+    page: 1,
+    pageSize: 3,
   };
   componentDidMount() {
     this.props.getAideFromDB();
@@ -34,97 +40,167 @@ export class GestionReserv extends Component {
       console.log(this.state.devis.name);
     });
   };
+  // handle pagination
+
+  page = (page, pageSize) => {
+    this.setState({ page: page, pageSize: pageSize });
+  };
   render() {
+    //  ne donner l'accès pour ce component qu'à l'admin!
+
+    if (this.props.user.role !== "Admin") {
+      return <Redirect to="/" />;
+    }
     return (
-      <div className="liste-reservation ">
+      <div className="liste-reservation">
         <Table celled>
           <Table.Header className="table-header">
             <Table.Row>
               <Table.HeaderCell className="title-header">
                 Nom-Prénom-client
               </Table.HeaderCell>
-              <Table.HeaderCell>Délégation</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">
+                Nom-Prénom-aide
+              </Table.HeaderCell>
               <Table.HeaderCell>Num-Tél</Table.HeaderCell>
-              <Table.HeaderCell>Age</Table.HeaderCell>
 
               <Table.HeaderCell>Adresse</Table.HeaderCell>
-              <Table.HeaderCell>Service</Table.HeaderCell>
-              <Table.HeaderCell>Jours</Table.HeaderCell>
+              <Table.HeaderCell>Date-réservation</Table.HeaderCell>
+
+              <Table.HeaderCell>Délais</Table.HeaderCell>
+
               <Table.HeaderCell>Devis</Table.HeaderCell>
               <Table.HeaderCell>Actions</Table.HeaderCell>
 
               <Table.HeaderCell> Décision</Table.HeaderCell>
+              <Table.HeaderCell> Paiement</Table.HeaderCell>
+              <Table.HeaderCell> Validation définitive</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
           <Table.Body>
-            {this.props.reservation.map((el, i) => (
-              <Table.Row>
-                <Table.Cell>
-                  <Label ribbon>{el.nom_prenom}</Label>
-                </Table.Cell>
-                <Table.Cell>{el.ville}</Table.Cell>
-                <Table.Cell>{el.num_client}</Table.Cell>
+            {this.props.reservation
+              .filter((el) => el.decision !== "Annulée")
+              ///////////////// PAGINATION //////////////////////////
+              .filter(
+                (l, index) =>
+                  (this.state.page - 1) * this.state.pageSize <= index &&
+                  index < this.state.page * this.state.pageSize
+              )
+              .map((el, i) => (
+                <Table.Row
+                  className={el.decision == "Validée" ? "redadminbb" : "f"}
+                >
+                  <Table.Cell>
+                    <Label ribbon>{el.client.nom_prenom}</Label>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Label ribbon>{el.aide.nom_prenom}</Label>
+                  </Table.Cell>
+                  <Table.Cell>{el.tel_client}</Table.Cell>
 
-                <Table.Cell>{el.age}</Table.Cell>
-                <Table.Cell>{el.adresse_client}</Table.Cell>
-                <Table.Cell>{el.service}</Table.Cell>
-                <Table.Cell>
-                  {el.dispo.map((el) => (
-                    <p>{el}</p>
-                  ))}
-                </Table.Cell>
-                <Table.Cell className="pos-Action ">
-                  <MDBInput
-                    type="file"
-                    onChange={(e) => this.handleInput(e)}
-                    outline
-                  />
-                </Table.Cell>
-                <Table.Cell className="action-button">
-                  <Button
-                    className="valider-button"
-                    outline
-                    size="sm"
-                    onClick={() => (
-                      this.upload(),
-                      this.props.editDecisionInDB({
-                        _id: el._id,
-                        decision: this.state.decision,
-                        devis: this.state.devis.name,
-                      })
+                  <Table.Cell>{el.adresse_client}</Table.Cell>
+                  <Table.Cell>
+                    {el.date_end} <br></br>
+                    {el.date_start}
+                  </Table.Cell>
+
+                  <Table.Cell>
+                    {" "}
+                    {moment(el.date_end, "YYYYMMDD").fromNow()}
+                  </Table.Cell>
+                  <Table.Cell className="pos-Action ">
+                    {el.decision !== "Annulée" ? (
+                      el.decision === "En attente" ? (
+                        <MDBInput
+                          type="file"
+                          onChange={(e) => this.handleInput(e)}
+                          outline
+                          style={{ width: "160px" }}
+                        />
+                      ) : (
+                        "Envoyé"
+                      )
+                    ) : (
+                      "anuller"
                     )}
-                  >
-                    <i class="fas fa-check-square valider"></i>
-                  </Button>
-                  <Button
-                    className="annuler-button"
-                    outline
-                    size="sm"
-                    onClick={() =>
-                      this.props.editDecisionInDB({
-                        _id: el._id,
-                        decision: this.state.deci,
-                      })
-                    }
-                  >
-                    <i class="fas fa-trash annuler"></i>
-                  </Button>
-                </Table.Cell>
+                  </Table.Cell>
 
-                <Table.Cell>
-                  {" "}
-                  {el.decision === "Validée" ? (
-                    <img
-                      src={"http://localhost:8000/" + el.devis}
-                      width="50px"
-                    />
-                  ) : (
-                    el.decision
-                  )}
-                </Table.Cell>
-              </Table.Row>
-            ))}{" "}
+                  <Table.Cell className="action-button">
+                    <Button
+                      className="valider-button"
+                      outline
+                      size="sm"
+                      onClick={() => (
+                        this.upload(),
+                        this.props.editDecisionInDB({
+                          _id: el._id,
+                          decision: this.state.decision,
+                          devis: this.state.devis.name,
+                        })
+                      )}
+                    >
+                      <i class="fas fa-check-square valider but-confirm"></i>
+                    </Button>
+                  </Table.Cell>
+
+                  <Table.Cell>
+                    {" "}
+                    {el.decision === "Validée" ? (
+                      <img
+                        src={"http://localhost:8000/" + el.devis}
+                        width="50px"
+                      />
+                    ) : (
+                      el.decision
+                    )}
+                  </Table.Cell>
+                  <Table.Cell>
+                    {el.paiement ? (
+                      <a
+                        href={`http://localhost:8000/${el.paiement}`}
+                        target="_blanck"
+                      >
+                        Paiement
+                      </a>
+                    ) : (
+                      "pas encore"
+                    )}
+                  </Table.Cell>
+                  <div className="but-validation-définitive">
+                    <Table.Cell className="action-button">
+                      <Button
+                        className="valider-button"
+                        outline
+                        size="sm"
+                        onClick={() => (
+                          this.upload(),
+                          this.props.editDecisionInDB({
+                            _id: el._id,
+                            decision: "Validée définitive",
+                          })
+                        )}
+                      >
+                        <i class="fas fa-check-square valider but-confirm"></i>
+                      </Button>
+
+                      <Button
+                        className="annuler-button"
+                        outline
+                        size="sm"
+                        onClick={() =>
+                          this.props.editDecisionInDB({
+                            _id: el._id,
+                            decision: this.state.deci,
+                          })
+                        }
+                      >
+                        <i class="fas fa-trash annuler but-annul"></i>
+                      </Button>
+                    </Table.Cell>
+                  </div>
+                </Table.Row>
+              ))}{" "}
           </Table.Body>
 
           <Table.Footer>
@@ -133,6 +209,15 @@ export class GestionReserv extends Component {
             </Table.Row>
           </Table.Footer>
         </Table>
+        {/************************** * PAGINATION *********************/}
+        <div className="pagination">
+          <Pagination
+            defaultCurrent={1}
+            pageSize={3}
+            onChange={this.page}
+            total={this.props.aides.length}
+          />
+        </div>
       </div>
     );
   }

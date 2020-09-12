@@ -39,13 +39,7 @@ class Profil extends React.Component {
   };
   render() {
     console.log(this.state.email);
-    // const overlay = (
-    //   <div
-    //     id="sidenav-overlay"
-    //     style={{ backgroundColor: "transparent" }}
-    //     onClick={this.toggleCollapse("navbarCollapse")}
-    //   />
-    // );
+  
     return (
       <div id="classicformpage">
         <MDBView>
@@ -75,82 +69,62 @@ class Profil extends React.Component {
                   className="mb-4"
                   style={{ height: "500px" }}
                 >
-                  <MDBCard id="classic-card">
-                    <MDBCardBody className="white-text">
-                      <h3 className="text-center">
-                        <MDBIcon icon="user" /> Mon profil
-                      </h3>
-                      <hr className="hr-light" />
-
-                      <MDBInput
-                        className="white-text"
-                        iconClass="white-text"
-                        label={this.props.user.nom_prenom}
-                        icon="user"
-                        onChange={(e) =>
-                          this.setState({ nom_prenom: e.target.value })
-                        }
-                      />
-                      <MDBInput
-                        className="white-text"
-                        iconClass="white-text"
-                        label={this.props.user.email}
-                        icon="envelope"
-                        onChange={(e) =>
-                          this.setState({ email: e.target.value })
-                        }
-                      />
-                      <MDBInput
-                        className="white-text"
-                        iconClass="white-text"
-                        label="password"
-                        icon="lock"
-                        type="password"
-                        onChange={(e) =>
-                          this.setState({ password: e.target.value })
-                        }
-                      />
-                      <MDBInput
-                        className="white-text"
-                        iconClass="white-text"
-                        label="New password"
-                        icon="lock"
-                        type="password"
-                        onChange={(e) =>
-                          this.setState({ newPassword: e.target.value })
-                        }
-                      />
-                      <div className="text-center mt-4 black-text">
-                        <MDBBtn color="indigo" onClick={this.test}>
-                          Modifier
-                        </MDBBtn>
+                  <MDBAnimation type="fadeInRight" delay=".2s">
+                    <MDBCard id="classic-card">
+                      <MDBCardBody className="white-text">
+                        <h3 className="text-center">
+                          <MDBIcon icon="user" /> Mon profil
+                        </h3>
                         <hr className="hr-light" />
-                        <div className="text-center d-flex justify-content-center white-label">
-                          <a href="#!" className="p-2 m-2">
-                            <MDBIcon
-                              fab
-                              icon="twitter"
-                              className="white-text"
-                            />
-                          </a>
-                          <a href="#!" className="p-2 m-2">
-                            <MDBIcon
-                              fab
-                              icon="linkedin"
-                              className="white-text"
-                            />
-                          </a>
-                          <a href="#!" className="p-2 m-2">
-                            <MDBIcon
-                              fab
-                              icon="instagram"
-                              className="white-text"
-                            />
-                          </a>
+
+                        <MDBInput
+                          className="white-text"
+                          iconClass="white-text"
+                          label={this.props.user.nom_prenom}
+                          icon="user"
+                          onChange={(e) =>
+                            this.setState({ nom_prenom: e.target.value })
+                          }
+                        />
+                        <MDBInput
+                          className="white-text"
+                          iconClass="white-text"
+                          label={this.props.user.email}
+                          icon="envelope"
+                          onChange={(e) =>
+                            this.setState({ email: e.target.value })
+                          }
+                        />
+                        <MDBInput
+                          className="white-text"
+                          iconClass="white-text"
+                          label="password"
+                          icon="lock"
+                          type="password"
+                          onChange={(e) =>
+                            this.setState({ password: e.target.value })
+                          }
+                        />
+                        <MDBInput
+                          className="white-text"
+                          iconClass="white-text"
+                          label="New password"
+                          icon="lock"
+                          type="password"
+                          onChange={(e) =>
+                            this.setState({ newPassword: e.target.value })
+                          }
+                        />
+                        <div className="text-center mt-4 black-text">
+                          <MDBBtn color="indigo" onClick={this.test}>
+                            Modifier
+                          </MDBBtn>
+                          <hr className="hr-light" />
+                          
                         </div>
-                      </div>
-                    </MDBCardBody>
-                  </MDBCard>
+                      </MDBCardBody>
+                    </MDBCard>
+                  </MDBAnimation>
                 </MDBCol>
               </MDBRow>
             </MDBContainer>

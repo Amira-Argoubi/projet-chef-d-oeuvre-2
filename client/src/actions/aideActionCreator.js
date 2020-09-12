@@ -8,7 +8,7 @@ export const addAide = (payload) => {
   };
 };
 export const addAideToDB = (el) => {
-  // console.log(el);
+  console.log("action",el);
   return (dispatch) =>
     axios
       .post("http://localhost:8000/chef-d'oeuvre/aides/add", el)

@@ -16,6 +16,7 @@ import {
   MDBDropdownItem,
   MDBCol,
 } from "mdbreact";
+import { Redirect } from "react-router-dom";
 
 import EditAide from "./editAide";
 
@@ -78,6 +79,11 @@ class Postuler extends Component {
   };
   /************************************************************************* */
   render() {
+    
+    //  ne donner l'accès pour ce component qu'à l'aide!
+    if (this.props.user.role !== "Aide ménagère") {
+      return <Redirect to="/" />;
+    }
     console.log(this.props.aides);
     const aide = this.props.aides.filter(
       (el) => el.proprietaire._id.toString() === this.props.user._id.toString()
@@ -374,6 +380,8 @@ class Postuler extends Component {
                   photo: this.state.selectedFile.name,
                   ville: this.state.ville,
                   exp: this.state.exp,
+                  notes: 0,
+                  nb_per_note: 0,
                   dispo: [
                     Lundi ? "Lundi" : null,
                     Mardi ? "Mardi" : null,

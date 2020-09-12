@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import ScrollUpButton from "react-scroll-up-button"; //Add this line Here
 import "../App.css";
-
+import { Pagination } from "antd";
+import { FaStar } from "react-icons/fa";
+import Rating from "./rating";
 import {
   MDBContainer,
   MDBIcon,
@@ -21,13 +24,6 @@ import {
   MDBCardBody,
   MDBCardTitle,
 } from "mdbreact";
-import tof from "./images/ph1.png";
-import tof1 from "./images/tof1.png";
-import tof2 from "./images/tof2.png";
-import tof3 from "./images/tof3.png";
-import tof4 from "./images/tof4.png";
-import tof5 from "./images/tof5.png";
-import tof6 from "./images/tof6.png";
 
 import { login } from "../actions/auth";
 import { getAideFromDB } from "../actions/aideActionCreator";
@@ -35,6 +31,7 @@ import { getUser } from "../actions/auth";
 import { connect } from "react-redux";
 import Pub from "./publicité";
 import AddReservation from "./dashboardClient/choisirReservation";
+import CardCarousel from "./cardCarousel";
 
 /******************************************************** ******/
 export class Accueil extends Component {
@@ -52,6 +49,8 @@ export class Accueil extends Component {
     Vendredi: false,
     Samedi: false,
     Dimanche: false,
+    page: 1,
+    pageSize: 3,
   };
 
   componentDidMount() {
@@ -67,6 +66,10 @@ export class Accueil extends Component {
     this.setState({
       modal: !this.state.modal,
     });
+  };
+  // handle pagination
+  page = (page, pageSize) => {
+    this.setState({ page: page, pageSize: pageSize });
   };
   /************************************************************ */
   render() {
@@ -100,129 +103,133 @@ export class Accueil extends Component {
         {/****************** * component publicité **********************/}
         <Pub />
 
-        {/* text */}
+        {/************************* * text ****************************/}
         <div className="text">
           <h1>
             {" "}
             <i class="fa fa-quote-left"></i>
             <span class="text-with-quotes">
-              <p> Réservez votre ménage à domicile en un simple clic</p>
+              <p id="parag">
+                {" "}
+                Réservez votre ménage à domicile en un simple clic
+              </p>
             </span>
             <i class="fa fa-quote-right"></i>
           </h1>
         </div>
+
         {/************ ************** les filtres ************************/}
-        <div className="filtre container">
-          {/* *********** filtre par délégation ***************/}
-          <select
-            className="browser-default custom-select"
-            style={{ width: "200px" }}
-            onChange={(e) => this.setState({ ville: e.target.value })}
-          >
-            <option>Choisir la Délégation</option>
-            {villes.map((el) => (
-              <option>{el}</option>
-            ))}
-          </select>
-          {/* ***********filtre par jour ***************/}
+        <div class="card card-image">
+          <div class="text-white text-center  py-5 px-4">
+            <div class="py-5">
+              {/* <!-- Content --> */}
+              <h5 class="h5 orange-text">
+                <i class="fas fa-camera-retro"></i> Photography
+              </h5>
+              <h2 class="card-title h2 my-4 py-2">
+                Jumbotron with image overlay
+              </h2>
+              <p class="mb-4 pb-2 px-md-5 mx-md-5">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Pariatur obcaecati vero aliquid libero doloribus ad, unde
+                tempora maiores, ullam, modi qui quidem minima debitis
+                perferendis vitae cumque et quo impedit.
+              </p>
+              {/* <a class="btn peach-gradient"><i class="fas fa-clone left"></i> View project</a> */}
+              <div className="filtre container">
+                <select
+                  className="browser-default custom-select "
+                  style={{ width: "200px" }}
+                  onChange={(e) => this.setState({ ville: e.target.value })}
+                >
+                  <option>Choisir la Délégation</option>
+                  {villes.map((el) => (
+                    <option>{el}</option>
+                  ))}
+                </select>
+                {/* ***********filtre par jour ***************/}
 
-          <select
-            className="browser-default custom-select"
-            style={{ width: "200px" }}
-            onChange={(e) => this.setState({ jour: e.target.value })}
-          >
-            <option value="">Choisir le jour</option>
-            <option value="Lundi">Lundi</option>
-            <option value="Mardi">Mardi</option>
-            <option value="Mercredi">Mercredi</option>
-            <option value="Jeudi">Jeudi</option>
-            <option value="Vendredi">Vendredi</option>
-            <option value="Samedi">Samedi</option>
-            <option value="Dimanche">Dimanche</option>
-          </select>
+                <select
+                  className="browser-default custom-select"
+                  style={{ width: "200px" }}
+                  onChange={(e) => this.setState({ jour: e.target.value })}
+                >
+                  <option value="">Choisir le jour</option>
+                  <option value="Lundi">Lundi</option>
+                  <option value="Mardi">Mardi</option>
+                  <option value="Mercredi">Mercredi</option>
+                  <option value="Jeudi">Jeudi</option>
+                  <option value="Vendredi">Vendredi</option>
+                  <option value="Samedi">Samedi</option>
+                  <option value="Dimanche">Dimanche</option>
+                </select>
 
-          {/* ***********filtre par type de service ***************/}
-          <select
-            className="browser-default custom-select"
-            style={{ width: "200px" }}
-            onChange={(e) => this.setState({ service: e.target.value })}
-          >
-            <option value="">Choisir le service</option>
-            <option
-              value="Nettoyage domestique
+                {/* ***********filtre par type de service ***************/}
+                <select
+                  className="browser-default custom-select"
+                  style={{ width: "200px" }}
+                  onChange={(e) => this.setState({ service: e.target.value })}
+                >
+                  <option value="">Choisir le service</option>
+                  <option
+                    value="Nettoyage domestique
 "
-            >
-              Nettoyage domestique
-            </option>
-            <option
-              value="Nettoyage de bureaux
+                  >
+                    Nettoyage domestique
+                  </option>
+                  <option
+                    value="Nettoyage de bureaux
 "
-            >
-              Nettoyage de bureaux
-            </option>
-            <option
-              value="Nettoyage de fin de location
+                  >
+                    Nettoyage de bureaux
+                  </option>
+                  <option
+                    value="Nettoyage de fin de location
 "
-            >
-              Nettoyage de fin de location
-            </option>
-            <option
-              value="Nettoyage des vitres
+                  >
+                    Nettoyage de fin de location
+                  </option>
+                  <option
+                    value="Nettoyage des vitres
 "
-            >
-              Nettoyage des vitres
-            </option>
-            <option
-              value="Nettoyage de tapis
+                  >
+                    Nettoyage des vitres
+                  </option>
+                  <option
+                    value="Nettoyage de tapis
 "
-            >
-              Nettoyage de tapis
-            </option>
-            <option
-              value="Nettoyage des sols durs
+                  >
+                    Nettoyage de tapis
+                  </option>
+                  <option
+                    value="Nettoyage des sols durs
  
 "
-            >
-              Nettoyage des sols durs
-            </option>
-          </select>
-        </div>
-        {/* différents services */}
-        {/* <div className="services1 container">
-          <img src={tof1} alt="tof1" />
-          <img src={tof2} alt="tof1" />
-          <img src={tof3} alt="tof1" />
-        </div>
-        <div className="services2 container">
-          <img src={tof4} alt="tof1" />
-          <img src={tof5} alt="tof1" />
-          <img src={tof6} alt="tof1" />
-        </div> */}
-        {/* tof */}
-        {/* <div className="cards-horizontale">
-          <div class="card mb-3" style={{ width: "540px" }}>
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="..." class="card-img" alt="..." />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </p>
-                  <p class="card-text">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </p>
-                </div>
+                  >
+                    Nettoyage des sols durs
+                  </option>
+                </select>
               </div>
             </div>
           </div>
-          <img src={tof} alt="tof" />
-        </div> */}
+        </div>
 
+        {/* différents services */}
+        {/************************* * text ****************************/}
+
+        <div className="text">
+          <h1>
+            {" "}
+            <i class="fa fa-quote-left"></i>
+            <span class="text-with-quotes">
+              <p id="parag">
+                {" "}
+                Réservez votre ménage à domicile en un simple clic
+              </p>
+            </span>
+            <i class="fa fa-quote-right"></i>
+          </h1>
+        </div>
         {/* ***********new cards *******************/}
         <div className="all-cards">
           {this.props.aides
@@ -237,6 +244,12 @@ export class Accueil extends Component {
                 ? serv
                 : serv.service === this.state.service
             )
+            /////////////////////// pagination ///////////////////////////
+            .filter(
+              (l, index) =>
+                (this.state.page - 1) * this.state.pageSize <= index &&
+                index < this.state.page * this.state.pageSize
+            )
             .map((el) => (
               <div>
                 <div class="card-container">
@@ -249,12 +262,16 @@ export class Accueil extends Component {
                   />
                   <h3>{el.nom}</h3>
                   <h6>{el.ville}</h6>
+                  {/************************ * Rating *********************/}
+                  <span>
+                    <Rating el={el} />
+                  </span>
 
                   <h6>{el.age}</h6>
                   <h6>{el.exp}</h6>
                   <p>
                     {el.service}
-                    <br /> front-end developer
+                    <br />{" "}
                   </p>
                   <div class="buttons">
                     {!this.props.user.role &&
@@ -263,7 +280,7 @@ export class Accueil extends Component {
                         Connexion
                       </button>
                     ) : this.props.user.role === "Client" ? (
-                      //  / add réservation
+                      /////////////////// add réservation ///////////////////
                       <AddReservation el={el} />
                     ) : (
                       ""
@@ -282,72 +299,125 @@ export class Accueil extends Component {
               </div>
             ))}
         </div>
-        {/* fonction filtre */}
-        {/* <div className="cards container">
-          <MDBCol>
-            {this.props.aides
-              .filter((jr) =>
-                this.state.jour === "" ? jr : jr.dispo === this.state.jour
-              )
-              .filter((dl) =>
-                this.state.ville === "" ? dl : dl.ville === this.state.ville
-              )
-              .filter((serv) =>
-                this.state.service === ""
-                  ? serv
-                  : serv.service === this.state.service
-              )
-              .map((el) => (
-                <>
-                  <MDBCard style={{ width: "22rem" }}>
-                    <MDBCardImage
-                      className="img-fluid"
-                      src={"http://localhost:8000/" + el.photo}
-                      waves
-                    />
-                    <MDBCardBody>
-                      <MDBCardTitle>{el.nom}</MDBCardTitle>
-                      <MDBCardText>{el.age}</MDBCardText>
-                      <MDBCardText>
-                        {el.dispo.map((el) => (
-                          <p>{el}</p>
-                        ))}
-                      </MDBCardText>
+        {/************** * Pagination ******************/}
+        <div className="pagination">
+          <Pagination
+            defaultCurrent={1}
+            pageSize={3}
+            onChange={this.page}
+            total={this.props.aides.length}
+          />
+        </div>
 
-                      <MDBCardText>{el.sexe}</MDBCardText>
-                      <MDBCardText>{el.exp}</MDBCardText>
+        {/*************************** * cards horizontales ***********************/}
+        {/* <!-- News jumbotron --> */}
 
-                      <MDBCardText>{el.service}</MDBCardText>
+        <div class="jumbotron text-center hoverable p-4 card-horizontale">
+          {/* <!-- Grid row --> */}
+          <div class="row">
+            {/* <!-- Grid column --> */}
+            <div class="col-md-4 offset-md-1 mx-3 my-3">
+              {/* <!-- Featured image --> */}
+              <div class="view overlay">
+                <img
+                  src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
+                  class="img-fluid"
+                  alt="Sample image for first version of blog listing"
+                />
+                <a>
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+            </div>
+            {/* <!-- Grid column --> */}
 
-                      <MDBCardText>{el.ville}</MDBCardText>
-                      {!this.props.user.role &&
-                      this.props.user.role !== "Aide ménagère" ? (
-                        <MDBBtn
-                          gradient="blue"
-                          onClick={this.toggle}
-                          style={{ borderRadius: "20px" }}
-                        >
-                          Réserver
-                          <MDBIcon far icon="paper-plane" className="ml-2" />
-                        </MDBBtn>
-                      ) : this.props.user.role === "Client" ? (
-                        // add réservation
-                        <MDBBtn
-                          color="primary"
-                          onClick={this.toggleReservation}
-                        >
-                          Confirmer votre réservation{" "}
-                        </MDBBtn>
-                      ) : (
-                        ""
-                      )}
-                    </MDBCardBody>
-                  </MDBCard>
-                </>
-              ))}
-          </MDBCol> */}
+            {/* <!-- Grid column --> */}
+            <div class="col-md-7 text-md-left ml-3 mt-3">
+              {/* <!-- Excerpt --> */}
+              <a href="#!" class="green-text">
+                <h6 class="h6 pb-1">
+                  <i class="fas fa-desktop pr-1"></i> Work
+                </h6>
+              </a>
 
-        {/* </div> */}
+              <h4 class="h4 mb-4">This is title of the news</h4>
+
+              <p class="font-weight-normal">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque, totam rem aperiam, eaque ipsa quae ab
+              </p>
+              <p class="font-weight-normal">
+                by{" "}
+                <a>
+                  <strong>Carine Fox</strong>
+                </a>
+                , 19/08/2016
+              </p>
+
+              <a class="btn btn-success">Read more</a>
+            </div>
+            {/* <!-- Grid column --> */}
+          </div>
+          {/* <!-- Grid row --> */}
+        </div>
+
+        {/********************** * cards + carousel ***********************/}
+
+        <CardCarousel />
+        {/************ * button back to top ************************/}
+        <div className="button-to-top">
+          <ScrollUpButton
+            StopPosition={0}
+            ShowAtPosition={150}
+            EasingType="easeOutCubic"
+            AnimationDuration={500}
+            ContainerClassName="ScrollUpButton__Container"
+            TransitionClassName="ScrollUpButton__Toggled"
+            style={({ width: 100 }, { borderRadius: "50%" })}
+            ToggledStyle={{ right: 100 }}
+          />
+        </div>
+        {/* stat*/}
+        <section id="trustproof" class="simple-section trustproof">
+          <div class="row trust__items row">
+            <div class="col-md-3">
+              <div class="trust text-center">
+                <p className="text-size">Plus de</p>
+                <br></br>
+                <p class="trust--bold">100 000</p>
+                <br></br>
+                <p className="text-size">foyers nettoyés en France</p>
+              </div>
+            </div>
+            <div class="col-md-3 columns">
+              <div class="trust text-center ">
+                <p className="text-size">Déjà</p>
+                <br></br>
+                <p class="trust--bold">80 000</p>
+                <br></br>
+                <p className="text-size">clients satisfaits</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="trust text-center">
+                <p className="text-size">Note Moyenne de</p>
+                <br></br>
+                <p class="trust--bold">4.7 / 5</p>
+                <br></br>
+                <p className="text-size">étoiles</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="trust">
+                <p className="text-center text-size  ">Disponible dans</p>
+                <br></br>
+                <p class="trust--bold text-center">&gt;10 </p>
+                <br></br>
+                <p className="text-center text-size">villes en France</p>
+              </div>
+            </div>
+          </div>
+        </section>
         {/********************* * modal connexion ***************************************/}
 
         <div className="connexion">
@@ -438,779 +508,3 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Accueil);
-
-/******************************carousel************************** */
-
-{
-  /* <div className="caroussel">
-          <MDBContainer>
-            <MDBCarousel
-              activeItem={1}
-              length={3}
-              showControls={true}
-              showIndicators={true}
-              className="z-depth-1"
-            >
-              <MDBCarouselInner>
-                <MDBCarouselItem itemId="1">
-                  <MDBView>
-                    <img
-                      className="d-block w-100"
-                      src="https://media.istockphoto.com/photos/woman-wiping-dust-from-shelf-and-other-furniture-in-living-room-picture-id1220442502?b=1&k=6&m=1220442502&s=170667a&w=0&h=JPuSLNKXK01C4pM1JyDw8gzeHPBp00UIZqHk61_cB-g="
-                      style={{ height: "400px" }}
-                      alt="First slide"
-                    />
-                    <MDBMask overlay="black-light" />
-                  </MDBView>
-                  <MDBCarouselCaption>
-                    <h3 className="h3-responsive">Light mask</h3>
-                    <p>First text</p>
-                  </MDBCarouselCaption>
-                </MDBCarouselItem>
-                <MDBCarouselItem itemId="2">
-                  <MDBView>
-                    <img
-                      className="d-block w-100"
-                      src="https://media.gettyimages.com/photos/time-to-get-clean-picture-id894344972?b=1&k=6&m=894344972&s=612x612&w=0&h=wP3vlVQKz-UFOjmLR5fAlK6tRVKa5qnp_D1y6VJvLEI="
-                      style={{ height: "400px" }}
-                      alt="Second slide"
-                    />
-                    <MDBMask overlay="black-strong" />
-                  </MDBView>
-                  <MDBCarouselCaption>
-                    <h3 className="h3-responsive">Strong mask</h3>
-                    <p>Second text</p>
-                  </MDBCarouselCaption>
-                </MDBCarouselItem>
-                <MDBCarouselItem itemId="3">
-                  <MDBView>
-                    <img
-                      className="d-block w-100"
-                      src="https://media.istockphoto.com/photos/cleaning-with-spray-detergent-rubber-gloves-and-dish-cloth-on-work-picture-id1202033073?b=1&k=6&m=1202033073&s=170667a&w=0&h=nd8p55j2wjh2nNXEUuLa6PefgvTqOSCUcZ096bby2Wo="
-                      style={{ height: "400px" }}
-                      alt="Third slide"
-                    />
-                    <MDBMask overlay="black-slight" />
-                  </MDBView>
-                  <MDBCarouselCaption>
-                    <h3 className="h3-responsive">Slight Mast</h3>
-                    <p>Third text</p>
-                  </MDBCarouselCaption>
-                </MDBCarouselItem>
-              </MDBCarouselInner>
-            </MDBCarousel>
-          </MDBContainer>
-        </div> */
-}
-
-// /**************ESSAI PAGINATION SANS FILTRE */
-// import React, { Component } from "react";
-// import {
-//   MDBCarousel,
-//   MDBCarouselCaption,
-//   MDBCarouselInner,
-//   MDBCarouselItem,
-//   MDBView,
-//   MDBMask,
-//   MDBContainer,
-//   MDBIcon,
-//   MDBBtn,
-//   MDBModal,
-//   MDBModalBody,
-//   MDBModalHeader,
-//   MDBModalFooter,
-//   MDBRow,
-//   MDBCol,
-//   MDBInput,
-// } from "mdbreact";
-// import { login } from "../actions/auth";
-// import { getAideFromDB } from "../actions/aideActionCreator";
-// import { getUser } from "../actions/auth";
-// import { connect } from "react-redux";
-
-// /******************************************************** ******/
-// export class Accueil extends Component {
-//   state = {
-//     jour: "",
-//     ville: "",
-//     modal: false,
-//     /**** * pagination   */
-//     currentPage: 1,
-//     todosPerPage: 3,
-//   };
-
-//   componentDidMount() {
-//     this.props.getAideFromDB();
-//     this.props.getUser();
-//   }
-
-//   toggle = () => {
-//     this.setState({
-//       modal: !this.state.modal,
-//     });
-//   };
-//   /************pagination */
-//   handleClick = (event) => {
-//     this.setState({
-//       currentPage: Number(event.target.id),
-//     });
-//   };
-//   /************************************************************ */
-//   render() {
-//     const villes = [
-//       "Bab El Bhar",
-//       "Bab Souika",
-//       "Carthage",
-//       "Cité El Khadra",
-//       "Sidi Hassine",
-//       "Sidi El Béchir",
-//       "Séjoumi",
-//       "Médina",
-//       "Le Kram",
-//       "Le Bardo",
-//       "La Marsa",
-//       "La Goulette",
-//       "Hraïria",
-//       "Ezzouhour",
-//       "Ettahrir",
-//       "Ouardia",
-//       "El Omrane supérieur",
-//       "El Omrane",
-//       "El Menzah",
-//       "El Kabaria",
-//       "Djebel Jelloud",
-//     ];
-//     //console.log("taw", this.props.user);
-
-//     /**********pagination */
-//     const { currentPage, todosPerPage } = this.state;
-
-//     // Logic for displaying current todos
-//     const indexOfLastTodo = currentPage * todosPerPage;
-//     const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-//     // const currentTodos = this.props.aides
-//     //   .slice(indexOfFirstTodo, indexOfLastTodo)
-//     //   .filter((jr) =>
-//     //     this.state.jour === "" ? jr : jr.dispo === this.state.jour
-//     //   )
-//     //   .filter((dl) =>
-//     //     this.state.ville === "" ? dl : dl.ville === this.state.ville
-//     //   );
-
-//     // Logic for displaying page numbers
-//     const pageNumbers = [];
-//     for (
-//       let i = 1;
-//       i <= Math.ceil(this.props.aides.length / todosPerPage);
-//       i++
-//     ) {
-//       pageNumbers.push(i);
-//     }
-
-//     const renderPageNumbers = pageNumbers.map((number) => {
-//       return (
-//         <li key={number} id={number} onClick={this.handleClick}>
-//           {number}
-//         </li>
-//       );
-//     });
-//     /********************* */
-//     return (
-//       <div className="accueil">
-//         <div className="text">
-//           <h1>
-//             {" "}
-//             <i class="fa fa-quote-left"></i>
-//             <span class="black">
-//               <p>
-//                 Un service d’aide à domicile <strong>de qualité</strong>
-//               </p>
-//             </span>
-//             <i class="fa fa-quote-right"></i>
-//           </h1>
-//         </div>
-//         {/**** * *****carousel *********/}
-//         <div className="caroussel">
-//           <MDBContainer>
-//             <MDBCarousel
-//               activeItem={1}
-//               length={3}
-//               showControls={true}
-//               showIndicators={true}
-//               className="z-depth-1"
-//             >
-//               <MDBCarouselInner>
-//                 <MDBCarouselItem itemId="1">
-//                   <MDBView>
-//                     <img
-//                       className="d-block w-100"
-//                       src="https://media.istockphoto.com/photos/woman-wiping-dust-from-shelf-and-other-furniture-in-living-room-picture-id1220442502?b=1&k=6&m=1220442502&s=170667a&w=0&h=JPuSLNKXK01C4pM1JyDw8gzeHPBp00UIZqHk61_cB-g="
-//                       style={{ height: "400px" }}
-//                       alt="First slide"
-//                     />
-//                     <MDBMask overlay="black-light" />
-//                   </MDBView>
-//                   <MDBCarouselCaption>
-//                     <h3 className="h3-responsive">Light mask</h3>
-//                     <p>First text</p>
-//                   </MDBCarouselCaption>
-//                 </MDBCarouselItem>
-//                 <MDBCarouselItem itemId="2">
-//                   <MDBView>
-//                     <img
-//                       className="d-block w-100"
-//                       src="https://media.gettyimages.com/photos/time-to-get-clean-picture-id894344972?b=1&k=6&m=894344972&s=612x612&w=0&h=wP3vlVQKz-UFOjmLR5fAlK6tRVKa5qnp_D1y6VJvLEI="
-//                       style={{ height: "400px" }}
-//                       alt="Second slide"
-//                     />
-//                     <MDBMask overlay="black-strong" />
-//                   </MDBView>
-//                   <MDBCarouselCaption>
-//                     <h3 className="h3-responsive">Strong mask</h3>
-//                     <p>Second text</p>
-//                   </MDBCarouselCaption>
-//                 </MDBCarouselItem>
-//                 <MDBCarouselItem itemId="3">
-//                   <MDBView>
-//                     <img
-//                       className="d-block w-100"
-//                       src="https://media.istockphoto.com/photos/cleaning-with-spray-detergent-rubber-gloves-and-dish-cloth-on-work-picture-id1202033073?b=1&k=6&m=1202033073&s=170667a&w=0&h=nd8p55j2wjh2nNXEUuLa6PefgvTqOSCUcZ096bby2Wo="
-//                       style={{ height: "400px" }}
-//                       alt="Third slide"
-//                     />
-//                     <MDBMask overlay="black-slight" />
-//                   </MDBView>
-//                   <MDBCarouselCaption>
-//                     <h3 className="h3-responsive">Slight Mast</h3>
-//                     <p>Third text</p>
-//                   </MDBCarouselCaption>
-//                 </MDBCarouselItem>
-//               </MDBCarouselInner>
-//             </MDBCarousel>
-//           </MDBContainer>
-//         </div>
-//         {/* text */}
-//         <div className="text">
-//           <h1>
-//             {" "}
-//             <i class="fa fa-quote-left"></i>
-//             <span class="black">
-//               <p> Réservez votre ménage à domicile en un simple clic</p>
-//             </span>
-//             <i class="fa fa-quote-right"></i>
-//           </h1>
-//         </div>
-//         {/************ ************** les filtres ************************/}
-//         <div className="filtre container">
-//           {/* *********** filtre par délégation ***************/}
-//           <select
-//             className="browser-default custom-select"
-//             style={{ width: "200px" }}
-//             onChange={(e) => this.setState({ ville: e.target.value })}
-//           >
-//             <option value="">Choisir la Délégation</option>
-//             {villes.map((el) => (
-//               <option>{el}</option>
-//             ))}
-//           </select>
-//           {/* ***********filtre par jour ***************/}
-
-//           <select
-//             className="browser-default custom-select"
-//             style={{ width: "200px" }}
-//             onChange={(e) => this.setState({ jour: e.target.value })}
-//           >
-//             <option value="">Choisir le jour</option>
-//             <option value="Lundi">Lundi</option>
-//             <option value="Mardi">Mardi</option>
-//             <option value="Mercredi">Mercredi</option>
-//             <option value="Jeudi">Jeudi</option>
-//             <option value="Vendredi">Vendredi</option>
-//             <option value="Samedi">Samedi</option>
-//             <option value="Dimanche">Dimanche</option>
-//           </select>
-//         </div>
-//         {/* ***********cards *******************/}
-//         {/* fonction filtre */}
-//         <div className="cards container">
-//           {this.props.aides
-//             .slice(indexOfFirstTodo, indexOfLastTodo)
-//             .filter((jr) =>
-//               this.state.jour === "" ? jr : jr.dispo === this.state.jour
-//             )
-//             .filter((dl) =>
-//               this.state.ville === "" ? dl : dl.ville === this.state.ville
-//             )
-//             .map((el, index) => (
-//               <div className="flip-card" key={index}>
-//                 <div className="flip-card-inner">
-//                   <div className="flip-card-front">
-//                     <img
-//                       className="card-aide"
-//                       src={"http://localhost:8000/" + el.photo}
-//                       alt="Avatar"
-//                     />
-//                     <br></br>
-//                     <h2>{el.nom}</h2>
-
-//                     <hr className="line"></hr>
-//                     <h5>
-//                       Plus de détails <MDBIcon icon="angle-double-right" />
-//                     </h5>
-//                   </div>
-//                   <div className="flip-card-back">
-//                     <h1>{el.age}</h1>
-//                     <h4>{el.ville}</h4>
-//                     <h4>{el.exp}</h4>
-
-//                     <MDBBtn
-//                       gradient="blue"
-//                       onClick={this.toggle}
-//                       style={{ borderRadius: "20px" }}
-//                     >
-//                       Réserver
-//                       <MDBIcon far icon="paper-plane" className="ml-2" />
-//                     </MDBBtn>
-//                   </div>
-//                 </div>
-//               </div>
-//             ))}
-//         </div>
-
-//         <div className="connexion">
-//           <MDBContainer autoWidth="false">
-//             {/* <MDBBtn
-//               gradient="blue"
-//               onClick={this.toggle}
-//               style={{ borderRadius: "20px" }}
-//             >
-//               Connexion
-//             </MDBBtn> */}
-//             <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-//               <MDBModalHeader toggle={this.toggle}>Se connecter</MDBModalHeader>
-//               <MDBModalBody>
-//                 <MDBContainer>
-//                   <MDBRow>
-//                     <MDBCol md="6">
-//                       <form>
-//                         <div className="grey-text">
-//                           <i
-//                             class="fas fa-envelope"
-//                             style={{ fontSize: "30px" }}
-//                           ></i>
-//                           <MDBInput
-//                             style={{ color: "black" }}
-//                             label="Adresse email"
-//                             group
-//                             type="email"
-//                             validate
-//                             error="wrong"
-//                             success="right"
-//                             onChange={(e) =>
-//                               this.setState({ email: e.target.value })
-//                             }
-//                           />
-//                           <i
-//                             class="fas fa-lock"
-//                             style={{ fontSize: "30px" }}
-//                           ></i>
-//                           <MDBInput
-//                             style={{ color: "black" }}
-//                             label="Mot de passe"
-//                             group
-//                             type="password"
-//                             validate
-//                             error="wrong"
-//                             success="right"
-//                             onChange={(e) =>
-//                               this.setState({ password: e.target.value })
-//                             }
-//                           />
-//                         </div>
-//                       </form>
-//                     </MDBCol>
-//                   </MDBRow>
-//                 </MDBContainer>
-//               </MDBModalBody>
-//               <MDBModalFooter>
-//                 <MDBBtn color="secondary" onClick={this.toggle}>
-//                   Fermer{" "}
-//                 </MDBBtn>
-//                 <MDBBtn
-//                   gradient="blue"
-//                   onClick={() =>
-//                     this.props.signin({
-//                       email: this.state.email,
-//                       password: this.state.password,
-//                     })
-//                   }
-//                 >
-//                   Se connecter
-//                   <MDBIcon far icon="paper-plane" className="ml-2" />
-//                 </MDBBtn>
-//               </MDBModalFooter>
-//             </MDBModal>
-//           </MDBContainer>
-//         </div>
-//         {/* pagination */}
-//         <ul id="page-numbers">{renderPageNumbers}</ul>
-//       </div>
-//     );
-//   }
-// }
-// const mapStateToProps = (state) => {
-//   return {
-//     aides: state.aides,
-//     user: state.auth,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     signin: (el) => dispatch(login(el)),
-//     getUser: () => dispatch(getUser()),
-//     getAideFromDB: () => dispatch(getAideFromDB())
-//   };
-// };
-// export default connect(mapStateToProps, mapDispatchToProps)(Accueil);
-
-/************* ESSAI VOIR PLUS************************** */
-// import React, { Component } from "react";
-// import {
-//   MDBCarousel,
-//   MDBCarouselCaption,
-//   MDBCarouselInner,
-//   MDBCarouselItem,
-//   MDBView,
-//   MDBMask,
-//   MDBContainer,
-//   MDBIcon,
-//   MDBBtn,
-//   MDBModal,
-//   MDBModalBody,
-//   MDBModalHeader,
-//   MDBModalFooter,
-//   MDBRow,
-//   MDBCol,
-//   MDBInput,
-// } from "mdbreact";
-// import { login } from "../actions/auth";
-// import { getAideFromDB } from "../actions/aideActionCreator";
-// import { getUser } from "../actions/auth";
-// import { connect } from "react-redux";
-
-// /******************************************************** ******/
-// export class Accueil extends Component {
-//   state = {
-//     ville: "",
-//     modal: false,
-//     /******pagination */
-//     // items: [],
-//     // visible: 2,
-//     // error: false,
-//   };
-
-//   componentDidMount() {
-//     this.props.getAideFromDB();
-//     this.props.getUser();
-//     /**********pagination */
-//   }
-
-//   toggle = () => {
-//     this.setState({
-//       modal: !this.state.modal,
-//     });
-//   };
-//   /******** pagination********* */
-
-//   // loadMore = () => {
-//   //   this.setState((prev) => {
-//   //     return { visible: prev.visible + 4 };
-//   //   });
-//   // };
-//   /************************************************************ */
-//   render() {
-//     const villes = [
-//       "Bab El Bhar",
-//       "Bab Souika",
-//       "Carthage",
-//       "Cité El Khadra",
-//       "Sidi Hassine",
-//       "Sidi El Béchir",
-//       "Séjoumi",
-//       "Médina",
-//       "Le Kram",
-//       "Le Bardo",
-//       "La Marsa",
-//       "La Goulette",
-//       "Hraïria",
-//       "Ezzouhour",
-//       "Ettahrir",
-//       "Ouardia",
-//       "El Omrane supérieur",
-//       "El Omrane",
-//       "El Menzah",
-//       "El Kabaria",
-//       "Djebel Jelloud",
-//     ];
-//     //console.log("taw", this.props.user);
-//     return (
-//       <div className="accueil">
-//         <div className="text">
-//           <h1>
-//             {" "}
-//             <i class="fa fa-quote-left"></i>
-//             <span class="black">
-//               <p>
-//                 Un service d’aide à domicile <strong>de qualité</strong>
-//               </p>
-//             </span>
-//             <i class="fa fa-quote-right"></i>
-//           </h1>
-//         </div>
-//         {/**** * *****carousel *********/}
-//         <div className="caroussel">
-//           <MDBContainer>
-//             <MDBCarousel
-//               activeItem={1}
-//               length={3}
-//               showControls={true}
-//               showIndicators={true}
-//               className="z-depth-1"
-//             >
-//               <MDBCarouselInner>
-//                 <MDBCarouselItem itemId="1">
-//                   <MDBView>
-//                     <img
-//                       className="d-block w-100"
-//                       src="https://media.istockphoto.com/photos/woman-wiping-dust-from-shelf-and-other-furniture-in-living-room-picture-id1220442502?b=1&k=6&m=1220442502&s=170667a&w=0&h=JPuSLNKXK01C4pM1JyDw8gzeHPBp00UIZqHk61_cB-g="
-//                       style={{ height: "400px" }}
-//                       alt="First slide"
-//                     />
-//                     <MDBMask overlay="black-light" />
-//                   </MDBView>
-//                   <MDBCarouselCaption>
-//                     <h3 className="h3-responsive">Light mask</h3>
-//                     <p>First text</p>
-//                   </MDBCarouselCaption>
-//                 </MDBCarouselItem>
-//                 <MDBCarouselItem itemId="2">
-//                   <MDBView>
-//                     <img
-//                       className="d-block w-100"
-//                       src="https://media.gettyimages.com/photos/time-to-get-clean-picture-id894344972?b=1&k=6&m=894344972&s=612x612&w=0&h=wP3vlVQKz-UFOjmLR5fAlK6tRVKa5qnp_D1y6VJvLEI="
-//                       style={{ height: "400px" }}
-//                       alt="Second slide"
-//                     />
-//                     <MDBMask overlay="black-strong" />
-//                   </MDBView>
-//                   <MDBCarouselCaption>
-//                     <h3 className="h3-responsive">Strong mask</h3>
-//                     <p>Second text</p>
-//                   </MDBCarouselCaption>
-//                 </MDBCarouselItem>
-//                 <MDBCarouselItem itemId="3">
-//                   <MDBView>
-//                     <img
-//                       className="d-block w-100"
-//                       src="https://media.istockphoto.com/photos/cleaning-with-spray-detergent-rubber-gloves-and-dish-cloth-on-work-picture-id1202033073?b=1&k=6&m=1202033073&s=170667a&w=0&h=nd8p55j2wjh2nNXEUuLa6PefgvTqOSCUcZ096bby2Wo="
-//                       style={{ height: "400px" }}
-//                       alt="Third slide"
-//                     />
-//                     <MDBMask overlay="black-slight" />
-//                   </MDBView>
-//                   <MDBCarouselCaption>
-//                     <h3 className="h3-responsive">Slight Mast</h3>
-//                     <p>Third text</p>
-//                   </MDBCarouselCaption>
-//                 </MDBCarouselItem>
-//               </MDBCarouselInner>
-//             </MDBCarousel>
-//           </MDBContainer>
-//         </div>
-//         {/* text */}
-//         <div className="text">
-//           <h1>
-//             {" "}
-//             <i class="fa fa-quote-left"></i>
-//             <span class="black">
-//               <p> Réservez votre ménage à domicile en un simple clic</p>
-//             </span>
-//             <i class="fa fa-quote-right"></i>
-//           </h1>
-//         </div>
-//         {/************ ************** les filtres ************************/}
-//         <div className="filtre container">
-//           {/* *********** filtre par délégation ***************/}
-//           <select
-//             className="browser-default custom-select"
-//             style={{ width: "200px" }}
-//             onChange={(e) => this.setState({ ville: e.target.value })}
-//           >
-//             <option>Choisir la Délégation</option>
-//             {villes.map((el) => (
-//               <option>{el}</option>
-//             ))}
-//           </select>
-//           {/* ***********filtre par jour ***************/}
-
-//           <select
-//             className="browser-default custom-select"
-//             style={{ width: "200px" }}
-//             onChange={(e) => this.setState({ jour: e.target.value })}
-//           >
-//             <option value="">Choisir le jour</option>
-//             <option value="Lundi">Lundi</option>
-//             <option value="Mardi">Mardi</option>
-//             <option value="Mercredi">Mercredi</option>
-//             <option value="Jeudi">Jeudi</option>
-//             <option value="Vendredi">Vendredi</option>
-//             <option value="Samedi">Samedi</option>
-//             <option value="Dimanche">Dimanche</option>
-//           </select>
-//         </div>
-//         {/* ***********cards *******************/}
-//         {/* fonction filtre */}
-//         {/* pagination */}
-//         {/* {this.state.visible < this.props.aides.length && (
-//           <button
-//             onClick={() => this.loadMore()}
-//             type="button"
-//             className="load-more"
-//           >
-//             Load more
-//           </button>
-//         )} */}
-//         <div className="cards container">
-//           {this.props.aides
-//             .filter((jr) =>
-//               this.state.jour === "" ? jr : jr.dispo === this.state.jour
-//             )
-//             .filter((dl) =>
-//               this.state.ville === "" ? dl : dl.ville === this.state.ville
-//             )
-//             .map((el) => (
-//               <div className="flip-card">
-//                 {/* pagination */}
-//                 {/* <span className="count">{index + 1}</span> */}
-//                 <div className="flip-card-inner">
-//                   <div className="flip-card-front">
-//                     <img
-//                       className="card-aide"
-//                       src={"http://localhost:8000/" + el.photo}
-//                       alt="Avatar"
-//                     />
-//                     <br></br>
-//                     <h2>{el.nom}</h2>
-
-//                     <hr className="line"></hr>
-//                     <h5>
-//                       Plus de détails <MDBIcon icon="angle-double-right" />
-//                     </h5>
-//                   </div>
-//                   <div className="flip-card-back">
-//                     <h1>{el.age}</h1>
-//                     <h4>{el.ville}</h4>
-//                     <h4>{el.exp}</h4>
-
-//                     <MDBBtn
-//                       gradient="blue"
-//                       onClick={this.toggle}
-//                       style={{ borderRadius: "20px" }}
-//                     >
-//                       Réserver
-//                       <MDBIcon far icon="paper-plane" className="ml-2" />
-//                     </MDBBtn>
-//                   </div>
-//                 </div>
-//               </div>
-//             ))}
-//         </div>
-
-//         <div className="connexion">
-//           <MDBContainer autoWidth="false">
-//             <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-//               <MDBModalHeader toggle={this.toggle}>Se connecter</MDBModalHeader>
-//               <MDBModalBody>
-//                 <MDBContainer>
-//                   <MDBRow>
-//                     <MDBCol md="6">
-//                       <form>
-//                         <div className="grey-text">
-//                           <i
-//                             class="fas fa-envelope"
-//                             style={{ fontSize: "30px" }}
-//                           ></i>
-//                           <MDBInput
-//                             style={{ color: "black" }}
-//                             label="Adresse email"
-//                             group
-//                             type="email"
-//                             validate
-//                             error="wrong"
-//                             success="right"
-//                             onChange={(e) =>
-//                               this.setState({ email: e.target.value })
-//                             }
-//                           />
-//                           <i
-//                             class="fas fa-lock"
-//                             style={{ fontSize: "30px" }}
-//                           ></i>
-//                           <MDBInput
-//                             style={{ color: "black" }}
-//                             label="Mot de passe"
-//                             group
-//                             type="password"
-//                             validate
-//                             error="wrong"
-//                             success="right"
-//                             onChange={(e) =>
-//                               this.setState({ password: e.target.value })
-//                             }
-//                           />
-//                         </div>
-//                       </form>
-//                     </MDBCol>
-//                   </MDBRow>
-//                 </MDBContainer>
-//               </MDBModalBody>
-//               <MDBModalFooter>
-//                 <MDBBtn color="secondary" onClick={this.toggle}>
-//                   Fermer{" "}
-//                 </MDBBtn>
-//                 <MDBBtn
-//                   gradient="blue"
-//                   onClick={() =>
-//                     this.props.signin({
-//                       email: this.state.email,
-//                       password: this.state.password,
-//                     })
-//                   }
-//                 >
-//                   Se connecter
-//                   <MDBIcon far icon="paper-plane" className="ml-2" />
-//                 </MDBBtn>
-//               </MDBModalFooter>
-//             </MDBModal>
-//           </MDBContainer>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-// const mapStateToProps = (state) => {
-//   return {
-//     aides: state.aides,
-//     user: state.auth,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     signin: (el) => dispatch(login(el)),
-//     getUser: () => dispatch(getUser()),
-//     getAideFromDB: () => dispatch(getAideFromDB()),
-//   };
-// };
-// export default connect(mapStateToProps, mapDispatchToProps)(Accueil);

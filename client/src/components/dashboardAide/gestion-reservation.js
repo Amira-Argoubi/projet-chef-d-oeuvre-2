@@ -4,10 +4,11 @@ import { getAideFromDB } from "../../actions/aideActionCreator";
 import {
   getReservation,
   editDecisionInDB,
+  deleteReservationInDB,
 } from "../../actions/reservationAction";
 import { getUser } from "../../actions/auth";
 import { Label, Table, Button } from "semantic-ui-react";
-
+import { Redirect } from "react-router-dom";
 export class GestionReservation extends Component {
   state = {
     decision: "Validée",
@@ -19,82 +20,52 @@ export class GestionReservation extends Component {
     this.props.getUser();
   }
   render() {
-    const reservations = this.props.reservation.filter(
-      (el) => el.aide._id.toString() === this.props.user._id.toString()
-    );
+    //  ne donner l'accès pour ce component qu'à l'aide!
+    if (this.props.user.role !== "Aide ménagère") {
+      return <Redirect to="/" />;
+    }
+    const reservations = this.props.reservation;
 
     return (
       <div className="liste-reservation container">
         <Table celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Nom-Prénom</Table.HeaderCell>
-              <Table.HeaderCell>Délégation</Table.HeaderCell>
-              <Table.HeaderCell>Description</Table.HeaderCell>
-              <Table.HeaderCell>Notes</Table.HeaderCell>
-              <Table.HeaderCell>Jour</Table.HeaderCell>
-              <Table.HeaderCell>decision</Table.HeaderCell>
+              <Table.HeaderCell>Date-début</Table.HeaderCell>
+              <Table.HeaderCell>Date-fin</Table.HeaderCell>
+              <Table.HeaderCell>Adresse</Table.HeaderCell>
+              <Table.HeaderCell>Nom-client</Table.HeaderCell>
               <Table.HeaderCell>Actions</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
           <Table.Body>
-            {reservations /*.filter((el_organizateurs) => this.el_organizateurs === "" ?
+            {reservations
+              .filter(
+                (el) => el.aide._id.toString() == this.props.user._id.toString()
+              ) /*.filter((el_organizateurs) => this.el_organizateurs === "" ?
                             el_organizateurs : el_organizateurs === "maazza"
         )*/
               .map((el, i) => (
-                <Table.Row>
-                  <Table.Cell>
-                    <Label ribbon>{el.client.nom_prenom}</Label>
-                  </Table.Cell>
-                  <Table.Cell>{el.ville}</Table.Cell>
-                  <Table.Cell>{el.age}</Table.Cell>
-                  <Table.Cell>{el.sexe}</Table.Cell>
-                  <Table.Cell>
-                    {el.dispo.map((el) => (
-                      <p>{el}</p>
-                    ))}
-                  </Table.Cell>
-                  <Table.Cell>
-                    {el.decision === "Validée" ? (
-                      <>
-                        <p>{el.tel_client}</p>
-                        <p>{el.adresse_client}</p>
-                        <p>{el.client.nom_prenom}</p>
-                      </>
-                    ) : (
-                      el.decision
-                    )}
-                  </Table.Cell>
-
-                  <Table.Cell className="pos-Action ">
+                <>
+                  <Table.Row>
+                    <Table.Cell>{el.date_start}</Table.Cell>
+                    <Table.Cell>{el.date_end}</Table.Cell>
+                    <Table.Cell>{el.adresse_client}</Table.Cell>
+                    <Table.Cell>{el.client.nom_prenom}</Table.Cell>
                     <Button
                       outline
                       size="sm"
-                      onClick={() =>
-                        this.props.editDecisionInDB({
-                          _id: el._id,
-                          decision: this.state.decision,
-                        })
-                      }
+                      disabled={el.decision == "Validée" ? true : false}
+                      onClick={() => this.props.deleteReservationInDB(el._id)}
                     >
-                      <i class="fas fa-check-square"></i>
+                      {el.decision == "Validée" ? null : (
+                        <i class="fas fa-trash"></i>
+                      )}
                     </Button>
-                    <Button
-                      outline
-                      size="sm"
-                      onClick={() =>
-                        this.props.editDecisionInDB({
-                          _id: el._id,
-                          decision: this.state.deci,
-                        })
-                      }
-                    >
-                      <i class="fas fa-trash"></i>
-                    </Button>
-                  </Table.Cell>
-                </Table.Row>
-              ))}{" "}
+                  </Table.Row>
+                </>
+              ))}
           </Table.Body>
 
           <Table.Footer>
@@ -118,5 +89,6 @@ export default connect(mapStateToProps, {
   getAideFromDB,
   getReservation,
   getUser,
+  deleteReservationInDB,
   editDecisionInDB,
 })(GestionReservation);

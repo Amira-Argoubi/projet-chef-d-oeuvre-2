@@ -76,37 +76,37 @@ module.exports = {
   },
   /********************************* EDIT profil *********************** */
 
-  // updateProfil: async (req, res) => {
-  //   console.log("edit pro", req.body);
-  //   let { nom_prenom, email, password, newpPassword, role, _id } = req.body;
-  //   let user = await User.findById(_id);
-  //   try {
-  //     if (password) {
-  //       bcrypt.compare(password, user.password, async function (err, result) {
-  //         if (result == true) {
-  //           let salt = await bcrypt.genSalt(10);
-  //           passwordnew = await bcrypt.hash(newpPassword, salt);
-  //           user = await User.findByIdAndUpdate(req.params.id, {
-  //             nom_prenom,
-  //             email,
-  //             password: passwordnew,
-  //             role,
-  //           });
-  //           res.send(user);
-  //         } else res.send("mot de passe non identique");
-  //       });
-  //     } else {
-  //       user = await User.findByIdAndUpdate(req.params.id, {
-  //         nom_prenom,
-  //         email,
-  //       });
-  //       res.send(user);
-  //     }
-  //   } catch (err) {
-  //     console.error(err.message);
-  //     res.status(500).send("Server error");
-  //   }
-  // },
+  updateProfil: async (req, res) => {
+    console.log("edit pro", req.body);
+    let { nom_prenom, email, password, newpPassword, role, _id } = req.body;
+    let user = await User.findById(_id);
+    try {
+      if (password) {
+        bcrypt.compare(password, user.password, async function (err, result) {
+          if (result == true) {
+            let salt = await bcrypt.genSalt(10);
+            passwordnew = await bcrypt.hash(newpPassword, salt);
+            user = await User.findByIdAndUpdate(req.params.id, {
+              nom_prenom,
+              email,
+              password: passwordnew,
+              role,
+            });
+            res.send(user);
+          } else res.send("mot de passe non identique");
+        });
+      } else {
+        user = await User.findByIdAndUpdate(req.params.id, {
+          nom_prenom,
+          email,
+        });
+        res.send(user);
+      }
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    }
+  },
 };
 
 //fil browser fama storage pour le stockage parmi les on trouve local, cookie....
