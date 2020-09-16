@@ -42,29 +42,6 @@
 #classicformpage label {
   color: black !important;
 }
-/***************** contact formulaire ********************/
-@media (max-width: 600px) {
-  #map-container {
-    display: none !important;
-  }
-  .row-contact {
-    display: none !important;
-  }
-}
-.row-contact {
-  display: flex;
-  flex-wrap: wrap;
-}
-/************** button back to top ************/
-@media only screen and (max-width: 600px) {
-  .button-to-top {
-    position: "absolute";
-    left: 0px;
-    bottom: 0px;
-    width: 10px;
-    height: 10px;
-  }
-}
 
 /******************contact****************/
 .icon-contact {
@@ -153,10 +130,11 @@
   font-size: 20px;
   font-family: Gotham-book;
   margin-left: 40px;
+  margin-top: -20px;
 }
 .link-nav {
   display: flex;
-  margin-top: 12px;
+  margin-top: 18px;
 }
 .nom-app {
   color: rgb(56, 56, 241);
@@ -195,7 +173,8 @@ hr {
   position: absolute;
   background: #22222263;
   width: 100%;
-  top: 2220px;
+  height: 322px;
+  top: 2160px;
 }
 
 /***********css table de réservations****/
@@ -317,8 +296,7 @@ strong {
 footer .main-footer {
   padding: 20px 0;
   background: #1f1a36;
-  padding-top: 80px;
-  /* height: 300px; */
+  height: 300px;
 }
 footer ul {
   padding-left: 0;
@@ -825,6 +803,7 @@ button.primary.ghost {
   margin-top: 100px;
   max-width: 1550px;
   width: 1700px;
+
   margin: auto;
   display: block;
 }

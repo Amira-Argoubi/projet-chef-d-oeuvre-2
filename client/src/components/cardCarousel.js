@@ -11,9 +11,9 @@ class CardCarousel extends React.Component {
   render() {
     return (
       <div className="card-carousel">
-        <div class=" py-3 container-carousel text-horizontal">
+        <div class=" py-3 container-carousel text-horizontal ">
           {/* <!-- Card Start --> */}
-          <div class="card row-card-carousel container text-horizontal">
+          <div class="card row-card-carousel container text-horizontal  ">
             <div class="row  ">
               <div class="col-md-7 px-3  text-horizontal">
                 <div class="card-block px-6 ">
@@ -55,13 +55,13 @@ class CardCarousel extends React.Component {
                 </div>
               </div>
               {/* <!-- Carousel start --> */}
-              <div class="col-md-5">
+              <div class="col-md-5  p-0 ">
                 <div
                   id="CarouselTest"
                   class="carousel slide"
                   data-ride="carousel"
                 >
-                  <ol class="carousel-indicators">
+                  <ol className="carousel-indicators ">
                     <li
                       data-target="#CarouselTest"
                       data-slide-to="0"
@@ -73,9 +73,9 @@ class CardCarousel extends React.Component {
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <img
-                        class="d-block"
+                        className="d-block"
                         src={ar2}
-                        alt=""
+                        alt="img"
                         style={{ width: "774px" }}
                       />
                     </div>

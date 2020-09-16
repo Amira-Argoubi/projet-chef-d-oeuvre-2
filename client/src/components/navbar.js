@@ -62,8 +62,8 @@ export class Navbar extends Component {
             />
             <MDBCollapse isOpen={this.state.collapse} navbar>
               <MDBNavbarNav left>
-
                 <MDBNavItem active>
+                  <br />
                   <MDBNavLink
                     className="lien-navbar"
                     style={{ color: "blue" }}
@@ -75,34 +75,35 @@ export class Navbar extends Component {
 
                 <MDBNavItem active>
                   <br />
-                  <a
+                  <MDBNavLink
                     className="lien-navbar"
                     style={{ color: "blue" }}
-                    href="#Apropos"
+                    to="/"
                   >
                     A propos
-                  </a>
+                  </MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem active>
                   <br />
-                  <a
+                  <MDBNavLink
                     className="lien-navbar"
                     style={{ color: "blue" }}
-                    href="#contact"
+                    to="/"
                   >
                     Contact
-                  </a>
+                  </MDBNavLink>
                 </MDBNavItem>
 
                 {this.props.user.role === "Aide ménagère" ? (
                   <MDBNavItem>
-                    <a
+                    <br />
+                    <MDBNavLink
                       className="lien-navbar"
                       to="/aide"
                       style={{ color: "blue" }}
                     >
                       Annonce
-                    </a>
+                    </MDBNavLink>
                   </MDBNavItem>
                 ) : (
                   ""
@@ -110,28 +111,28 @@ export class Navbar extends Component {
 
                 {this.props.user.role === "Client" ? (
                   <MDBNavItem>
-                    <div div className="link-nav">
-                      <a
+                    <div className="link-nav">
+                      <MDBNavLink
                         className="lien-navbar"
                         style={{ color: "blue" }}
                         to="/client-Attente"
                       >
                         Client-Attente
-                      </a>
-                      <a
+                      </MDBNavLink>
+                      <MDBNavLink
                         className="lien-navbar"
                         style={{ color: "blue" }}
                         to="/modif-profil"
                       >
                         Mon profil
-                      </a>
-                      <a
+                      </MDBNavLink>
+                      <MDBNavLink
                         className="lien-navbar"
                         style={{ color: "blue" }}
                         to="/Avis"
                       >
                         Avis
-                      </a>
+                      </MDBNavLink>
                     </div>
                   </MDBNavItem>
                 ) : (
@@ -140,20 +141,20 @@ export class Navbar extends Component {
                 {this.props.user.role === "Aide ménagère" ? (
                   <MDBNavItem>
                     <div div className="link-nav">
-                      <a
+                      <MDBNavLink
                         className="lien-navbar"
                         style={{ color: "blue" }}
                         to="/gestion-reservation"
                       >
                         Mes réservations
-                      </a>
-                      <a
+                      </MDBNavLink>
+                      <MDBNavLink
                         className="lien-navbar"
                         style={{ color: "blue" }}
                         to="/modif-profil"
                       >
                         Mon profil
-                      </a>
+                      </MDBNavLink>
                     </div>
                   </MDBNavItem>
                 ) : (
@@ -162,13 +163,14 @@ export class Navbar extends Component {
                 <MDBNavItem>
                   {this.props.user.role === "Admin" ? (
                     <div div className="link-nav">
-                      <a
+                      <MDBNavLink
                         className="lien-navbar"
                         style={{ color: "blue" }}
                         to="/gestion-reserv"
                       >
                         Gestion-reserv
-                      </a>
+                      </MDBNavLink>
+
                       <MDBNavLink
                         className="lien-navbar"
                         style={{ color: "blue" }}

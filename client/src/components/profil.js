@@ -46,7 +46,7 @@ class Profil extends React.Component {
           <MDBMask className="d-flex justify-content-center align-items-center gradient">
             <MDBContainer>
               <MDBRow>
-              <MDBCol
+                <MDBCol
                   md="6"
                   xl="5"
                   className="mb-4"
@@ -61,7 +61,6 @@ class Profil extends React.Component {
                         <hr className="hr-light" />
 
                         <MDBInput
-                         
                           iconClass="white-text"
                           label={this.props.user.nom_prenom}
                           icon="user"
@@ -87,7 +86,6 @@ class Profil extends React.Component {
                           }
                         />
                         <MDBInput
-
                           iconClass="white-text"
                           label="New password"
                           icon="lock"
@@ -112,16 +110,23 @@ class Profil extends React.Component {
                   delay=".3s"
                   className="white-text text-center text-md-left col-md-6 mt-xl-5 mb-5"
                 >
-                  <h1 className="h1-responsive font-weight-bold" style={{color:"yellow"}}>
-                   Modifier vos coordonnées!
+                  <h1
+                    className="h1-responsive font-weight-bold"
+                    style={{ color: "yellow" }}
+                  >
+                    Modifier vos coordonnées!
                   </h1>
                   <hr className="hr-light" />
-                 <center> <h6 className="mb-4" style={{fontSize:50}}>
-                   Nous sommes à votre disposition 
-                  </h6></center>
+                  <center>
+                    {" "}
+                    <h6
+                      className="mb-4 "
+                      style={{ fontSize: 50, fontWeight: "bold" }}
+                    >
+                      Nous sommes à votre disposition
+                    </h6>
+                  </center>
                 </MDBAnimation>
-
-                
               </MDBRow>
             </MDBContainer>
           </MDBMask>

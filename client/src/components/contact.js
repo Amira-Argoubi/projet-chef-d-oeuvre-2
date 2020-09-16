@@ -11,7 +11,7 @@ import {
 
 const Contact = () => {
   return (
-    <section className="my-5 contact-forms" id="contact">
+    <section className="my-5 contact-forms" >
       <MDBRow>
         <MDBCol lg="5" className="lg-0 mb-4">
           <MDBCard>

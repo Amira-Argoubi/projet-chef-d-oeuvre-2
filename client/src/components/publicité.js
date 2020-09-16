@@ -51,7 +51,7 @@ class Pub extends React.Component {
           </MDBMask>
         </MDBView>
         {/* /**************************** */}
-        <div class="jumbotron jumbotron-fluid container" id="Apropos">
+        <div class="jumbotron jumbotron-fluid container">
           <div class="container">
             <h4 class="display-4">A propos </h4>
             <br></br>

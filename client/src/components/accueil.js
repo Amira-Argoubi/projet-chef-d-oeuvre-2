@@ -414,7 +414,7 @@ export class Accueil extends Component {
 
         <div class="jumbotron text-center hoverable p-4 card-horizontale">
           {/* <!-- Grid row --> */}
-          <div class="row row-contact">
+          <div class="row">
             {/* <!-- Grid column --> */}
             <div class="col-md-5 ">
               {/* <!-- Featured image --> */}
@@ -437,9 +437,8 @@ export class Accueil extends Component {
         </div>
 
         {/************ * button back to top ************************/}
-        <div>
         <div className="button-to-top">
-          {/*<ScrollUpButton
+          <ScrollUpButton
             StopPosition={0}
             ShowAtPosition={150}
             EasingType="easeOutCubic"
@@ -451,9 +450,9 @@ export class Accueil extends Component {
               { borderRadius: "50%", backgroundColor: "rgba(29, 210, 177)" })
             }
             ToggledStyle={{ right: 100 }}
-          /> */}
+          />
         </div>
-        </div>
+
         {/********************* * modal connexion ***************************************/}
 
         <div className="connexion">

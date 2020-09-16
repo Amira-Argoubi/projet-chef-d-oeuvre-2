@@ -73,7 +73,7 @@ export const editUserInDB = (el) => {
       .patch(
         `http://localhost:8000/chef-d'oeuvre/authentif/update/${el._id}`,
         el,
-        { withCredentials: true }
+      { withCredentials: true }
       )
       .then((res) => {
         dispatch(editUser(res.data));

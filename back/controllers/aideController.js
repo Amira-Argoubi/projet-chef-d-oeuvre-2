@@ -8,15 +8,12 @@ module.exports = {
     /* vérifier si l'annonce existe par le aide pour éviter l'ajout akthir min mara..*/
     const { proprietaire } = req.body;
 
-    let annonce = await AideSchema.find();
-    // let existe = annonce.filter(el=>el.prproprietaire.toString() === proprietaire.toString()
-    // );
-    let existe = annonce.filter(
-      (el) => el.proprietaire.toString() === req.body.proprietaire.toString()
-    );
+    let annonce = await AideSchema.find({
+      proprietaire: req.body.proprietaire,
+    });
 
-    console.log(existe.length);
-    if (existe.length !== 0) {
+    
+    if (annonce.length !== 0) {
       res.json({ msg: "is existe" });
       console.log(true);
     } else {

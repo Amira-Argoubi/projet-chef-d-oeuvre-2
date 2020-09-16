@@ -7,9 +7,8 @@ const aideRoute = require("./routes/aideRoute");
 const authentifRoute = require("./routes/authRoute");
 
 const reservationRoute = require("./routes/reservationRoute");
-const ratingRoute= require("./routes/ratingRoute");
-
-
+const ratingRoute = require("./routes/ratingRoute");
+const cors = require("cors");
 const app = express();
 app.use(cookie());
 
@@ -17,20 +16,7 @@ app.use(express.json());
 /************ méthode nista3mlouha m3a cookie qui fait le lien entre les ports front -back au lieu du CORS qui est utilisé au cas de local storage******* */
 // front - back connection ( cors job ) // this or cors(cors works just with local storage) or proxy(with proxy you put in package.json "proxy" : url of the backend)// NB : this middleware works with cookies and session cause it has the same logic : they both storage the token in the back and send it to the front unlike the local storage which storage the token in the front.
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-  );
-  next();
-});
+app.use(cors({ credentials: true, origin: true }));
 
 app.use("/chef-d'oeuvre/aides", aideRoute);
 app.use("/chef-d'oeuvre/authentif", authentifRoute);
