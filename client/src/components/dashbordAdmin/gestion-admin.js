@@ -53,6 +53,8 @@ export class GestionReserv extends Component {
     }
     return (
       <div className="liste-reservation">
+        <h1 className="titre-tab">Gestion des réservations</h1>
+        <div className="tab-reservation">
         <Table celled>
           <Table.Header className="table-header">
             <Table.Row>
@@ -62,19 +64,19 @@ export class GestionReserv extends Component {
               <Table.HeaderCell className="title-header">
                 Nom-Prénom-aide
               </Table.HeaderCell>
-              <Table.HeaderCell>Num-Tél</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">Num-Tél</Table.HeaderCell>
 
-              <Table.HeaderCell>Adresse</Table.HeaderCell>
-              <Table.HeaderCell>Date-réservation</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">Adresse</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">Date-réservation</Table.HeaderCell>
 
-              <Table.HeaderCell>Délais</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">Délais</Table.HeaderCell>
 
-              <Table.HeaderCell>Devis</Table.HeaderCell>
-              <Table.HeaderCell>Actions</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">Devis</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">Actions</Table.HeaderCell>
 
-              <Table.HeaderCell> Décision</Table.HeaderCell>
-              <Table.HeaderCell> Paiement</Table.HeaderCell>
-              <Table.HeaderCell> Validation définitive</Table.HeaderCell>
+              <Table.HeaderCell className="title-header"> Décision</Table.HeaderCell>
+              <Table.HeaderCell className="title-header"> Paiement</Table.HeaderCell>
+              <Table.HeaderCell className="title-header"> Validation définitive</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -92,10 +94,10 @@ export class GestionReserv extends Component {
                   className={el.decision == "Validée" ? "redadminbb" : "f"}
                 >
                   <Table.Cell>
-                    <Label ribbon>{el.client.nom_prenom}</Label>
+                    {el.client.nom_prenom}
                   </Table.Cell>
                   <Table.Cell>
-                    <Label ribbon>{el.aide.nom_prenom}</Label>
+                    {el.aide.nom_prenom}
                   </Table.Cell>
                   <Table.Cell>{el.tel_client}</Table.Cell>
 
@@ -185,7 +187,7 @@ export class GestionReserv extends Component {
                       </Button>
 
                       <Button
-                        className="annuler-button"
+                        className="valider-button"
                         outline
                         size="sm"
                         onClick={() =>
@@ -208,7 +210,7 @@ export class GestionReserv extends Component {
               <Table.HeaderCell colSpan="3"></Table.HeaderCell>
             </Table.Row>
           </Table.Footer>
-        </Table>
+        </Table></div>
         {/************************** * PAGINATION *********************/}
         <div className="pagination">
           <Pagination

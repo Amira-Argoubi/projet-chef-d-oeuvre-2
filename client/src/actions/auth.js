@@ -5,7 +5,7 @@ import {
   LOGIN_SUCCESS,
   EDIT_USER,
 } from "./types";
-
+/******************************** Inscription **************** */
 export function register(el) {
   console.log(el);
   return (dispatch) =>
@@ -14,11 +14,11 @@ export function register(el) {
       .then((res) =>
         dispatch(
           { type: REGISTER_SUCCESS, payload: res.data }
-          // console.log("amira", res.data)
         )
       )
       .catch((err) => console.log("Créez un compte"));
 }
+/******************************** Connexion **************** */
 
 export function login(el) {
   return (dispatch) =>
@@ -41,6 +41,9 @@ export function login(el) {
       )
       .catch((err) => alert("Créez un compte"));
 }
+
+/******************************** Get profil **************** */
+
 export const getUser = () => async (dispatch) => {
   try {
     const res = await axios.get(
@@ -55,22 +58,13 @@ export const getUser = () => async (dispatch) => {
     console.log(err);
   }
 };
-/*************************** EDIT ****************************/
+/*************************** EDIT profil ****************************/
 export const editUser = (payload) => {
   return {
     type: EDIT_USER,
     payload,
   };
 };
-// export const editUserInDB = (el) => {
-//   return (dispatch) =>
-//     axios
-//       .patch(
-//         `http://localhost:8000/chef-d'oeuvre/authentif/update/${el._id}`,
-//         el
-//       )
-//       .then((res) => dispatch(window.location.reload()));
-// };
 
 export const editUserInDB = (el) => {
   return (dispatch) => {

@@ -8,7 +8,7 @@ export const addAide = (payload) => {
   };
 };
 export const addAideToDB = (el) => {
-  console.log("action",el);
+  // console.log("action",el);
   return (dispatch) =>
     axios
       .post("http://localhost:8000/chef-d'oeuvre/aides/add", el)
@@ -19,10 +19,7 @@ export const addAideToDB = (el) => {
         } else {
           dispatch(addAide(res.data), window.location.reload());
         }
-        /*************** tester si l'aide a déjà postuler ************ */
-        // if (res.data.msg) {
-        //   alert("annonce existe déjà");
-        // } else {
+       
       });
 };
 
@@ -44,18 +41,7 @@ export const editAideInDB = (el) => {
         dispatch(editAide(res.data), window.location.reload(false))
       );
 };
-export const getOneAideFDB = () => {
-  return (dispatch) =>
-    axios
-      .get(`http://localhost:8000/chef-d'oeuvre/aides/OneAide`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log("get  one aide ", res.data);
-        dispatch(getAide);
-      })
-      .catch((err) => console.log("err one aide", err));
-};
+
 /******************************* DELETE ******************************/
 export const deleteAide = (payload) => {
   return {

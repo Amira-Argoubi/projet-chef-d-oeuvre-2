@@ -7,6 +7,8 @@ const aideRoute = require("./routes/aideRoute");
 const authentifRoute = require("./routes/authRoute");
 
 const reservationRoute = require("./routes/reservationRoute");
+const ratingRoute= require("./routes/ratingRoute");
+
 
 const app = express();
 app.use(cookie());
@@ -33,6 +35,7 @@ app.use(function (req, res, next) {
 app.use("/chef-d'oeuvre/aides", aideRoute);
 app.use("/chef-d'oeuvre/authentif", authentifRoute);
 app.use("/chef-d'oeuvre/reservation", reservationRoute);
+app.use("/chef-d'oeuvre/rating", ratingRoute);
 
 /******************** Connect to DB *********************** */
 

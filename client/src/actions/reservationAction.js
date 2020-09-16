@@ -6,7 +6,7 @@ import {
 } from "./types";
 import axios from "axios";
 /*********************** GET Reservation********************** */
-export const getReservation = (user) => async (dispatch) => {
+export const getReservation = () => async (dispatch) => {
   try {
     const res = await axios.get(
       "http://localhost:8000/chef-d'oeuvre/reservation/"

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import ScrollUpButton from "react-scroll-up-button"; //Add this line Here
+import { TinyButton as ScrollUpButton } from "react-scroll-up-button"; //Add this line Here
 import "../App.css";
 import { Pagination } from "antd";
-import { FaStar } from "react-icons/fa";
-import Rating from "./rating";
+import { MDBAnimation } from "mdbreact";
+import window from "./images/window.png"
+import carpet from"./images/carpet.png"
 import {
   MDBContainer,
   MDBIcon,
@@ -15,14 +16,7 @@ import {
   MDBRow,
   MDBCol,
   MDBInput,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBCardText,
-  MDBCard,
-  MDBCardImage,
-  MDBCardBody,
-  MDBCardTitle,
+  
 } from "mdbreact";
 
 import { login } from "../actions/auth";
@@ -32,6 +26,8 @@ import { connect } from "react-redux";
 import Pub from "./publicité";
 import AddReservation from "./dashboardClient/choisirReservation";
 import CardCarousel from "./cardCarousel";
+import Contact from "./contact";
+import CarouselRating from "./carouselRating";
 
 /******************************************************** ******/
 export class Accueil extends Component {
@@ -102,136 +98,180 @@ export class Accueil extends Component {
       <div className="accueil">
         {/****************** * component publicité **********************/}
         <Pub />
+        {/************************* * text ****************************/}
 
+        <div className="text">
+          <h1>
+            {" "}
+            <span class="text-with-quotes">
+              <p id="parag">
+                {" "}
+                <i
+                  class="fa fa-quote-left"
+                  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 40 }}
+                ></i>{" "}
+                Nos Clients en parlent{" "}
+                <i
+                  class="fa fa-quote-right"
+                  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 40 }}
+                ></i>
+              </p>
+            </span>
+          </h1>
+        </div>
+        {/************ * caroussel rating *******************************/}
+        <CarouselRating />
         {/************************* * text ****************************/}
         <div className="text">
           <h1>
             {" "}
-            <i class="fa fa-quote-left"></i>
             <span class="text-with-quotes">
               <p id="parag">
                 {" "}
-                Réservez votre ménage à domicile en un simple clic
+                <i
+                  class="fa fa-quote-left"
+                  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}
+                ></i> {" "}
+                Nos Services{" "}
+                <i
+                  class="fa fa-quote-right"
+                  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}
+                ></i>
               </p>
             </span>
-            <i class="fa fa-quote-right"></i>
+          </h1>
+        </div>
+        {/********************** * cards + carousel ***********************/}
+
+        <CardCarousel />
+        {/************************* * text ****************************/}
+        <div className="text">
+          <h1>
+            {" "}
+            <span class="text-with-quotes">
+              <p id="parag" className="parag-acceuil">
+                {" "}
+                <i class="fa fa-quote-left"  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}></i>
+               {" "} Réservez votre ménage à domicile en un simple clic{" "}
+                <i class="fa fa-quote-right" style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}></i>
+              </p>
+            </span>
           </h1>
         </div>
 
         {/************ ************** les filtres ************************/}
-        <div class="card card-image">
-          <div class="text-white text-center  py-5 px-4">
-            <div class="py-5">
-              {/* <!-- Content --> */}
-              <h5 class="h5 orange-text">
-                <i class="fas fa-camera-retro"></i> Photography
-              </h5>
-              <h2 class="card-title h2 my-4 py-2">
-                Jumbotron with image overlay
-              </h2>
-              <p class="mb-4 pb-2 px-md-5 mx-md-5">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Pariatur obcaecati vero aliquid libero doloribus ad, unde
-                tempora maiores, ullam, modi qui quidem minima debitis
-                perferendis vitae cumque et quo impedit.
-              </p>
-              {/* <a class="btn peach-gradient"><i class="fas fa-clone left"></i> View project</a> */}
-              <div className="filtre container">
-                <select
-                  className="browser-default custom-select "
-                  style={{ width: "200px" }}
-                  onChange={(e) => this.setState({ ville: e.target.value })}
-                >
-                  <option>Choisir la Délégation</option>
-                  {villes.map((el) => (
-                    <option>{el}</option>
-                  ))}
-                </select>
-                {/* ***********filtre par jour ***************/}
+        <div class="card card-image"></div>
+        <div class="text-white text-center  py-5 px-4 card-filtre">
+          <div class="py-5">
+            {/* <!-- Content --> */}
 
-                <select
-                  className="browser-default custom-select"
-                  style={{ width: "200px" }}
-                  onChange={(e) => this.setState({ jour: e.target.value })}
-                >
-                  <option value="">Choisir le jour</option>
-                  <option value="Lundi">Lundi</option>
-                  <option value="Mardi">Mardi</option>
-                  <option value="Mercredi">Mercredi</option>
-                  <option value="Jeudi">Jeudi</option>
-                  <option value="Vendredi">Vendredi</option>
-                  <option value="Samedi">Samedi</option>
-                  <option value="Dimanche">Dimanche</option>
-                </select>
+            <h2 class="card-title h2 my-4 py-2" style={{ fontSize: 40 }}>
+              Plus qu'un service, c'est un confort de vie{" "}
+            </h2>
+            <p class="mb-4 pb-2 px-md-5 mx-md-5" style={{ fontSize: 30 }}>
+              Trouvez un aide ménagère près de chez vous !
+            </p>
+            {/* <a class="btn peach-gradient"><i class="fas fa-clone left"></i> View project</a> */}
+            <div className="filtre container Jumbotron-filter">
+              <select
+                className="browser-default custom-select "
+                style={{ width: "200px" }}
+                onChange={(e) => this.setState({ ville: e.target.value })}
+              >
+                <option>Choisir la Délégation</option>
+                {villes.map((el) => (
+                  <option>{el}</option>
+                ))}
+              </select>
+              {/* ***********filtre par jour ***************/}
 
-                {/* ***********filtre par type de service ***************/}
-                <select
-                  className="browser-default custom-select"
-                  style={{ width: "200px" }}
-                  onChange={(e) => this.setState({ service: e.target.value })}
+              <select
+                className="browser-default custom-select"
+                style={{ width: "200px" }}
+                onChange={(e) => this.setState({ jour: e.target.value })}
+              >
+                <option value="">Choisir le jour</option>
+                <option value="Lundi">Lundi</option>
+                <option value="Mardi">Mardi</option>
+                <option value="Mercredi">Mercredi</option>
+                <option value="Jeudi">Jeudi</option>
+                <option value="Vendredi">Vendredi</option>
+                <option value="Samedi">Samedi</option>
+                <option value="Dimanche">Dimanche</option>
+              </select>
+
+              {/* ***********filtre par type de service ***************/}
+              <select
+                className="browser-default custom-select"
+                style={{ width: "200px" }}
+                onChange={(e) => this.setState({ service: e.target.value })}
+              >
+                <option value="">Choisir le service</option>
+                <option
+                  value="Nettoyage domestique
+"
                 >
-                  <option value="">Choisir le service</option>
-                  <option
-                    value="Nettoyage domestique
+                  Nettoyage domestique
+                </option>
+                <option
+                  value="Nettoyage de bureaux
 "
-                  >
-                    Nettoyage domestique
-                  </option>
-                  <option
-                    value="Nettoyage de bureaux
+                >
+                  Nettoyage de bureaux
+                </option>
+                <option
+                  value="Nettoyage de fin de location
 "
-                  >
-                    Nettoyage de bureaux
-                  </option>
-                  <option
-                    value="Nettoyage de fin de location
+                >
+                  Nettoyage de fin de location
+                </option>
+                <option
+                  value="Nettoyage des vitres
 "
-                  >
-                    Nettoyage de fin de location
-                  </option>
-                  <option
-                    value="Nettoyage des vitres
+                >
+                  Nettoyage des vitres
+                </option>
+                <option
+                  value="Nettoyage de tapis
 "
-                  >
-                    Nettoyage des vitres
-                  </option>
-                  <option
-                    value="Nettoyage de tapis
-"
-                  >
-                    Nettoyage de tapis
-                  </option>
-                  <option
-                    value="Nettoyage des sols durs
+                >
+                  Nettoyage de tapis
+                </option>
+                <option
+                  value="Nettoyage des sols durs
  
 "
-                  >
-                    Nettoyage des sols durs
-                  </option>
-                </select>
-              </div>
+                >
+                  Nettoyage des sols durs
+                </option>
+              </select>
             </div>
           </div>
         </div>
 
-        {/* différents services */}
         {/************************* * text ****************************/}
 
         <div className="text">
-          <h1>
+          <h1 className="equipe">
             {" "}
-            <i class="fa fa-quote-left"></i>
             <span class="text-with-quotes">
               <p id="parag">
                 {" "}
-                Réservez votre ménage à domicile en un simple clic
+                <i
+                  class="fa fa-quote-left"
+                  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}
+                ></i>{" "}
+                Notre Equipe{" "}
+                <i
+                  class="fa fa-quote-right"
+                  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}
+                ></i>
               </p>
             </span>
-            <i class="fa fa-quote-right"></i>
           </h1>
         </div>
         {/* ***********new cards *******************/}
-        <div className="all-cards">
+        <div className="all-cards-accueil">
           {this.props.aides
             .filter((jr) =>
               this.state.jour === "" ? jr : jr.dispo.includes(this.state.jour)
@@ -262,10 +302,6 @@ export class Accueil extends Component {
                   />
                   <h3>{el.nom}</h3>
                   <h6>{el.ville}</h6>
-                  {/************************ * Rating *********************/}
-                  <span>
-                    <Rating el={el} />
-                  </span>
 
                   <h6>{el.age}</h6>
                   <h6>{el.exp}</h6>
@@ -288,11 +324,11 @@ export class Accueil extends Component {
                   </div>
 
                   <div class="skills">
-                    <h6>{el.sexe}</h6>{" "}
+                    <h6 style={{ color: "#ffffff", fontSize: "30" }}>
+                      {el.sexe}
+                    </h6>{" "}
                     <ul>
-                      {el.dispo.map((el) => (
-                        <li>{el}</li>
-                      ))}
+                      {el.dispo ? el.dispo.map((el) => <li>{el}</li>) : null}
                     </ul>
                   </div>
                 </div>
@@ -309,115 +345,115 @@ export class Accueil extends Component {
           />
         </div>
 
+        {/****************** * statiques ************************/}
+        <section id="trustproof" class="simple-section trustproof">
+          <div class="row trust__items row">
+            <div class="col-md-3">
+              <div class="trust text-center">
+              <i class="far fa-building" style={{color:"white",fontSize:60}}></i>
+
+                <br></br>
+                <br></br>
+                <p className="text-size">Nettoyage bureatique</p>
+              </div>
+            </div>
+            <div class="col-md-3 columns">
+              <div class="trust text-center ">
+              <i class="fas fa-home" style={{color:"white",fontSize:60}}></i>
+
+                <br></br>
+                <br></br>
+                <p className="text-size">Ménage à domicile</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="trust text-center">
+              <img src={window} alt="window" style={{width:70}}/>
+
+                <br></br>
+                <br></br>
+                <p className="text-size">Nettoyage des vitres</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="trust">
+              <img src={carpet} alt="carpet" style={{width:70, color:"white"}}/>
+
+                <br></br>
+
+                <br></br>
+                <p className="text-center text-size">Nettoyage des tapis</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/************************* * text ****************************/}
+        <div className="text-contact">
+          <h1>
+            {" "}
+            <span class="text-with-quotes">
+              <p>
+                {" "}
+                <i
+                  class="fa fa-quote-left"
+                  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}
+                ></i>{" "}
+                Contactez-nous{" "}
+                <i
+                  class="fa fa-quote-right"
+                  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}
+                ></i>
+              </p>
+            </span>
+          </h1>
+        </div>
+
         {/*************************** * cards horizontales ***********************/}
         {/* <!-- News jumbotron --> */}
 
         <div class="jumbotron text-center hoverable p-4 card-horizontale">
           {/* <!-- Grid row --> */}
-          <div class="row">
+          <div class="row row-contact">
             {/* <!-- Grid column --> */}
-            <div class="col-md-4 offset-md-1 mx-3 my-3">
+            <div class="col-md-5 ">
               {/* <!-- Featured image --> */}
-              <div class="view overlay">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg"
-                  class="img-fluid"
-                  alt="Sample image for first version of blog listing"
-                />
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
+              <div class="view overlay contact-img">
+                <MDBAnimation type="bounce" infinite>
+                  <img
+                    src="https://img.freepik.com/free-vector/emails-concept-illustration_114360-1355.jpg?size=338&ext=jpg&ga=GA1.2.789949379.1584276045"
+                    style={{ width: 500, height: 500 }}
+                  />
+                </MDBAnimation>
               </div>
             </div>
-            {/* <!-- Grid column --> */}
 
-            {/* <!-- Grid column --> */}
-            <div class="col-md-7 text-md-left ml-3 mt-3">
-              {/* <!-- Excerpt --> */}
-              <a href="#!" class="green-text">
-                <h6 class="h6 pb-1">
-                  <i class="fas fa-desktop pr-1"></i> Work
-                </h6>
-              </a>
+            <div class="col-md-7">
+              {/*************** * contact ************************/}
 
-              <h4 class="h4 mb-4">This is title of the news</h4>
-
-              <p class="font-weight-normal">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque, totam rem aperiam, eaque ipsa quae ab
-              </p>
-              <p class="font-weight-normal">
-                by{" "}
-                <a>
-                  <strong>Carine Fox</strong>
-                </a>
-                , 19/08/2016
-              </p>
-
-              <a class="btn btn-success">Read more</a>
+              <Contact />
             </div>
-            {/* <!-- Grid column --> */}
           </div>
-          {/* <!-- Grid row --> */}
         </div>
 
-        {/********************** * cards + carousel ***********************/}
-
-        <CardCarousel />
         {/************ * button back to top ************************/}
+        <div>
         <div className="button-to-top">
-          <ScrollUpButton
+          {/*<ScrollUpButton
             StopPosition={0}
             ShowAtPosition={150}
             EasingType="easeOutCubic"
             AnimationDuration={500}
             ContainerClassName="ScrollUpButton__Container"
             TransitionClassName="ScrollUpButton__Toggled"
-            style={({ width: 100 }, { borderRadius: "50%" })}
+            style={
+              ({ width: 100 },
+              { borderRadius: "50%", backgroundColor: "rgba(29, 210, 177)" })
+            }
             ToggledStyle={{ right: 100 }}
-          />
+          /> */}
         </div>
-        {/* stat*/}
-        <section id="trustproof" class="simple-section trustproof">
-          <div class="row trust__items row">
-            <div class="col-md-3">
-              <div class="trust text-center">
-                <p className="text-size">Plus de</p>
-                <br></br>
-                <p class="trust--bold">100 000</p>
-                <br></br>
-                <p className="text-size">foyers nettoyés en France</p>
-              </div>
-            </div>
-            <div class="col-md-3 columns">
-              <div class="trust text-center ">
-                <p className="text-size">Déjà</p>
-                <br></br>
-                <p class="trust--bold">80 000</p>
-                <br></br>
-                <p className="text-size">clients satisfaits</p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="trust text-center">
-                <p className="text-size">Note Moyenne de</p>
-                <br></br>
-                <p class="trust--bold">4.7 / 5</p>
-                <br></br>
-                <p className="text-size">étoiles</p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="trust">
-                <p className="text-center text-size  ">Disponible dans</p>
-                <br></br>
-                <p class="trust--bold text-center">&gt;10 </p>
-                <br></br>
-                <p className="text-center text-size">villes en France</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        </div>
         {/********************* * modal connexion ***************************************/}
 
         <div className="connexion">

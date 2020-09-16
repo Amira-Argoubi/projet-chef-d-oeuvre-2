@@ -1,14 +1,162 @@
+/**************** carousel rating ************/
+.carousel-rating {
+  margin-top: 100px;
+  background-image: url();
+}
+.carousel-proof {
+  background: url(https://production-sg-h2.s3.amazonaws.com/assets/434/Helpling-HP-header.min.jpg)
+    no-repeat 50%;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 2rem;
+  height: 300px;
+}
+
+/***************** Avis *********/
+.avis {
+  /* margin-top: 50px; */
+}
+.button-rating {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+.star-avis {
+  margin-top: 30px;
+  margin-left: 160px;
+}
+#classicformpage .view {
+  background-image: url("https://www.kliner.com/wp-content/uploads/2019/04/qualite-qualite-societe-menage-kliner-768x512.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+}
+
+@media (max-width: 768px) {
+  #classicformpage .navbar:not(.top-nav-collapse) {
+    background: #424f95 !important;
+  }
+}
+
+#classicformpage label {
+  color: black !important;
+}
+/***************** contact formulaire ********************/
+@media (max-width: 600px) {
+  #map-container {
+    display: none !important;
+  }
+  .row-contact {
+    display: none !important;
+  }
+}
+.row-contact {
+  display: flex;
+  flex-wrap: wrap;
+}
+/************** button back to top ************/
+@media only screen and (max-width: 600px) {
+  .button-to-top {
+    position: "absolute";
+    left: 0px;
+    bottom: 0px;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/******************contact****************/
+.icon-contact {
+  color: #82b1ff !important;
+}
+.text-contact {
+  margin-top: 40px;
+}
+.contact-forms label {
+  font-size: 13px !important;
+}
+.contact-img {
+  margin-left: 100px;
+}
+.contact-forms .btn-forms {
+  font-size: 16px;
+}
+
+.form-dark [type="checkbox"] + label:before {
+  top: 2px;
+  width: 15px;
+  height: 15px;
+}
+
+.form-dark .md-form label {
+  color: #fff;
+}
+
+.form-dark input[type="text"]:focus:not([readonly]) {
+  border-bottom: 1px solid #00c851;
+  -webkit-box-shadow: 0 1px 0 0 #00c851;
+  box-shadow: 0 1px 0 0 #00c851;
+}
+
+.form-dark input[type="text"]:focus:not([readonly]) + label {
+  color: #fff;
+}
+
+.form-dark input[type="password"]:focus:not([readonly]) {
+  border-bottom: 1px solid #00c851;
+  -webkit-box-shadow: 0 1px 0 0 #00c851;
+  box-shadow: 0 1px 0 0 #00c851;
+}
+
+.form-dark input[type="password"]:focus:not([readonly]) + label {
+  color: #fff;
+}
+
+.form-dark input[type="checkbox"] + label:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 17px;
+  height: 17px;
+  z-index: 0;
+  border: 1.5px solid #fff;
+  border-radius: 1px;
+  margin-top: 2px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.form-dark input[type="checkbox"]:checked + label:before {
+  top: -4px;
+  left: -3px;
+  width: 12px;
+  height: 22px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: transparent #00c851 #00c851 transparent;
+  -webkit-transform: rotate(40deg);
+  -ms-transform: rotate(40deg);
+  transform: rotate(40deg);
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+}
 /************css navbar******************/
-.logo-nav {
-  margin-left: 30px;
+
+.navbar button {
+  font-size: 14px;
 }
 .lien-navbar {
-  font-size: 25px;
+  font-size: 20px;
   font-family: Gotham-book;
   margin-left: 40px;
 }
 .link-nav {
   display: flex;
+  margin-top: 12px;
 }
 .nom-app {
   color: rgb(56, 56, 241);
@@ -26,6 +174,10 @@ hr {
 }
 
 /************css filtres****************/
+.Jumbotron-filter option,
+.Jumbotron-filter select {
+  font-size: 15px;
+}
 .filtre {
   margin-top: 80px;
   display: flex;
@@ -35,17 +187,41 @@ hr {
   background-image: url("./components/images/ar1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  height: 300px;
+  margin-top: 80px !important;
+}
+.card-filtre {
+  position: absolute;
+  background: #22222263;
+  width: 100%;
+  top: 2220px;
 }
 
 /***********css table de réservations****/
 .liste-reserv-aide {
   margin-top: 100px;
 }
+.parag-acceuil {
+  display: none;
+}
 .liste-reserv-aide h1 {
   text-align: center;
 }
 .reservation-client {
   margin-top: 200px;
+}
+.table td {
+  font-size: 13px;
+  font-weight: 300;
+}
+.but-télécharger {
+  margin-top: 10px;
+  margin-left: 30px;
+  font-size: 20px;
+  color: #0b91fe;
+  box-shadow: 5px 5px 10px grey;
+  border-radius: 5px;
 }
 .but-etat {
   border-radius: 50%;
@@ -56,7 +232,7 @@ hr {
 
 /***************** css text ****************/
 .text {
-  margin-top: 100px;
+  margin-top: 30px;
   color: black;
 }
 
@@ -88,11 +264,14 @@ strong {
   width: 50px !important;
   height: 50px !important;
   margin-top: 18px;
+  margin-top: 18px;
+
   padding-top: 10px;
 }
 
 .pagination {
   justify-content: center;
+  margin-bottom: 100px;
 }
 /************************css footer*******/
 
@@ -113,6 +292,10 @@ strong {
 .button-footer {
   margin-top: 50px !important;
 }
+.logo-footer img {
+  margin-top: 20px;
+  margin-left: -40px;
+}
 
 /* icon contact */
 .contact-icon {
@@ -121,14 +304,21 @@ strong {
 }
 .contacts li {
   line-height: 50px;
+  font-size: 14px !important;
 }
 
 /* Main Footer */
-
+.row-footer h5 {
+  font-size: 16px !important;
+}
+.row-footer .button-footer {
+  font-size: 16px !important;
+}
 footer .main-footer {
   padding: 20px 0;
   background: #1f1a36;
-  height: 300px;
+  padding-top: 80px;
+  /* height: 300px; */
 }
 footer ul {
   padding-left: 0;
@@ -177,6 +367,9 @@ footer ul {
   padding-bottom: 30px;
   margin-bottom: 30px;
   border-bottom: 3px solid #222;
+}
+.row-footer {
+  padding-left: 130px;
 }
 
 /* Footer transparent */
@@ -319,38 +512,9 @@ ul.social-footer2 li a {
 .btn {
   background-color: rgba(29, 210, 177) !important;
 }
-/*********************** css image under navbar *********************************/
-#apppage .gradient {
-  background: -moz-linear-gradient(
-    45deg,
-    rgba(42, 27, 161, 0.7),
-    rgba(29, 210, 177, 0.7) 100%
-  );
-  background: -webkit-linear-gradient(
-    45deg,
-    rgba(42, 27, 161, 0.7),
-    rgba(29, 210, 177, 0.7) 100%
-  );
-  background: -webkit-gradient(
-    linear,
-    45deg,
-    from(rgba(42, 27, 161, 0.7)),
-    to(rgba(29, 210, 177, 0.7))
-  );
-  background: -o-linear-gradient(
-    45deg,
-    rgba(42, 27, 161, 0.7),
-    rgba(29, 210, 177, 0.7) 100%
-  );
-  /* background: linear-gradient(
-    45deg,
-    rgba(42, 27, 161, 0.7),
-    rgba(29, 210, 177, 0.7) 100%
-  ); */
-}
 
 #apppage .view {
-  background-image: url("http://localhost:3000/photo1.jpg");
+  background-image: url("http://template86631.motopreview.com/mt-demo/86600/86631/mt-content/uploads/2019/09/mt-1900-slider-img02.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -397,21 +561,35 @@ ul.social-footer2 li a {
 }
 .title-header {
   font-weight: 50px;
+  font-size: 15px;
 }
-.liste-reservation {
-  margin-top: 200px;
+.tab-reservation {
+  margin-top: 80px;
   margin-bottom: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .but-confirm,
 .but-annul {
-  font-size: 40px;
-  color: #febb0b;
-  box-shadow: 10px 10px 10px grey;
-  border: none;
+  font-size: 30px;
+  color: #0b91fe;
+  box-shadow: 5px 5px 10px grey;
+  border-radius: 5px;
 }
-.fas {
-  color: #febb0b;
+
+.titre-tab {
+  margin-top: 80px;
+  margin-bottom: 50px;
+  font-size: 50px;
+  font-family: "Roboto Mono", monospace;
+  line-height: 80px;
+  color: #4b92dc !important;
+  font-weight: bold;
+}
+.valider-button {
+  border-color: transparent;
+  background-color: transparent;
 }
 
 /**********************************new card profile***************************************/
@@ -421,8 +599,9 @@ ul.social-footer2 li a {
   box-sizing: border-box;
 }
 
-.all-cards {
+.all-cards-accueil {
   /* //background-color: #28223f; */
+  margin-top: -140px;
   font-family: Montserrat, sans-serif;
 
   display: flex;
@@ -515,75 +694,69 @@ button.primary.ghost {
   border: 1px solid #2d2747;
   border-radius: 2px;
   display: inline-block;
-  font-size: 12px;
+  font-size: 15px;
   margin: 0 7px 7px 0;
   padding: 7px;
+  color: #ffffff;
 }
 /************************ css component publicité *****************/
 .jumbotron {
   text-align: center;
   margin-top: -50px;
-  color: #1408bd;
+
   opacity: 0.8;
   background-color: #ffff;
 }
 
 .jumbotron h1 {
-  font-family: "Gloria Hallelujah", cursive;
+  color: #4b92dc;
+  font-family: "Roboto Mono", monospace !important;
+  font-weight: bold !important;
 }
 .jumbotron p {
-  font-family: "Parisienne", cursive;
+  font-family: inherit;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 20px;
   float: center;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 300;
+  text-align: justify;
+  line-height: 2;
+}
+.display-4 {
+  font-weight: bold !important;
+  color: #4b92dc;
+  font-family: "Roboto Mono", monospace;
 }
 
-/************* services **********/
-.services1,
-.services2 {
-  background-color: rgb(239, 245, 247);
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 150px;
-  justify-content: space-around;
+.titre-pub {
+  font-size: 50px !important;
+  color: #ffffff;
 }
+
 /*********** css text with quotes ***********/
 .text-with-quotes p {
   font-family: "Roboto Mono", monospace;
-  font-size: 50px;
+  font-size: 40px;
   line-height: 80px;
-  color: #1408bd !important;
+  color: #4b92dc !important;
   font-weight: bold;
 }
+.equipe {
+  margin-top: 100px;
+}
 /************************ page profil **************************/
-#classicformpage .view {
-  background-image: url("http://mdbootstrap.com/img/Photos/Others/images/91.jpg");
+
+#appage .view {
+  background-image: url("https://www.kliner.com/wp-content/themes/kliner/assets/img/femme-assise.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  height: 100vh;
-}
-
-#classicformpage .gradient {
-  background: -webkit-linear-gradient(
-    45deg,
-    rgba(0, 0, 0, 0.7),
-    rgba(72, 15, 144, 0.4) 100%
-  );
-  background: -webkit-gradient(
-    linear,
-    45deg,
-    from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)
-  );
-  background: linear-gradient(
-    45deg,
-    rgba(0, 0, 0, 0.7),
-    rgba(72, 15, 144, 0.4) 100%
-  );
+  min-height: 100vh;
 }
 
 #classicformpage .card {
-  background-color: rgba(126, 123, 215, 0.2);
+  background-color: rgba(188, 187, 216, 0.2);
 }
 
 #classicformpage h6 {
@@ -595,12 +768,12 @@ button.primary.ghost {
 }
 
 #classicformpage .top-nav-collapse {
-  background: #424f95 !important;
+  background: #bcc1df !important;
 }
 
 @media (max-width: 768px) {
   #classicformpage .navbar:not(.top-nav-collapse) {
-    background: #424f95 !important;
+    background: #f0e3ec;
   }
 }
 
@@ -609,7 +782,7 @@ button.primary.ghost {
 }
 
 #classicformpage {
-  margin-top: 150px;
+  margin-top: 40px;
 }
 /******************** modal connexion ****************/
 .font-small {
@@ -621,24 +794,42 @@ button.primary.ghost {
 .msg {
   margin-top: 150px;
 }
+.input-inscrip {
+  color: black !important;
+}
+.inscrip label,
+.inscrip select {
+  font-size: 14px !important;
+}
+
 /************* cards horizontales + carousel ********************/
-/* body {
-  background-color:  #eee;
-} */
+.carousel-horizontal {
+  display: none;
+}
+
+.p-carousel-horizontal {
+  line-height: 2;
+  font-size: 14px !important;
+  text-align: justify;
+  margin-top: 15px;
+}
+.titre-carousel-horizontal {
+  margin-top: 10px;
+  text-align: justify;
+  line-height: 30px !important;
+}
 .card-horizontale {
-  margin-top: 150px;
+  margin-top: 50px;
 }
 .container-carousel {
   margin-top: 100px;
-  max-width: 1800px;
-  width: 1800px;
+  max-width: 1550px;
+  width: 1700px;
   margin: auto;
   display: block;
 }
-
-.titre {
-  margin-bottom: 50px;
-  text-transform: uppercase;
+.row-card-carousel {
+  height: 400px;
 }
 
 .card-block {
@@ -686,27 +877,25 @@ button.primary.ghost {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
 }
 
-.btn {
+/* .btn {
   margin-top: auto;
-}
-/********************* css button retour au top de la page ************/
-/* stat */
+} */
+/********************************* statistique *********************************/
 
-.step img {
-  /*  max-width: 4.125rem;
-  max-height: 4.375rem; */
+.trust__items .columns:nth-child(2) {
+  border-right: 0.1rem solid #fff;
 }
-.steps__items {
-  justify-content: center;
-}
+
 .trustproof {
   background: url(https://production-sg-h2.s3.amazonaws.com/assets/434/Helpling-HP-header.min.jpg)
     no-repeat 50%;
   background-size: cover;
   background-attachment: fixed;
   padding: 2rem;
+  height: 200px;
 }
 .trust__items {
+  margin-top: 0px;
   text-align: center;
   font-family: Lato, sans-serif;
 }
@@ -716,170 +905,42 @@ button.primary.ghost {
   font-weight: 600;
   font-size: 1.125rem;
 }
-.trust--bold {
-  font-weight: 900;
-  font-size: 3rem;
-  margin: -2rem 0rem -0.75rem 0;
-}
-.usp__block img {
-  max-width: 5rem;
-  max-height: 4.125rem;
-  padding-bottom: 0.5rem;
-}
-.usp__block div {
-  min-height: 7rem;
-}
-#usp {
-  background: #fff;
-}
-.usp__block {
-  box-shadow: 0px 0px 5px 4px #f3f3f3;
-  border: 1px solid #dddddd;
-}
-.services {
-  padding: 3.125rem 1rem;
-  background: #fff;
-}
 
-#cta {
-  background: url(https://production-nl-h2.s3.amazonaws.com/assets/943/2000x1000-footer-kitchen.jpg)
-    no-repeat center bottom;
-  background-size: cover;
-}
-.trustpilot {
-  padding: 3rem 1rem 1rem 1rem;
-}
-.content {
-  padding-bottom: 3rem;
-}
-.content__picture--text {
-  background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.1),
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0)
-    ),
-    url(https://production-de-h2.s3.amazonaws.com/assets/1785/putzfrau_background_dark.jpg)
-      no-repeat left top;
-  background-size: cover;
-}
-.why-helpling {
-  background: #f3f3f3;
-}
-
-@media screen and (min-width: 1024px) {
-  .hero.hero--small .hero__form--content .row {
-    justify-content: flex-start;
-  }
-
-  .steps {
-    padding: 3rem;
-  }
-  .button.expanded {
-    height: 3.75rem;
-  }
-  .usp__block {
-    min-height: 31rem;
-  }
-  .trust__items .columns:nth-child(2) {
-    border-right: 0.1rem solid #fff;
-  }
-  .hero--small h1 {
-    font-size: 2.9rem !important;
-  }
-  #cta {
-    max-height: 45rem;
-  }
-  .services h2 {
-    padding-bottom: 1.5rem;
-    font-size: 32px;
-  }
-}
-
-.trust__items .columns:nth-child(2n + 1) {
-  border-right: 0.1rem solid #fff;
-}
-.trust__items .columns:nth-child(1n + 3) {
-  border-top: 0.1rem solid #fff;
-}
-
-.trust {
-  font-size: 0.85rem;
-}
-.trust--bold {
-  margin: -1.5rem 0rem -0.25rem 0;
-  font-size: 1.75rem;
-}
-.content__short__image {
-  background-size: contain !important;
-  padding-top: 10.25rem;
-}
-.content__short {
-  padding: 0rem 0;
-}
-.simple-section {
-  padding: 1.75rem 0rem;
-}
-.usp__block div {
-  min-height: unset;
-}
-#usp {
-  padding: 2rem 1rem;
-}
-#usp .button.primary {
-  margin-top: 1rem;
-}
-.usp__block {
-  margin: 0.1875rem 0.1875rem 1rem 0.1875rem;
-  padding: 0.525rem 1.25rem 1.525rem;
-}
-#cta {
-  max-height: 27rem;
-}
 .trustproof {
-  padding: 2.5rem 30px;
+  padding: -3.5rem 30px;
 }
 .trust {
-  font-size: 0.85rem;
+  font-size: 1.85rem;
 }
 .trust--bold {
   margin: -1.5rem 0rem -0.25rem 0;
-  font-size: 2rem;
+  font-size: 4rem;
 }
 
-@media screen and (max-width: 360px) {
-  .trust {
-    font-size: 0.9rem;
-  }
-  .trust--bold {
-    font-size: 40px;
-  }
-}
-
-.text__bullets li::before {
-  display: inline-block;
-  content: "";
-  height: 0.8125rem;
-  width: 0.8125rem;
-  margin-right: 0.5rem;
-  background: url(https://production-de-h2.s3.amazonaws.com/assets/841/checkmark.svg)
-    bottom left no-repeat;
-  background-size: contain;
-}
-@media screen and (min-width: 1024px) {
-  .text__bullets ul {
-    margin-left: 0;
-  }
-}
-@media screen and (max-width: 480px) {
-  .text__bullets ul {
-    margin-bottom: 30px;
-  }
-}
 .text-size {
   font-size: 20px;
 }
 /* Why Helpling section ends here */
+/************ Responsive ********************/
+@media only screen and (max-width: 600px) {
+  .row-card-carousel {
+    height: 400px;
+    width: 100%;
+  }
+  .filtre {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 30 px;
+  }
+  .text-horizontal {
+    width: 100%;
+  }
+  .card-carousel {
+    width: 100%;
+  }
+  .togle {
+    background-color: red;
+  }
+}

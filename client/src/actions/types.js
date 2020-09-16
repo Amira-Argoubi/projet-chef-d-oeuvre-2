@@ -19,3 +19,6 @@ export const EDIT_DECISION = "EDIT_DECISION";
 export const DELETE_RESERVATION = "DELETE_RESERVATION";
 
 //export const REGISTER_FAIL = "REGISTER_FAIL";
+/************ Rating ****************** */
+export const ADD_RATING = "ADD_AIDE";
+export const GET_RATING = "GET_AIDE";

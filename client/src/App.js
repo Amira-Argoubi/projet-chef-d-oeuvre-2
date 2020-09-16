@@ -3,9 +3,9 @@ import "./App.css";
 import "antd/dist/antd.css";
 import Postuler from "./components/dashboardAide/postuler-aide";
 import Accueil from "./components/accueil";
-import MsgNotfound from "./components/notFound-404";
 //import ReserverAide from "./components/dashboardClient/reserverAide";
 import ReservationAttente from "./components/dashboardClient/clientAttente";
+import Avis from "./components/dashboardClient/avisClient";
 
 import GestionReservation from "./components/dashboardAide/gestion-reservation";
 import { getAideFromDB } from "./actions/aideActionCreator";
@@ -41,7 +41,8 @@ export class App extends Component {
               component={ReservationAttente}
             />
             <Route exact path="/modif-profil" component={Profil} />
-            
+
+            <Route exact path="/Avis" component={Avis} />
 
             <Route
               exact

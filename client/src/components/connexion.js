@@ -39,7 +39,7 @@ export class Connex extends Component {
                 <MDBRow>
                   <MDBCol md="6">
                     <form>
-                      <div className="grey-text">
+                      <div className="grey-text inscrip">
                         <i
                           class="fas fa-envelope"
                           style={{ fontSize: "30px" }}

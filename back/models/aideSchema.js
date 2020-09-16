@@ -12,8 +12,8 @@ const AideSchema = new mongoose.Schema({
   dispo: [],
   exp: { type: String, required: true },
   service: { type: String, required: true },
-  notes: { type: Number, required: true },
-  nb_per_note: { type: Number, required: true },
+  // notes: { type: Number, required: true },
+  // nb_per_note: { type: Number, required: true },
   proprietaire: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // attribut pour contenir l'id de l'aide pour apporter ces propres informations
 });
 module.exports = mongoose.model("Aide", AideSchema);

@@ -48,16 +48,18 @@ export class Inscription extends Component {
                 <MDBRow>
                   <MDBCol md="6">
                     <form>
-                      <div className="grey-text">
+                      <div className="grey-text inscrip" >
                         <i class="fas fa-user" style={{ fontSize: "30px" }}></i>
                         <MDBInput
-                          style={{ color: "black" }}
+                        className="input-inscrip"
+                         
                           label="Nom-Prénom"
                           group
                           type="text"
                           validate
                           error="wrong"
                           success="right"
+                          style={{ fontSize: "17px" }}
                           onChange={(e) =>
                             this.setState({ nom_prenom: e.target.value })
                           }
@@ -68,9 +70,11 @@ export class Inscription extends Component {
                           style={{ fontSize: "30px" }}
                         ></i>
                         <MDBInput
-                          style={{ color: "black" }}
+                          className="input-inscrip"
+                          style={{ fontSize: "17px" }}
                           label="Adresse email"
                           group
+                          type="email"
                           validate
                           error="wrong"
                           success="right"
@@ -80,7 +84,8 @@ export class Inscription extends Component {
                         />
                         <i class="fas fa-lock" style={{ fontSize: "30px" }}></i>
                         <MDBInput
-                          style={{ color: "black" }}
+                        style={{ fontSize: "17px" }}
+                           className="input-inscrip"
                           label="Mot de passe"
                           group
                           validate

@@ -36,7 +36,9 @@ import { connect } from "react-redux";
 
 class Postuler extends Component {
   state = {
-    modal14: false,
+    modal: false,
+    modal: false,
+
     selectedFile: [],
     dispo: [],
     // valueExiste: "",
@@ -58,10 +60,19 @@ class Postuler extends Component {
     //this.props.getOneAideFDB();
   }
   /***************************** */
+  toggle2 = () => {
+    this.setState({
+      modal: !this.state.modal,
+    });
+  };
   toggle = (nr) => () => {
     let modalNumber = "modal" + nr;
     this.setState({
       [modalNumber]: !this.state[modalNumber],
+      // nom: this.props.aides
+      //   .filter((el) => el.proprietaire === this.props.user._id)
+      //   .map((el) => el.nom)
+      //   .join(),
     });
   };
   /*************function upload img*********** */
@@ -79,7 +90,6 @@ class Postuler extends Component {
   };
   /************************************************************************* */
   render() {
-    
     //  ne donner l'accès pour ce component qu'à l'aide!
     if (this.props.user.role !== "Aide ménagère") {
       return <Redirect to="/" />;
@@ -137,16 +147,10 @@ class Postuler extends Component {
         </div>
         {/* *******************modal******************* */}
         <center>
-          <MDBBtn
-            gradient="blue"
-            onClick={this.toggle(14)}
-            style={{ borderRadius: "20px" }}
-          >
-            Postuler maintenant
-          </MDBBtn>
+          <MDBBtn onClick={this.toggle2}>Postuler</MDBBtn>
         </center>
-        <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
-          <MDBModalHeader toggle={this.toggle(14)}>
+        <MDBModal isOpen={this.state.modal} toggle={this.toggle2} centered>
+          <MDBModalHeader toggle={this.toggle2}>
             Postuler maintenant{" "}
           </MDBModalHeader>
           <MDBModalBody>
@@ -368,7 +372,7 @@ class Postuler extends Component {
             />
           </MDBModalBody>
           <MDBModalFooter>
-            <MDBBtn color="secondary" onClick={this.toggle(14)}>
+            <MDBBtn color="secondary" onClick={this.toggle}>
               Close
             </MDBBtn>
             <MDBBtn
@@ -404,13 +408,13 @@ class Postuler extends Component {
           </MDBModalFooter>
         </MDBModal>
         {/*************** **** card ****************/}
-        <h1>Card Flip with Text</h1>
+        <h1>Mon annonce</h1>
 
         {/* new card */}
         {/* filter l'aide connectéà ce moment */}
 
         <MDBCol>
-          <div className="all-cards">
+         <center><div className="card-annonce">
             {aide.map((el) => (
               <div>
                 <div class="card-container">
@@ -443,7 +447,7 @@ class Postuler extends Component {
                     >
                       Effacer{" "}
                     </button>
-                    {/* ) : ( "" )} */}
+                    
                   </div>
 
                   <div class="skills">
@@ -458,7 +462,9 @@ class Postuler extends Component {
               </div>
             ))}
           </div>
+          </center> 
         </MDBCol>
+        <MDBContainer></MDBContainer>
       </MDBContainer>
     );
   }

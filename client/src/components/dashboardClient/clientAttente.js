@@ -4,7 +4,7 @@ import { Pagination } from "antd";
 import axios from "axios";
 import { getAideFromDB } from "../../actions/aideActionCreator";
 import moment from "moment";
-import {Redirect} from "react-router-dom"
+import { Redirect } from "react-router-dom";
 
 import {
   getReservation,
@@ -44,7 +44,7 @@ export class ReservationAttente extends Component {
   };
 
   render() {
-        //  ne donner l'accès pour ce component qu'au client!
+    //  ne donner l'accès pour ce component qu'au client!
 
     if (this.props.user.role !== "Client") {
       return <Redirect to="/" />;
@@ -55,23 +55,46 @@ export class ReservationAttente extends Component {
 
     console.log("u", reservations);
     return (
-      <div className="liste-reservation">
-        <h1 className="reservartion-client">Mes réservations</h1>
+      <div className="liste-reservation container-fluid">
+        <h1 className="titre-tab">Mes réservations</h1>
 
         {reservations.length ? (
-          <Table celled className="table-reserv-client">
-            <Table.Header>
+          <Table celled>
+            <Table.Header className="table-header">
               <Table.Row>
-                <Table.HeaderCell>Nom-Prénom-Aide</Table.HeaderCell>
-                <Table.HeaderCell>Délégation</Table.HeaderCell>
-                <Table.HeaderCell>Service</Table.HeaderCell>
-                <Table.HeaderCell>Jour</Table.HeaderCell>
-                <Table.HeaderCell>Expérience</Table.HeaderCell>
-                <Table.HeaderCell>Age</Table.HeaderCell>
-                <Table.HeaderCell>Devis</Table.HeaderCell>
-                <Table.HeaderCell>Actions</Table.HeaderCell>
-                <Table.HeaderCell>Date</Table.HeaderCell>
-                <Table.HeaderCell>Paiement</Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Nom-Prénom-Aide
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Délégation
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Service
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Jour
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Expérience
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Age
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Devis
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Actions
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Date
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Paiement
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Etat
+                </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 
@@ -84,9 +107,7 @@ export class ReservationAttente extends Component {
                 )
                 .map((el, i) => (
                   <Table.Row>
-                    <Table.Cell>
-                      <Label ribbon>{el.nom}</Label>
-                    </Table.Cell>
+                    <Table.Cell>{el.nom}</Table.Cell>
                     <Table.Cell>{el.ville}</Table.Cell>
                     <Table.Cell>{el.service}</Table.Cell>
                     <Table.Cell>
@@ -110,10 +131,6 @@ export class ReservationAttente extends Component {
                       )}
                     </Table.Cell>
                     <Table.Cell className="pos-Action ">
-                      {/* <Button secondary>
-                      <ModifEvent el={el} />
-                    </Button> */}
-
                       <Button
                         outline
                         size="sm"
@@ -141,8 +158,10 @@ export class ReservationAttente extends Component {
                               <input
                                 type="file"
                                 onChange={(e) => this.handleInput(e)}
+                                style={{ width: "118px" }}
                               />
                               <Button
+                                className="but-télécharger"
                                 outline
                                 size="sm"
                                 onClick={() => (
@@ -153,7 +172,7 @@ export class ReservationAttente extends Component {
                                   })
                                 )}
                               >
-                                Télécharger
+                                <i class="fas fa-upload"></i>
                               </Button>
                             </>
                           )}
@@ -190,9 +209,7 @@ export class ReservationAttente extends Component {
               </Table.Row>
             </Table.Footer>
           </Table>
-        ) : (
-          <h1>pas de reservations</h1>
-        )}
+        ) : null}
         {/************** * Pagination ******************/}
         <div className="pagination">
           <i class="fas fa-angle-double-left left-page"></i>{" "}

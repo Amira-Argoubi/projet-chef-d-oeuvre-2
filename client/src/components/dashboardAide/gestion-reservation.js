@@ -7,7 +7,7 @@ import {
   deleteReservationInDB,
 } from "../../actions/reservationAction";
 import { getUser } from "../../actions/auth";
-import { Label, Table, Button } from "semantic-ui-react";
+import { Table, Button } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 export class GestionReservation extends Component {
   state = {
@@ -28,6 +28,7 @@ export class GestionReservation extends Component {
 
     return (
       <div className="liste-reservation container">
+         <h1 className="titre-tab">Mes clients</h1>
         <Table celled>
           <Table.Header>
             <Table.Row>
