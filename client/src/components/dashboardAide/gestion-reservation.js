@@ -30,13 +30,15 @@ export class GestionReservation extends Component {
       <div className="liste-reservation container">
          <h1 className="titre-tab">Mes clients</h1>
         <Table celled>
-          <Table.Header>
+          <Table.Header className="table-header">
             <Table.Row>
-              <Table.HeaderCell>Date-début</Table.HeaderCell>
-              <Table.HeaderCell>Date-fin</Table.HeaderCell>
-              <Table.HeaderCell>Adresse</Table.HeaderCell>
-              <Table.HeaderCell>Nom-client</Table.HeaderCell>
-              <Table.HeaderCell>Actions</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">Date-début</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">Date-fin</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">Adresse</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">Num-tel</Table.HeaderCell>
+
+              <Table.HeaderCell className="title-header">Nom-client</Table.HeaderCell>
+              <Table.HeaderCell className="title-header">Actions</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -44,17 +46,18 @@ export class GestionReservation extends Component {
             {reservations
               .filter(
                 (el) => el.aide._id.toString() == this.props.user._id.toString()
-              ) /*.filter((el_organizateurs) => this.el_organizateurs === "" ?
-                            el_organizateurs : el_organizateurs === "maazza"
-        )*/
+              ) 
               .map((el, i) => (
                 <>
                   <Table.Row>
                     <Table.Cell>{el.date_start}</Table.Cell>
                     <Table.Cell>{el.date_end}</Table.Cell>
                     <Table.Cell>{el.adresse_client}</Table.Cell>
+                    <Table.Cell>{el.tel_client}</Table.Cell>
+
                     <Table.Cell>{el.client.nom_prenom}</Table.Cell>
-                    <Button
+                    <Button className="but-annul"
+                    style={{fontSize:20}}
                       outline
                       size="sm"
                       disabled={el.decision == "Validée" ? true : false}

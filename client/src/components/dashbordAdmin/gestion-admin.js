@@ -10,7 +10,7 @@ import {
   editDecisionInDB,
 } from "../../actions/reservationAction";
 import { getUser } from "../../actions/auth";
-import { Label, Table, Button } from "semantic-ui-react";
+import { Table, Button } from "semantic-ui-react";
 import { MDBInput } from "mdbreact";
 import axios from "axios";
 
@@ -55,121 +55,96 @@ export class GestionReserv extends Component {
       <div className="liste-reservation">
         <h1 className="titre-tab">Gestion des réservations</h1>
         <div className="tab-reservation">
-        <Table celled>
-          <Table.Header className="table-header">
-            <Table.Row>
-              <Table.HeaderCell className="title-header">
-                Nom-Prénom-client
-              </Table.HeaderCell>
-              <Table.HeaderCell className="title-header">
-                Nom-Prénom-aide
-              </Table.HeaderCell>
-              <Table.HeaderCell className="title-header">Num-Tél</Table.HeaderCell>
+          <Table celled>
+            <Table.Header className="table-header">
+              <Table.Row>
+                <Table.HeaderCell className="title-header">
+                  Nom-Prénom-client
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Nom-Prénom-aide
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Num-Tél
+                </Table.HeaderCell>
 
-              <Table.HeaderCell className="title-header">Adresse</Table.HeaderCell>
-              <Table.HeaderCell className="title-header">Date-réservation</Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Adresse
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Date-réservation
+                </Table.HeaderCell>
 
-              <Table.HeaderCell className="title-header">Délais</Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Délais
+                </Table.HeaderCell>
 
-              <Table.HeaderCell className="title-header">Devis</Table.HeaderCell>
-              <Table.HeaderCell className="title-header">Actions</Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Devis
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  Actions
+                </Table.HeaderCell>
 
-              <Table.HeaderCell className="title-header"> Décision</Table.HeaderCell>
-              <Table.HeaderCell className="title-header"> Paiement</Table.HeaderCell>
-              <Table.HeaderCell className="title-header"> Validation définitive</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+                <Table.HeaderCell className="title-header">
+                  {" "}
+                  Décision
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  {" "}
+                  Paiement
+                </Table.HeaderCell>
+                <Table.HeaderCell className="title-header">
+                  {" "}
+                  Validation définitive
+                </Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
 
-          <Table.Body>
-            {this.props.reservation
-              .filter((el) => el.decision !== "Annulée")
-              ///////////////// PAGINATION //////////////////////////
-              .filter(
-                (l, index) =>
-                  (this.state.page - 1) * this.state.pageSize <= index &&
-                  index < this.state.page * this.state.pageSize
-              )
-              .map((el, i) => (
-                <Table.Row
-                  className={el.decision == "Validée" ? "redadminbb" : "f"}
-                >
-                  <Table.Cell>
-                    {el.client.nom_prenom}
-                  </Table.Cell>
-                  <Table.Cell>
-                    {el.aide.nom_prenom}
-                  </Table.Cell>
-                  <Table.Cell>{el.tel_client}</Table.Cell>
+            <Table.Body>
+              {this.props.reservation
+                .filter((el) => el.decision !== "Annulée")
+                ///////////////// PAGINATION //////////////////////////
+                .filter(
+                  (l, index) =>
+                    (this.state.page - 1) * this.state.pageSize <= index &&
+                    index < this.state.page * this.state.pageSize
+                )
+                .map((el, i) => (
+                  <Table.Row
+                    className={el.decision == "Validée" ? "redadminbb" : "f"}
+                  >
+                    <Table.Cell>{el.client.nom_prenom}</Table.Cell>
+                    <Table.Cell>{el.aide.nom_prenom}</Table.Cell>
+                    <Table.Cell>{el.tel_client}</Table.Cell>
 
-                  <Table.Cell>{el.adresse_client}</Table.Cell>
-                  <Table.Cell>
-                    {el.date_end} <br></br>
-                    {el.date_start}
-                  </Table.Cell>
+                    <Table.Cell>{el.adresse_client}</Table.Cell>
+                    <Table.Cell>
+                      {el.date_end} <br></br>
+                      {el.date_start}
+                    </Table.Cell>
 
-                  <Table.Cell>
-                    {" "}
-                    {moment(el.date_end, "YYYYMMDD").fromNow()}
-                  </Table.Cell>
-                  <Table.Cell className="pos-Action ">
-                    {el.decision !== "Annulée" ? (
-                      el.decision === "En attente" ? (
-                        <MDBInput
-                          type="file"
-                          onChange={(e) => this.handleInput(e)}
-                          outline
-                          style={{ width: "160px" }}
-                        />
+                    <Table.Cell>
+                      {" "}
+                      {moment(el.date_end, "YYYYMMDD").fromNow()}
+                    </Table.Cell>
+                    <Table.Cell className="pos-Action ">
+                      {el.decision !== "Annulée" ? (
+                        el.decision === "En attente" ? (
+                          <MDBInput
+                            type="file"
+                            onChange={(e) => this.handleInput(e)}
+                            outline
+                            style={{ width: "160px" }}
+                          />
+                        ) : (
+                          "Envoyé"
+                        )
                       ) : (
-                        "Envoyé"
-                      )
-                    ) : (
-                      "anuller"
-                    )}
-                  </Table.Cell>
-
-                  <Table.Cell className="action-button">
-                    <Button
-                      className="valider-button"
-                      outline
-                      size="sm"
-                      onClick={() => (
-                        this.upload(),
-                        this.props.editDecisionInDB({
-                          _id: el._id,
-                          decision: this.state.decision,
-                          devis: this.state.devis.name,
-                        })
+                        "anuller"
                       )}
-                    >
-                      <i class="fas fa-check-square valider but-confirm"></i>
-                    </Button>
-                  </Table.Cell>
+                    </Table.Cell>
 
-                  <Table.Cell>
-                    {" "}
-                    {el.decision === "Validée" ? (
-                      <img
-                        src={"http://localhost:8000/" + el.devis}
-                        width="50px"
-                      />
-                    ) : (
-                      el.decision
-                    )}
-                  </Table.Cell>
-                  <Table.Cell>
-                    {el.paiement ? (
-                      <a
-                        href={`http://localhost:8000/${el.paiement}`}
-                        target="_blanck"
-                      >
-                        Paiement
-                      </a>
-                    ) : (
-                      "pas encore"
-                    )}
-                  </Table.Cell>
-                  <div className="but-validation-définitive">
                     <Table.Cell className="action-button">
                       <Button
                         className="valider-button"
@@ -179,38 +154,81 @@ export class GestionReserv extends Component {
                           this.upload(),
                           this.props.editDecisionInDB({
                             _id: el._id,
-                            decision: "Validée définitive",
+                            decision: this.state.decision,
+                            devis: this.state.devis.name,
                           })
                         )}
                       >
                         <i class="fas fa-check-square valider but-confirm"></i>
                       </Button>
-
-                      <Button
-                        className="valider-button"
-                        outline
-                        size="sm"
-                        onClick={() =>
-                          this.props.editDecisionInDB({
-                            _id: el._id,
-                            decision: this.state.deci,
-                          })
-                        }
-                      >
-                        <i class="fas fa-trash annuler but-annul"></i>
-                      </Button>
                     </Table.Cell>
-                  </div>
-                </Table.Row>
-              ))}{" "}
-          </Table.Body>
 
-          <Table.Footer>
-            <Table.Row>
-              <Table.HeaderCell colSpan="3"></Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer>
-        </Table></div>
+                    <Table.Cell>
+                      {" "}
+                      {el.decision === "Validée" ? (
+                        <img
+                          src={"http://localhost:8000/" + el.devis}
+                          width="50px"
+                        />
+                      ) : (
+                        el.decision
+                      )}
+                    </Table.Cell>
+                    <Table.Cell>
+                      {el.paiement ? (
+                        <a
+                          href={`http://localhost:8000/${el.paiement}`}
+                          target="_blanck"
+                        >
+                          Paiement
+                        </a>
+                      ) : (
+                        "pas encore"
+                      )}
+                    </Table.Cell>
+                    <div className="but-validation-définitive">
+                      <Table.Cell className="action-button">
+                        <Button
+                          className="valider-button"
+                          outline
+                          size="sm"
+                          onClick={() => (
+                            this.upload(),
+                            this.props.editDecisionInDB({
+                              _id: el._id,
+                              decision: "Validée définitive",
+                            })
+                          )}
+                        >
+                          <i class="fas fa-check-square valider but-confirm"></i>
+                        </Button>
+
+                        <Button
+                          className="valider-button"
+                          outline
+                          size="sm"
+                          onClick={() =>
+                            this.props.editDecisionInDB({
+                              _id: el._id,
+                              decision: this.state.deci,
+                            })
+                          }
+                        >
+                          <i class="fas fa-trash annuler but-annul"></i>
+                        </Button>
+                      </Table.Cell>
+                    </div>
+                  </Table.Row>
+                ))}{" "}
+            </Table.Body>
+
+            <Table.Footer>
+              <Table.Row>
+                <Table.HeaderCell colSpan="3"></Table.HeaderCell>
+              </Table.Row>
+            </Table.Footer>
+          </Table>
+        </div>
         {/************************** * PAGINATION *********************/}
         <div className="pagination">
           <Pagination

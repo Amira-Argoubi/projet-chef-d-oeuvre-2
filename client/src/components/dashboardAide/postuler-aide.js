@@ -25,8 +25,7 @@ import { deleteAideInDB } from "../../actions/aideActionCreator";
 import {
   addAideToDB,
   getAideFromDB,
-  // getOneAideFDB,
-  // editAide,
+ 
 } from "../../actions/aideActionCreator";
 import { getUser } from "../../actions/auth";
 
@@ -41,9 +40,7 @@ class Postuler extends Component {
 
     selectedFile: [],
     dispo: [],
-    // valueExiste: "",
-    // existe: "",
-
+    
     Lundi: false,
     Mardi: false,
     Mercredi: false,
@@ -69,10 +66,7 @@ class Postuler extends Component {
     let modalNumber = "modal" + nr;
     this.setState({
       [modalNumber]: !this.state[modalNumber],
-      // nom: this.props.aides
-      //   .filter((el) => el.proprietaire === this.props.user._id)
-      //   .map((el) => el.nom)
-      //   .join(),
+   
     });
   };
   /*************function upload img*********** */
@@ -123,7 +117,6 @@ class Postuler extends Component {
       "Djebel Jelloud",
     ];
 
-    // const array = [...new Set(this.state.dispo)];
     const {
       Lundi,
       Mardi,
@@ -435,12 +428,9 @@ class Postuler extends Component {
                     <br /> front-end developer
                   </p>
                   <div class="buttons">
-                    {/* {!this.props.user.role &&
-                    this.props.user.role !== "Aide ménagère" ? ( */}
-                    {/* <button class="primary">Modifier</button> */}
+                   
                     <EditAide aide={el} />
-                    {/* ) : this.props.user.role === "Client" ? (
-                    // add réservation */}
+                    
                     <button
                       class="primary ghost"
                       onClick={() => this.props.deleteAide(el._id)}
@@ -481,7 +471,6 @@ const mapDispatchToProps = (dispatch) => {
     getUser: () => dispatch(getUser()),
     getAideFromDB: () => dispatch(getAideFromDB()),
     deleteAide: (id) => dispatch(deleteAideInDB(id)),
-    // getOneAideFDB: () => dispatch(getOneAideFDB()),
   };
 };
 

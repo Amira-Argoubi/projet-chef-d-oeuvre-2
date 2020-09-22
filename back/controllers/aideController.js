@@ -1,5 +1,4 @@
 const AideSchema = require("../models/aideSchema");
-//const User = require("../models/userSchema");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
@@ -63,16 +62,4 @@ module.exports = {
       .catch(() => res.status(404).json({ success: false }));
   },
 
-  // getoneAide: async (req, res) => {
-  //   const aide = await AideSchema.findById(req.params.id);
-  //   res.status(200).send(aide);
-  // }
-};
-
-// patchAide: (req, res) => {
-//   AideSchema.findByIdAndUpdate(req.params.id, req.body, (req, donner) => {
-//     /* .then((user) => res.status(200).send(user))
-//     .catch((err) => res.status(401).send(err))*/
-//     res.status(200).send(donner);
-//   });
-// },
+}

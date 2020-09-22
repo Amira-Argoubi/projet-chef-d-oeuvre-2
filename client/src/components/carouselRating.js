@@ -40,7 +40,6 @@ export class CarouselRating extends Component {
                             style={{ color: "rgba(29, 210, 177, 0.7)" }}
                           ></i>
                         }
-                        {/* <i class="fas fa-star"  style={{ color: "blue" }}></i> */}
                         <i
                           class="fas fa-star"
                           style={{ color: "rgba(29, 210, 177, 0.7)" }}

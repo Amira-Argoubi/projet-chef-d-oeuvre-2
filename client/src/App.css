@@ -181,6 +181,9 @@ hr {
 .liste-reserv-aide {
   margin-top: 100px;
 }
+.liste-reservation{
+  height:500px;
+}
 .parag-acceuil {
   display: none;
 }

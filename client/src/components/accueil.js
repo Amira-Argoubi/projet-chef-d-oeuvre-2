@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { TinyButton as ScrollUpButton } from "react-scroll-up-button"; //Add this line Here
+import { TinyButton as ScrollUpButton } from "react-scroll-up-button"; 
 import "../App.css";
 import { Pagination } from "antd";
 import { MDBAnimation } from "mdbreact";
-import window from "./images/window.png"
-import carpet from"./images/carpet.png"
+import window from "./images/window.png";
+import carpet from "./images/carpet.png";
 import {
   MDBContainer,
   MDBIcon,
@@ -16,7 +16,6 @@ import {
   MDBRow,
   MDBCol,
   MDBInput,
-  
 } from "mdbreact";
 
 import { login } from "../actions/auth";
@@ -93,7 +92,7 @@ export class Accueil extends Component {
       "El Kabaria",
       "Djebel Jelloud",
     ];
-    //console.log("taw", this.props.user);
+    
     return (
       <div className="accueil">
         {/****************** * component publicité **********************/}
@@ -131,7 +130,7 @@ export class Accueil extends Component {
                 <i
                   class="fa fa-quote-left"
                   style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}
-                ></i> {" "}
+                ></i>{" "}
                 Nos Services{" "}
                 <i
                   class="fa fa-quote-right"
@@ -151,9 +150,15 @@ export class Accueil extends Component {
             <span class="text-with-quotes">
               <p id="parag" className="parag-acceuil">
                 {" "}
-                <i class="fa fa-quote-left"  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}></i>
-               {" "} Réservez votre ménage à domicile en un simple clic{" "}
-                <i class="fa fa-quote-right" style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}></i>
+                <i
+                  class="fa fa-quote-left"
+                  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}
+                ></i>{" "}
+                Réservez votre ménage à domicile en un simple clic{" "}
+                <i
+                  class="fa fa-quote-right"
+                  style={{ color: "rgba(29, 210, 177, 0.7)", fontSize: 30 }}
+                ></i>
               </p>
             </span>
           </h1>
@@ -171,7 +176,6 @@ export class Accueil extends Component {
             <p class="mb-4 pb-2 px-md-5 mx-md-5" style={{ fontSize: 30 }}>
               Trouvez un aide ménagère près de chez vous !
             </p>
-            {/* <a class="btn peach-gradient"><i class="fas fa-clone left"></i> View project</a> */}
             <div className="filtre container Jumbotron-filter">
               <select
                 className="browser-default custom-select "
@@ -207,41 +211,20 @@ export class Accueil extends Component {
                 onChange={(e) => this.setState({ service: e.target.value })}
               >
                 <option value="">Choisir le service</option>
-                <option
-                  value="Nettoyage domestique
-"
-                >
+                <option value="Nettoyage domestique">
                   Nettoyage domestique
                 </option>
-                <option
-                  value="Nettoyage de bureaux
-"
-                >
+                <option value="Nettoyage de bureaux">
                   Nettoyage de bureaux
                 </option>
-                <option
-                  value="Nettoyage de fin de location
-"
-                >
+                <option value="Nettoyage de fin de location">
                   Nettoyage de fin de location
                 </option>
-                <option
-                  value="Nettoyage des vitres
-"
-                >
+                <option value="Nettoyage des vitres">
                   Nettoyage des vitres
                 </option>
-                <option
-                  value="Nettoyage de tapis
-"
-                >
-                  Nettoyage de tapis
-                </option>
-                <option
-                  value="Nettoyage des sols durs
- 
-"
-                >
+                <option value="Nettoyage de tapis">Nettoyage de tapis</option>
+                <option value="Nettoyage des sols durs">
                   Nettoyage des sols durs
                 </option>
               </select>
@@ -350,7 +333,10 @@ export class Accueil extends Component {
           <div class="row trust__items row">
             <div class="col-md-3">
               <div class="trust text-center">
-              <i class="far fa-building" style={{color:"white",fontSize:60}}></i>
+                <i
+                  class="far fa-building"
+                  style={{ color: "white", fontSize: 60 }}
+                ></i>
 
                 <br></br>
                 <br></br>
@@ -359,7 +345,10 @@ export class Accueil extends Component {
             </div>
             <div class="col-md-3 columns">
               <div class="trust text-center ">
-              <i class="fas fa-home" style={{color:"white",fontSize:60}}></i>
+                <i
+                  class="fas fa-home"
+                  style={{ color: "white", fontSize: 60 }}
+                ></i>
 
                 <br></br>
                 <br></br>
@@ -368,7 +357,7 @@ export class Accueil extends Component {
             </div>
             <div class="col-md-3">
               <div class="trust text-center">
-              <img src={window} alt="window" style={{width:70}}/>
+                <img src={window} alt="window" style={{ width: 70 }} />
 
                 <br></br>
                 <br></br>
@@ -377,7 +366,11 @@ export class Accueil extends Component {
             </div>
             <div class="col-md-3">
               <div class="trust">
-              <img src={carpet} alt="carpet" style={{width:70, color:"white"}}/>
+                <img
+                  src={carpet}
+                  alt="carpet"
+                  style={{ width: 70, color: "white" }}
+                />
 
                 <br></br>
 
